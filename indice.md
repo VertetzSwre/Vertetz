@@ -1,4 +1,4 @@
-Modelo: El modelo contiene toda la lógica y la interacción con la BDD. Se realizan además todaas
+Modelo: El modelo contiene toda la lógica y la interacción con la BDD. Se realizan además todas
 las consultas SQL y se manejan los datos. 
 
 Controlador: El controlador procesa las entradas del usuario, interactúa con el modelo y selecciona las
