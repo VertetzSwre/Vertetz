@@ -44,35 +44,45 @@ class Reserva {
     }
 }
 
-class Institucion {
+class Servicio {
     private $nombre; //Primary Key
-    private $grupo;
 
-    public function __constructor($nombre, $grupo) {
+    public function __constructor($nombre) {
         $this->nombre = $nombre;
-        $this->grupo = $grupo;
     }
 }
 
-class Area_Comun {
+class Tiene {
+    private $cantidad;
+    private $observaciones; //Esto es multivaluado.
+
+    public function __constructor($cantidad, $observaciones) {
+        $this->cantidad = $cantidad;
+        $this->observaciones = $observaciones;    
+    }
+}
+
+class Institucion {
+    private $nombre; //Primary Key
+    private $calle;
+    private $esquina;
+    private $puerta;
+
+    public function __constructor($nombre, $calle, $esquina, $puerta) {
+        $this->nombre = $nombre;
+        $this->calle = $calle;
+        $this->esquina = $esquina;
+        $this->puerta = $puerta;
+    }
+}
+
+class Area {
     private $codigo; //Primary Key
     private $nombre;
 
     public function __constructor($codigo, $nombre) {
         $this->codigo = $codigo;
         $this->nombre = $nombre;
-    }
-}
-
-class Item_Servicio {
-    private $nombre; //Primary Key
-    private $cantidad;
-    private $observaciones; //Esto es multivaluado.
-
-    public function __constructor($nombre, $cantidad, $observaciones) {
-        $this->nombre = $nombre;
-        $this->cantidad = $cantidad;
-        $this->observaciones = $observaciones;
     }
 }
 
