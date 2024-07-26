@@ -8,7 +8,6 @@
 
 html {
     font-size: 62.5%;
-    width: 100vmax;
 }
 
 body {
@@ -18,12 +17,6 @@ body {
 
 .mainContainer {
     display: flex;
-}
-
-@media (max-width: 1200px) {
-    .mainContainer {
-        display: block;
-    }   
 }
 
 main {
@@ -85,7 +78,6 @@ section h1 {
     font-family: 'Raleway', sans-serif;
     font-weight: 700;
     margin: 8rem 0 0 0;
-    width: 70%;
 }
 
 section p {
@@ -96,26 +88,11 @@ section p {
     text-align: left;
 }
 
-@media (max-width: 1200px) {
-    section {
-        margin: 0;
-    }
-    
-    section p {
-        width: 80%;
-    }   
-}
-
 
 .login-section {
     margin: 0 10rem 0 15rem;
 }
 
-@media (max-width: 1200px) {
-    .login-section {
-        margin: 0 auto;
-    }   
-}
 
 
 /* Formulario Login */
@@ -129,10 +106,6 @@ section p {
 
     background-color: #d9d9d9;
     border-radius: 2.4rem;
-}
-
-@media (max-width: 1200px) {
-    
 }
 
 .formulario fieldset {
