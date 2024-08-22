@@ -1,54 +1,57 @@
-function mostrarNavbar() { //Esta funcion es reutilizable, se usa para cada HTML que requiera un navbar.
+function mostrarNavbar() {
     const navbarHTML = `
     <header>        
-        <nav class="navbar navbar-dark bg-dark fixed-top">
-            <div class="container-fluid justify-content-none">
-                <!--NAV BUTTON-->
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation" style="width: 5rem; height: 5rem; display: grid; place-content: center;">
-                    <span class="navbar-toggler-icon" style="background-image: url('../public/img/img-menuHamburguesa.png'); width: 4rem; height: 4rem;"></span>
-                </button>
-                <a href="pestañaPrincipal.html" style="position: absolute; left: 8rem;"><img src="img/Imagotipo.png" style="width: 4rem; height: 100%;"></a>
-                <div class="d-flex align-items-center ms-auto">
-                    <span class="navbar-text me-2" style="color: white; font-family: 'Raleway', sans-serif; font-size: 1.5rem; font-weight: 700;">Username</span>
-                    <img src="img/usuario.png" style="width: 4rem; height: 4rem;">
-                </div>
-                <!--OFFCANVAS MAIN CONTAINER START-->
-                <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="menuLateral">
-                    <div class="offcanvas-header" style="background-color: #000;">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation" style="width: 5rem; height: 5rem; display: grid; place-content: center;">
-                            <span class="navbar-toggler-icon" style="background-image: url('../public/img/img-menuHamburguesa.png'); width: 4rem; height: 4rem;"></span>
-                        </button>
-                    </div>
-                    <!--OFFCANVAS MENU LINKS START-->
-                    <div class="offcanvas-body d-flex flex-column justify-content-center px-0-auto" style="background-color: #000;">
-                        <ul class="navbar-nav fs-2 justify-content-evenly">
-                            <li class="nav-item p3 py-md-1"><a href="crearReserva.html" class="nav-link">Nueva Reserva</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link " role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-plus" style="margin-right: 0.5rem;"></i> Gestionar Reservas
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li style="list-style: disc;"><a class="dropdown-item" href="crearReserva.html">Crear Reserva</a></li>
-                                    <li style="list-style: disc;"><a class="dropdown-item" href="misReservas.html">Mis Reservas</a></li>
-                                    <li style="list-style: disc;"><a class="dropdown-item" href="calendario.html">Calendario</a></li>
-                                    <li style="list-style: disc;"><a class="dropdown-item" href="ayuda.html">Ayuda</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-plus" style="margin-right: 0.5rem;"></i> Grupos
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li style="list-style: disc;"><a class="dropdown-item" href="#">Secundaria Impulso</a></li>
-                                    <li style="list-style: disc;"><a class="dropdown-item" href="#">Primaria Impulso</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
+      <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+          <!--NAV BUTTON-->
+          <button class="toggle-btn">☰</button>
+          <a href="pestañaPrincipal.html" style="position: absolute; left: 8rem;">
+            <img src="img/Imagotipo.png" style="width: 4rem; height: 100%;">
+          </a>
+          <div class="d-flex align-items-center ms-auto">
+            <span class="navbar-text me-2" style="color: white; font-family: 'Raleway', sans-serif; font-size: 1.5rem; font-weight: 700;">Username</span>
+            <img src="img/usuario.png" style="width: 4rem; height: 4rem;">
+          </div>
+        </div>
+      </nav>
+      <div class="sidebar">
+        <a href="crearReserva.html">Nueva Reserva</a>
+        <div class="dropdown">
+          <div class="dropdown-toggle">Gestionar Reservas</div>
+          <div class="dropdown-content">
+            <a href="crearReserva.html">Nueva Reserva</a>
+            <a href="misReservas.html">Mis Reservas</a>
+            <a href="calendario.html">Calendario</a>
+            <a href="ayuda.html">Ayuda</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <div class="dropdown-toggle">Grupos</div>
+          <div class="dropdown-content">
+            <a href="#">Link1</a>
+            <a href="#">Link2</a>
+          </div>
+        </div>
+      </div>
     </header>
-    `;
+`;
     document.body.insertAdjacentHTML('afterbegin', navbarHTML);
+
+    const toggleBtn = document.querySelector('.toggle-btn');
+    const sidebar = document.querySelector('.sidebar');
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        document.body.classList.toggle('sidebar-open');
+        toggleBtn.textContent = sidebar.classList.contains('open') ? '✕' : '☰';
+    });
+
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const dropdown = this.parentElement;
+            dropdown.classList.toggle('open');
+        });
+    });
 }
+
+document.addEventListener('DOMContentLoaded', mostrarNavbar);

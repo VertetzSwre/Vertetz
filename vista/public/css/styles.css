@@ -4,6 +4,22 @@
 
 :root {
     --negro:#000;
+    --sidebar-color: #d4d4d4;
+    --primary-color: #9c2780;
+    --primary-color-light: #9b27b00d;
+    --toggle-color: #ddd;
+    --text-color: #707070;
+
+    -tran-03: all 0.2s ease;
+    -tran-04: all 0.3s ease;
+    -tran-05: all 0.4s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
 }
 
 html {
@@ -20,6 +36,8 @@ body {
     margin: 0;
     height: 100vh;
     overflow-x: hidden;
+    transition: var(--tran-05);
+    transition: margin-left 0.3s ease; /* Transición para el margen del cuerpo */
 }
 
 /* --------------------------------------------- LOGIN --------------------------------------------- */
@@ -241,39 +259,102 @@ fieldset .appName {
 
 /* --------------------------------------------- Pestaña Principal --------------------------------------------- */
 
-.offcanvas-body li {
-    border-top: 0.5px solid rgba(255, 255, 255, 0.305);
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.305);
-    padding: 1rem;
+.sidebar {
+    width: 250px; /* Ancho ajustado */
+    height: 100vh;
+    background-color: #121212; /* Color de fondo del sidebar */
+    position: fixed;
+    top: 0;
+    left: -300px; /* Start off-screen */
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente */
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    overflow-y: auto; /* Añadir scroll si el contenido es demasiado grande */
+    overflow-x: hidden;
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+  
+  body.sidebar-open {
+    margin-left: 16%; /* Mueve el contenido del cuerpo cuando el sidebar está abierto */
 }
-
-ul .dropdown-menu {
-    background-color: transparent;
-    border: none;
-
-    display: none; /* Oculta el menú desplegable por defecto */
-    position: absolute; /* Asegura que el menú se posicione correctamente */
-}
-
-ul .dropdown-menu li {
-    border: none;
-    font-size: 1.5rem;
+  
+  .sidebar a, .dropdown-toggle {
+    display: block;
+    padding: 15px 20px;
     color: white;
-}
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box; /* Asegura que el padding no haga que los elementos se salgan */
+    border-bottom: 1px solid #333; /* Separador entre opciones */
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .sidebar a:hover, .dropdown-toggle:hover {
+    background-color: #333; /* Fondo al pasar el ratón */
+    box-sizing: border-box;
+  }
+  
+  .dropdown-content {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #1c1c1c; /* Fondo de los dropdowns */
+  }
+  
+  .dropdown-content a {
+    padding: 10px 30px; /* Sangría a la derecha */
+    font-weight: normal;
+    box-sizing: border-box; /* Asegura que el padding no haga que los elementos se salgan */
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: flex;
+  }
+  
+  .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #1c1c1c;
+  }
+  
+  .dropdown-toggle::after {
+    content: '+';
+    font-size: 12px;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos dentro del navbar */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos del navbar */
+    padding: 0 1rem; /* Ajusta el padding según sea necesario */
+  }
+  
+  .toggle-btn {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el botón de menú hamburguesa */
+    justify-content: center; /* Alinea horizontalmente el botón de menú hamburguesa */
+    width: 4rem;
+    height: 4rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1001;
+  }
 
-ul.dropdown-menu li a:hover {
-    background-color: transparent !important;
-}
 
-.dropdown-item {
-    color: white !important;
-    margin: 0;
-}
 
-.nav-link .fas { /*Clase que modifica los signos de suma de los dropdowns*/
-    font-size: 1.2rem; /* Ajusta el tamaño del icono de suma*/
-    vertical-align: middle; /* Alinea verticalmente el ícono con el texto */
-}
 
 .sectionAccesosRecientes {
     margin: 0 auto;
