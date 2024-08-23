@@ -22,8 +22,82 @@
     </script>
 
 <div class="mainContainer">
-    <h1 style="font-size: 7rem; margin: 4rem 0 2rem 4rem; font-weight: 700; display: inline-block;">Reservá tu espacio</h1>
+    <h1 style="font-size: 7rem; margin: 2rem 0 0 4rem; font-weight: 700; display: inline-block;">Reservá tu espacio</h1>
+
+    <main>
+        <section class="sectionCrearReserva">
+            <form class="formCrearReserva">
+                <div class="form-group">
+                    <label for="instituto">Instituto:</label>
+                    <select name="instituto" id="instituto">
+                        <option>Seleccione instituto</option>
+                        <option>Instituto 1</option>
+                        <option>Instituto 2</option>
+                        <option>Instituto 3</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="area">Área:</label>
+                    <select name="area" id="area">
+                        <option>Seleccione Área</option>
+                        <option>Area 1</option>
+                        <option>Area 2</option>
+                        <option>Area 3</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fechaReserva">Fecha de la reserva:</label>
+                    <input type="date" name="fechaReserva" id="fechaReserva">
+                </div>
+
+                <div class="form-group">
+                    <label for="horaReservaDesde">Hora de la reserva:</label>
+                    <div class="time-group">
+                        <label for="horaReservaDesde">Desde las:</label>
+                        <input type="time" name="horaReservaDesde" id="horaReservaDesde">
+                        <label for="horaReservaHasta">Hasta las:</label>
+                        <input type="time" name="horaReservaHasta" id="horaReservaHasta">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="selectServicio">Servicio a añadir: (opcional)</label>
+                    <select name="selectServicio" id="selectServicio">
+                        <option>Seleccione un servicio</option>
+                        <option>Servicio 1</option>
+                        <option>Servicio 2</option>
+                        <option>Servicio 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtObservaciones">Observaciones: (opcional)</label>
+                    <textarea name="txtObservaciones" id="txtObservaciones" placeholder="Descripción, detalles, etc..."></textarea>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+    <h1 style="font-size: 4rem; margin: 2rem 10rem; font-weight: 500; display: inline-block;">Vista previa</h1>
+
+    
+<section class="sectionVistaPrevia">
+    <p>Fecha</p>
+    <p>Hora de inicio</p>
+    <p>Hora de fin</p>
+</section>
+<section class="sectionVistaPrevia2"></section>
+
+<section class="sectionBtnEnviar-crearReserva">
+<button class="btnImg"><img src="img/anadir2.png"></button>
+<button class="btnEnviar-crearReserva">Enviar</button>
+</section>
 </div>
+
+
 
 
 <!-- Boostrap JS -->

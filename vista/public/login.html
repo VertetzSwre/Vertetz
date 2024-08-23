@@ -8,6 +8,30 @@
     <link rel="stylesheet" href="../public/css/styles.css">
     <link rel="preload" href="../public/css/styles.css" as="style">
     <link rel="icon" href="../public/img/Imagotipo.png" type="image/x-icon">
+<!--Esto es para que la barra lateral que desplaza no aparezca-->
+<style>
+    body {
+        overflow-y: hidden; 
+    }
+
+    @media (max-width: 1200px) {
+        body { /*Aparece la barra lateral, y alinea el login al centro*/
+            overflow-y: auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-section {
+            width: 90%;
+        }
+
+        .formulario {
+            margin: 0 auto;
+            height: 100%;
+        }
+}
+</style>
+
 </head>
 <body>
 
@@ -20,7 +44,7 @@
         <a href="#">Ingresando a Roomanagy</a>
         
     </header>
-<div class="mainContainer">
+<div class="containerLogin">
     <main>
         <section>
             <h1>Bienvenido a <br> Roomanagy</h1>
