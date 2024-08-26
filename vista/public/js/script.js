@@ -20,7 +20,7 @@ function mostrarNavbar() {
       <hr>
    <div class="dropdown">
   <button class="dropdown-toggle">
-    <span class="dropdown-icon"><img src="img/anadir.png" style="width: 2rem; height: 2rem;"></span>
+    <span class="dropdown-icon"><img src="img/anadir.png" style="width: 1.8rem; height: 1.8rem;"></span>
     <span class="dropdown-text">Gestionar Reservas</span>
   </button>
   <div class="dropdown-content">
@@ -35,7 +35,7 @@ function mostrarNavbar() {
 <hr>
 <div class="dropdown">
   <button class="dropdown-toggle2">
-    <span class="dropdown-icon2"><img src="img/anadir.png" style="width: 2rem; height: 2rem;"></span>
+    <span class="dropdown-icon2"><img src="img/anadir.png" style="width: 1.8rem; height: 1.8rem;"></span>
     <span class="dropdown-text">Grupos</span>
   </button>
   <div class="dropdown-content2">
@@ -51,6 +51,7 @@ function mostrarNavbar() {
   document.body.insertAdjacentHTML('afterbegin', navbarHTML);
 ;
 
+//Funcion para abrir y cerrar el dropdwon con el boton de mas
 document.querySelector('.dropdown-icon').addEventListener('click', function(event) {
   event.stopPropagation(); // Evita que el clic se propague al botón
   document.querySelector('.dropdown-content').classList.toggle('show');
@@ -63,11 +64,11 @@ document.querySelector('.dropdown-toggle').addEventListener('click', function(ev
 });
 
 
+//Funcion para abrir y cerrar el dropdwon con el boton de mas
 document.querySelector('.dropdown-icon2').addEventListener('click', function(event) {
   event.stopPropagation(); // Evita que el clic se propague al botón
   document.querySelector('.dropdown-content2').classList.toggle('show');
 });
-
 
 
 //Funcion para abrir y cerrar el sidebar
@@ -77,6 +78,13 @@ const toggleBtn = document.querySelector('.toggle-btn');
       sidebar.classList.toggle('open');
       document.body.classList.toggle('sidebar-open');
       toggleBtn.textContent = sidebar.classList.contains('open') ? '✕' : '☰';
+  });
+  
+
+   // Función para abrir y cerrar el dropdown de Grupos
+   document.querySelector('.dropdown-toggle2').addEventListener('click', function(event) {
+    event.stopPropagation(); // Evita que el clic se propague al botón
+    document.querySelector('.dropdown-content2').classList.toggle('show');
   });
 
 }

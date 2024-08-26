@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Roomanagy</title>
+    <title>Crear una reserva - Roomanagy</title>
     <link rel="stylesheet" href="../public/css/normalize.css">
     <link rel="stylesheet" href="../public/css/styles.css">
     <link rel="preload" href="../public/css/styles.css" as="style">
@@ -29,7 +29,7 @@
             <form class="formCrearReserva">
                 <div class="form-group">
                     <label for="instituto">Instituto:</label>
-                    <select name="instituto" id="instituto">
+                    <select name="instituto" id="instituto" required>
                         <option>Seleccione instituto</option>
                         <option>Instituto 1</option>
                         <option>Instituto 2</option>
@@ -39,7 +39,7 @@
                 
                 <div class="form-group">
                     <label for="area">Área:</label>
-                    <select name="area" id="area">
+                    <select name="area" id="area" required>
                         <option>Seleccione Área</option>
                         <option>Area 1</option>
                         <option>Area 2</option>
@@ -93,7 +93,7 @@
 
 <section class="sectionBtnEnviar-crearReserva">
 <button class="btnImg"><img src="img/anadir2.png"></button>
-<button class="btnEnviar-crearReserva">Enviar</button>
+<button class="btnEnviar-crearReserva" type="submit">Enviar</button>
 </section>
 </div>
 
