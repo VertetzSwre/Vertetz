@@ -20,6 +20,7 @@ class Reserva
         $this->observaciones = $observaciones;
     }
 
+
     // Getters
     public function getId()
     {
@@ -82,7 +83,5 @@ class Reserva
         $this->observaciones = $observaciones;
     }
 }
-
-
 
 ?>

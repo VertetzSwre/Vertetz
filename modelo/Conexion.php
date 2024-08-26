@@ -4,11 +4,11 @@ class Conexion {
 
     public function __construct() {
         // Establecer la conexión
-        $this->conexion = mysqli_connect('localhost', 'root', '', 'usuarioslogin');
+        $this->conexion = new mysqli('localhost', 'root', '', 'vertetz_roomanagy');
 
         // Verifica si la conexión fue exitosa
-        if (!$this->conexion) {
-            die('Error de conexión: ' . mysqli_connect_error());
+        if ($this->conexion->connect_error) {
+            die("Conexión fallida: " . $this->conexion->connect_error);
         }
     }
 

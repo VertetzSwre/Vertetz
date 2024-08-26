@@ -2,22 +2,25 @@
 
 require_once 'modelo/usuario.php';
 
-class controladorUsuario {
+class controladorUsuario
+{
     private $modeloUsuario;
 
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->modeloUsuario = new Usuario();
     }
-    
-    public function mostrarLogin() {
+
+    public function mostrarLogin()
+    {
         include 'vista/public/login.html';
     }
-    
-    public function login() {
-        
+
+    public function login()
+    {
+
     }
 }
-
-
 
 ?>

@@ -1,10 +1,11 @@
 <?php
+require_once 'Conexion.php';
 
-class Usuario
+class Usuario extends Conexion
 {
     private $ci; // Primary Key
     private $nombre_usuario;
-    private $contraseña;
+    private $contrasena; // Corregido de 'contraseña' a 'contrasena'
     private $nombre_completo;
     private $telefono;
     private $mail_corporativo;
@@ -12,18 +13,8 @@ class Usuario
     private $foto_perfil;
     private $tipo_empleado;
 
-    // Constructor
-    public function __construct($ci, $nombre_usuario, $contraseña, $nombre_completo, $telefono, $mail_corporativo, $mail_personal, $foto_perfil, $tipo_empleado)
+    public function __construct()
     {
-        $this->ci = $ci;
-        $this->nombre_usuario = $nombre_usuario;
-        $this->contraseña = $contraseña;
-        $this->nombre_completo = $nombre_completo;
-        $this->telefono = $telefono;
-        $this->mail_corporativo = $mail_corporativo;
-        $this->mail_personal = $mail_personal;
-        $this->foto_perfil = $foto_perfil;
-        $this->tipo_empleado = $tipo_empleado; // Se añadió esta línea
     }
 
     // Getters
@@ -37,9 +28,9 @@ class Usuario
         return $this->nombre_usuario;
     }
 
-    public function getContraseña()
+    public function getContrasena()
     {
-        return $this->contraseña;
+        return $this->contrasena;
     }
 
     public function getNombreCompleto()
@@ -83,9 +74,9 @@ class Usuario
         $this->nombre_usuario = $nombre_usuario;
     }
 
-    public function setContraseña($contraseña)
+    public function setContrasena($contrasena) // Corregido aquí
     {
-        $this->contraseña = $contraseña;
+        $this->contrasena = $contrasena;
     }
 
     public function setNombreCompleto($nombre_completo)
@@ -113,10 +104,68 @@ class Usuario
         $this->foto_perfil = $foto_perfil;
     }
 
-    public function setTipoEmpleado($tipo_empleado) // Se añadió un parámetro
+    public function setTipoEmpleado($tipo_empleado)
     {
         $this->tipo_empleado = $tipo_empleado;
     }
-}
 
+    public function ValidarLogin($ci, $pass)
+    {
+        // Obtención de la conexión
+        $conn = $this->getConexion();
+        if ($conn === null) {
+            return ['estado' => 'Error de conexión con la base de datos.'];
+        }
+
+
+
+        // Preparar y ejecutar la consulta SQL
+        $sql = "SELECT * FROM Usuario WHERE ci = ?";
+        $stmt = $conn->prepare($sql);
+
+        if ($stmt === false) {
+            return ['estado' => 'Error al preparar la consulta'];
+        }
+
+        $stmt->bind_param("i", $ci);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Verificar si se encontró un usuario con la cédula proporcionada
+        if ($result->num_rows == 1) {
+            $usuario = $result->fetch_assoc();
+
+            // Comparar la contraseña proporcionada con la almacenada
+            if ($pass == $usuario['contrasena']) {
+                // Asignar valores a las propiedades de la clase
+                $this->ci = $usuario['ci'];
+                $this->contrasena = $usuario['contrasena'];
+                $this->nombre_completo = $usuario['nombre_completo'];
+                $this->mail_personal = $usuario['mail_personal'];
+                $this->telefono = $usuario['telefono'];
+                $this->mail_corporativo = $usuario['mail_corporativo'];
+                $this->foto_perfil = $usuario['foto_perfil'];
+                $this->tipo_empleado = $usuario['tipo_empleado'];
+
+                // Cerrar la conexión y el statement
+                $stmt->close();
+                $conn->close();
+
+                return ['estado' => 'Login exitoso!'];
+            } else {
+                // Cerrar la conexión y el statement
+                $stmt->close();
+                $conn->close();
+
+                return ['estado' => 'Contraseña incorrecta.'];
+            }
+        } else {
+            // Cerrar la conexión y el statement
+            $stmt->close();
+            $conn->close();
+
+            return ['estado' => 'Usuario incorrecto.'];
+        }
+    }
+}
 ?>

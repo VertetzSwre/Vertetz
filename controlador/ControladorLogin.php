@@ -1,5 +1,5 @@
 <?php
-    require_once '../modelo/Login.php';
+    require_once '../modelo/Usuario.php';
 
     header('Content-Type: application/json'); // Establece el tipo de contenido a JSON
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -12,7 +12,7 @@
 
 
         // Creacion de la insancia con la logica del login.
-        $loginModel = new Login();
+        $loginModel = new Usuario();
         $resultado = $loginModel->ValidarLogin($cedula, $contrasena);
 
         echo json_encode($resultado);

@@ -70,6 +70,4 @@ class Area
         $this->estado = $estado;
     }
 }
-
-
 ?>
