@@ -55,12 +55,10 @@ body {
     padding: 0;
     display: flex;
     justify-content: space-between;
-    min-height: 100vh; /* Asegura que ocupe al menos el 100% del viewport */
+    height: 100%;
 }
 
-
-
-@media (max-width: 1200px) {
+@media (max-width: 1080px) {
     .mainContainer {
         display: block;
     }   
@@ -78,7 +76,7 @@ main {
     justify-content: space-around;
 
     background-color: #2b2b2b;
-    box-shadow: 0 .2rem 5rem black;
+    box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.826);
 }
 
 .container-logo {
@@ -134,7 +132,8 @@ section p {
     font-weight: 200;
     line-height: 2.8rem;
     text-align: left;
-    margin: 3rem 0;
+    width: 80%;
+    margin: 3rem auto;
 }
 
 @media (max-width: 1200px) {
@@ -142,11 +141,6 @@ section p {
         margin: 0 auto;
         text-align: center;
     }
-    
-    section p {
-        width: 80%;
-        margin: 3rem auto;
-    }   
 
     section h1 {
         text-align: center;
@@ -156,16 +150,9 @@ section p {
 
 
 .login-section {
-    margin: 0;
+    margin: 0 auto;
     margin: 6rem 8rem 0 0;
 }
-
-@media (max-width: 1200px) {
-    .login-section {
-        margin: 0 auto;
-    }   
-}
-
 
 /* Formulario Login */
 .formulario {
@@ -279,12 +266,12 @@ fieldset .appName {
 
 
 .sidebar {
-    width: 15%; /* Ancho ajustado */
+    width: 20rem; /* Ancho ajustado */
     height: 100vh;
     background-color: #121212; /* Color de fondo del sidebar */
     position: fixed;
     top: 0;
-    left: -350px; /* Start off-screen */
+    left: -350px; /* Empieza fuera de la pantalla */
     transition: left 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -293,28 +280,10 @@ fieldset .appName {
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
     z-index: 1000;
     overflow-y: auto; /* Añadir scroll si el contenido es demasiado grande */
-    overflow-x: hidden;
+    overflow-x: hidden; /* Esconde el scroll horizontal */
 }
 
-@media (max-width: 1350px) {
-    .sidebar {
-        width: 20%;
-    }
-    
-    body.sidebar-open {
-        margin-left: 25%; /* Mueve el contenido del cuerpo cuando el sidebar está abierto */
-    }
-}
 
-@media (max-width: 990px) {
-    .sidebar {
-        width: 35%;
-    }
-    
-    body.sidebar-open {
-        margin-left: 35%; /* Mueve el contenido del cuerpo cuando el sidebar está abierto */
-    }
-}
 
 .sidebar * {
     color: white;
@@ -325,7 +294,7 @@ fieldset .appName {
 }
 
 body.sidebar-open {
-    margin-left: 15%; /* Mueve el contenido del cuerpo cuando el sidebar está abierto */
+    margin-left: 20rem; /* Mueve el contenido del cuerpo cuando el sidebar está abierto */
 }
 
 .sidebar a {
@@ -335,9 +304,10 @@ body.sidebar-open {
     text-decoration: none;
     width: 100%;
     box-sizing: border-box; /* Asegura que el padding no haga que los elementos se salgan */
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: bold;
     text-align: left;
+    transition: all 0.2s;
 }
 
 .sidebar a:hover {
@@ -366,8 +336,9 @@ body.sidebar-open {
   .dropdown-content {
     flex-direction: column;
     width: 100%;
-    background-color: #1c1c1c; /* Fondo de los dropdowns */
     display: none;
+    background-color: transparent;
+    transition: all 0.2s;
 }
 
 .dropdown-content.show {
@@ -375,13 +346,12 @@ body.sidebar-open {
 }
 
 .dropdown-content ul {
-    list-style-type: none; /* Elimina los puntos de la lista */
     padding: 0;
     margin: 0;
 }
 
 .dropdown-content li {
-    border-bottom: 1px solid #333; /* Línea separadora entre elementos */
+    border-bottom: 1px solid transparent; /* Línea separadora entre elementos */
     background-color: transparent;
 }
 
@@ -392,8 +362,8 @@ body.sidebar-open {
     box-sizing: border-box; /* Asegura que el padding no haga que los elementos se salgan */
     color: white;
     text-decoration: none;
+    margin: 0;
 }
-
 
 .dropdown-toggle {
     display: flex;
@@ -407,7 +377,7 @@ body.sidebar-open {
     text-decoration: none;
     width: 100%;
     box-sizing: border-box;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: bold;
     border: none;
 }
@@ -421,12 +391,6 @@ body.sidebar-open {
     cursor: pointer;
 }
 
-.dropdown-content {
-    flex-direction: column;
-    width: 100%;
-    background-color: #1c1c1c;    
-}
-
 .dropdown-content.show {
     display: block;
 }
@@ -435,6 +399,7 @@ body.sidebar-open {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    background-color: transparent;
 }
 
 .dropdown-content li {
@@ -448,14 +413,17 @@ body.sidebar-open {
     box-sizing: border-box;
     color: white;
     text-decoration: none;
+    background-color: transparent;
 }
 
 .dropdown-content a:hover {
     background-color: #333;
+    transition: all 0.2s;
 }
 
 .dropdown-toggle:hover {
     background-color: #333; /* Fondo al pasar el ratón */
+    transition: all 0.2s;
 }
 
 /*Dropdown 2*/
@@ -463,8 +431,9 @@ body.sidebar-open {
 .dropdown-content2 {
     flex-direction: column;
     width: 100%;
-    background-color: #1c1c1c; /* Fondo de los dropdowns */
+    background-color: transparent !important; /* Fondo de los dropdowns */
     display: none;
+    transition: all 0.2s;
 }
 
 .dropdown-content2.show {
@@ -492,6 +461,7 @@ body.sidebar-open {
 
 .dropdown-content2 a:hover {
     background-color: #333; /* Fondo al pasar el ratón */
+    transition: all 0.2s;
 }
 
 
@@ -554,16 +524,61 @@ body.sidebar-open {
 
 .dropdown-content2 a:hover {
     background-color: #333;
+    transition: all 0.2s;
 }
 
 .dropdown-toggle2:hover {
     background-color: #333; /* Fondo al pasar el ratón */
+    transition: all 0.2s;
 }
 
 /* --------------------------------------------- SIDEBAR --------------------------------------------- */
 
 
-/* --------------------------------------------- Pestaña Principal --------------------------------------------- */
+/* --------------------------------------------- INDEX --------------------------------------------- */
+
+.headerIndex {
+    width: 100%;
+    height: 7rem;
+    justify-content: space-around;
+
+    background-color: #8e8585;
+}
+
+.containerLogoNameIndex {
+    width: 22rem;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerLogoNameIndex img {
+    width: 4rem;
+    height: 4rem; 
+    margin: 1rem;
+}
+
+.containerLogoNameIndex h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem;
+}  
+/**/
+.containerBtnIndex {
+    width: 30rem;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #3f3030;
+}
+
+
+/* --------------------------------------------- Pestaña Principal (Despues del Login) --------------------------------------------- */
 
 
 .sectionAccesosRecientes {
@@ -658,6 +673,19 @@ body.sidebar-open {
     background-color: #d9d9d9;
 }
 
+.pGestionarReserva {
+    margin: 0 auto;
+    display: inline-block;
+
+    font-size: 2rem; 
+    color: #ffffff; 
+    position: relative;
+     left: 50%; 
+     top: 95%; 
+     transform: translate(-50%, -50%);
+     z-index: 1;  
+}
+
 .itemsGestionarReserva::before,
 .itemsGestionarReserva::after {
     content: '';
@@ -680,6 +708,24 @@ body.sidebar-open {
     border-bottom-right-radius: 2rem;
 }
 
+@media (max-width: 768px) {
+    .sectionItemsReserva {
+        display: block;
+    }
+
+    .itemsGestionarReserva {
+        width: 80%;
+        height: 50%;
+        margin: 1rem auto;
+    }
+
+    .pGestionarReserva {
+        left: 70%;
+        display: inline-block;
+    }
+}
+
+
 /* --------------------------------------------- Mis reservas --------------------------------------------- */
 
 .sectionBuscarReservas {
@@ -698,6 +744,18 @@ body.sidebar-open {
     outline: none;
 
     font-size: 1.6rem;
+}
+
+.btnLupaBusqueda {
+    width: 3rem; 
+    height: 3rem; 
+    margin: 0 1rem;
+}
+
+.btnAnadir2 {
+    width: 3rem; 
+    height: 3rem;
+    margin: 0 2rem;
 }
 
 .sectionListadoReservas {
@@ -726,6 +784,12 @@ body.sidebar-open {
     border: none;
     border-radius: 2.5rem;
     cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+    .sectionBuscarReservas fieldset {
+        display: flex;
+    }
 }
 
 /* --------------------------------------------- Crear nueva reserva --------------------------------------------- */
@@ -839,9 +903,43 @@ textarea {
     border-radius: 2.5rem;
 }
 
+.h1VistaPrevia {
+    font-size: 4rem; 
+    margin: 2rem 10rem; 
+    font-weight: 500; 
+    display: inline-block;
+}
+
 .sectionBtnEnviar-crearReserva button img{ /*Ajusta el tamaño de la imagen al 100% del boton*/
     width: 100%;
     height: 100%;
+}
+
+@media (max-width: 1080px) {
+    .formCrearReserva {
+        display: block;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .formCrearReserva .form-group {
+        width: 100%;
+    }
+
+    .formCrearReserva input,
+    .formCrearReserva select,
+    .formCrearReserva textarea {
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .sectionVistaPrevia {
+        margin: 4rem auto;
+    }
+
+    .h1VistaPrevia {
+        margin: 15rem 0 0 5rem ;
+    }
 }
 
 

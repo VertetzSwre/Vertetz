@@ -35,18 +35,30 @@ body {
     margin: 0;
     height: 100vh;
     overflow-x: hidden;
-    transition: var(--tran-05);
-    transition: margin-left 0.3s ease; /* Transición para el margen del cuerpo */
 }
 
 
 .mainContainer {
-    margin: 0;
-    padding: 0;
-    display: inline;
-    flex-direction: column;
-    min-height: 100vh; /* Asegura que ocupe al menos el 100% del viewport */
-    padding-top: 7rem; /* Ajusta este valor según la altura de tu navbar */
+    width: 60%;
+    height: 85vh;
+    background-color: #d6d6d6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem auto;
+    border-radius: 1rem;
+    flex-direction: column; /* Asegura que los elementos hijos se apilen verticalmente */
+    overflow: hidden; /* Evita que el contenido se desborde */
+    position: relative;
+}
+
+.containerLogin {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Asegura que los elementos hijos se apilen verticalmente */
 }
 
 @media (max-width: 1200px) {
@@ -59,19 +71,19 @@ main {
     margin: 6rem 0;
 }
 
-.header {
+.header { /* Este mismo header que esta en el login, se usa para el register, ahorrando de hacer uno nuevo. */
     width: 100%;
-    height: 7rem;
+    height: 5rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
 
     background-color: #2b2b2b;
-    box-shadow: 0 .2rem 5rem black;
+    box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.826);
 }
 
 .container-logo {
-    width: 5rem;
+    width: 3.5rem;
     height: 70%;
     border-radius: 100%;
     margin: 0 1rem;
@@ -83,10 +95,11 @@ main {
     margin: 0;
 }
 
+
 header a {
     margin: 0 5rem 0 auto;
 
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 700;
     font-family: 'Raleway', sans-serif;
     text-decoration: none;
@@ -94,8 +107,8 @@ header a {
 }
 
 .returnButton {
-    width: 4rem;
-    height: 4rem;
+    width: 2.5rem;
+    height: 2.5rem;
     margin: 0 1rem;
 }
 
@@ -105,24 +118,30 @@ header a {
 }
 
 section {
-    width: 62rem;
+    width: 100%;
     margin: 0 0 0 8rem;
+    display: flex;
+    flex-direction: column; /* Alinea los elementos en columna */
+    align-items: center; /* Alinea los elementos horizontalmente al centro */
+    justify-content: center; /* Alinea los elementos verticalmente al centro */
 }
 
-section h1 {
-    font-size: 7rem;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 700;
-    margin: 8rem 0 0 0;
-    width: 70%;
+.imgLogin {
+    width: 9rem; 
+    height: 9rem;
+     position: absolute; 
+     left: 70%; 
+     top: 4rem;
 }
 
 section p {
-    font-size: 2.3rem;
+    font-size: 2rem;
     font-family: 'Urbanist', sans-serif;
     font-weight: 200;
     line-height: 2.8rem;
     text-align: left;
+    width: 80%;
+    margin: 2rem 0 auto;
 }
 
 @media (max-width: 1200px) {
@@ -136,34 +155,34 @@ section p {
         margin: 3rem auto;
     }   
 
-    section h1 {
-        text-align: center;
-        margin: 0 auto;
+    .imgLogin {
+        position: relative;
+        left: 0;
+        top: 0;
     }
-}
 
-
-.login-section {
-    margin: 0 10rem 0 15rem;
-}
-
-@media (max-width: 1200px) {
     .login-section {
         margin: 0 auto;
     }   
+
+    .mainContainer {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+    }
 }
 
 
 /* Formulario Login */
 .formulario {
-    height: 45rem;
-    width: min(45rem, 100%);
-    padding: 2rem;
+    height: 100%;
+    width: min(60rem, 100%);
+     max-width: 100%; /* Asegura que el formulario no se salga del contenedor */
     display: flex;
     justify-content: center;
-    margin: 6rem 0;
+    margin: 2rem 0 0 0;
 
-    background-color: #d9d9d9;
     border-radius: 2.4rem;
 }
 
@@ -177,25 +196,8 @@ section p {
 .formulario fieldset {
     border: none;
     width: 100%;
-}
-
-.formulario legend {
     text-align: center;
-}
-
-legend img {
-    width: 95%;
-    height: 11.5rem;
-    margin: 0 auto;
-}
-
-fieldset .appName {
-    font-size: 2rem;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 700;
-
-    display: block;
-    text-align: center;
+    padding: 0;
 }
 
 .campo label {
@@ -203,6 +205,7 @@ fieldset .appName {
     font-family: 'Urbanist', sans-serif;
     font-weight: 200;
     display: block;
+    text-align: left;
 }
 
 .container-input {
@@ -211,7 +214,7 @@ fieldset .appName {
     align-items: center;
 }
 
-.campo /* contenedor de los inputs */{
+.campo /* contenedor de los inputs */ {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -226,7 +229,7 @@ fieldset .appName {
 }
 
 .btn-iniciaSesion {
-    width: 90%;
+    width: 100%;
     padding: .8rem;
     margin: 1rem;
     border: none;
@@ -242,7 +245,7 @@ fieldset .appName {
 .linea {
     width: 100%;
     height: .15rem;
-    background-color: #a7a7a7;
+    background-color: #949191;
 
     margin: 2rem 0;
 }
