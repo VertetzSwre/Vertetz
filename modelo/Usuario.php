@@ -3,9 +3,8 @@ require_once 'Conexion.php';
 
 class Usuario extends Conexion
 {
-    private $ci; // Primary Key
-    private $nombre_usuario;
-    private $contrasena; // Corregido de 'contraseña' a 'contrasena'
+    private $ci;
+    private $contrasena;
     private $nombre_completo;
     private $telefono;
     private $mail_corporativo;
@@ -15,18 +14,13 @@ class Usuario extends Conexion
 
     public function __construct()
     {
-        parent::__construct(); // Asegúrate de llamar al constructor de la clase base
+        parent::__construct(); // Llamada al constructor de la clase base
     }
 
     // Getters
     public function getCi()
     {
         return $this->ci;
-    }
-
-    public function getNombreUsuario()
-    {
-        return $this->nombre_usuario;
     }
 
     public function getContrasena()
@@ -70,12 +64,8 @@ class Usuario extends Conexion
         $this->ci = $ci;
     }
 
-    public function setNombreUsuario($nombre_usuario)
-    {
-        $this->nombre_usuario = $nombre_usuario;
-    }
 
-    public function setContrasena($contrasena) // Corregido aquí
+    public function setContrasena($contrasena)
     {
         $this->contrasena = $contrasena;
     }
@@ -114,7 +104,7 @@ class Usuario extends Conexion
     public function ValidarLogin($ci, $pass)
     {
         $conn = $this->getConexion();
-        
+
         try {
             // Preparar y ejecutar la consulta SQL
             $sql = "SELECT * FROM usuario WHERE ci = :ci";
@@ -153,5 +143,68 @@ class Usuario extends Conexion
             $this->cerrarConexion();
         }
     }
+
+    public function getAllUsuarios()
+    {
+        $conn = $this->getConexion();
+        try {
+            // Preparar y ejecutar la consulta SQL para obtener todos los usuarios
+            $sql = "SELECT * FROM usuario";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            // Fetch all users as an associative array
+            $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $usuarios; // Devolver el array de usuarios
+        } catch (PDOException $e) {
+            // Manejar posibles errores de la consulta
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            // Cerrar la conexión
+            $this->cerrarConexion();
+        }
+    }
+
+    public function registrarUsuario($ci, $contrasena, $nombre_completo, $mail_personal, $telefono, $mail_corporativo/*, $foto_perfil, $tipo_empleado*/)
+    {
+        $conn = $this->getConexion();
+    
+        try {
+            // Preparar la consulta SQL para insertar un nuevo usuario
+            $sql = "INSERT INTO usuario 
+                    (ci, contrasena, nombre_completo, mail_personal, telefono, mail_corporativo/*, foto_perfil, tipo_empleado*/) 
+                    VALUES 
+                    (:ci, :contrasena, :nombre_completo, :mail_personal, :telefono, :mail_corporativo/*, :foto_perfil, :tipo_empleado*/)";
+    
+            $stmt = $conn->prepare($sql);
+            
+            $stmt->bindParam(':ci', $ci, PDO::PARAM_INT);
+            $stmt->bindParam(':contrasena', $contrasena, PDO::PARAM_STR); // Considera usar password_hash() para mayor seguridad
+            $stmt->bindParam(':nombre_completo', $nombre_completo, PDO::PARAM_STR);
+            $stmt->bindParam(':mail_personal', $mail_personal, PDO::PARAM_STR);
+            $stmt->bindParam(':telefono', $telefono, PDO::PARAM_STR);
+            $stmt->bindParam(':mail_corporativo', $mail_corporativo, PDO::PARAM_STR);
+            //$stmt->bindParam(':foto_perfil', $foto_perfil, PDO::PARAM_STR);
+            //$stmt->bindParam(':tipo_empleado', $tipo_empleado, PDO::PARAM_STR);
+    
+            $stmt->execute();  // Ejecuta la consulta
+    
+            return ['estado' => 'Registro exitoso!'];
+        } catch (PDOException $e) {
+            // Manejar posibles errores de la consulta
+            return [
+                'estado' => 'Error al registrar usuario.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            // Cerrar la conexión
+            $this->cerrarConexion();
+        }
+    }
 }
+
 ?>

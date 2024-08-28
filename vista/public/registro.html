@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../public/css/cssRegistro.css">
     <link rel="preload" href="../public/css/cssRegistro.css" as="style">
     <link rel="icon" href="../public/img/Imagotipo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <body>
 
@@ -39,27 +40,30 @@
                 <div class="right-section" style="background-color: transparent; display: flex; justify-content: center; align-items: center;"> 
                     <div class="container-main-fields">
                         <label>Nombre completo: *</label>
-                        <input type="text" required class="name-field">
+                        <input type="text" required class="name-field" id="nombre_completo">
                         <label>CI: *</label>
-                        <input type="text"required class="ci-field">
+                        <input type="text"required class="ci-field" id="ci">
                     </div>
                 </div>
 
                 </div>
                 <label>Teléfono: *</label>
-                <input type="tel" required>
+                <input type="tel" id="telefono" required>
                 <label>Contraseña: *</label>
-                <input type="password" required>
+                <input type="text" id="contrasena" required>
                 <label>Email: *</label>
-                <input type="email" required>
+                <input type="email" id="mail_personal" required>
                 <label>Email corporativo (opcional)</label>
-                <input type="email">
-                <button type="submit" class="btn-register">Registrarse</button>
+                <input type="email" id="mail_corporativo">
+                <button type="button" class="btn-register" id="enviar">Registrarse</button>
             </form>
         </div>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/Registro.js"></script>
     
 </body>
 </html>

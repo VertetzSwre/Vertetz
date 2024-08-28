@@ -2,7 +2,11 @@ $(document).ready(function () {
 	//Funcion para login
 	$('#enviar').on('click', function () {
 		if ($('#ci').val() == "" || $('#contrasena').val() == "") {
-			alert("Rellenar los campos!");
+            Swal.fire({
+                icon: 'warning',
+                title: '¡Atención!',
+                text: 'Por favor, completa todos los campos requeridos.',
+            });
 		} else {
 			let cedula = $('#ci').val();
 			let contrasena = $('#contrasena').val();
@@ -20,6 +24,12 @@ $(document).ready(function () {
 					if (response.estado === 'Login exitoso!') {
 						window.location.href = '../public/pestañaPrincipal.html'; // Redirige en el cliente
 					} else {
+						Swal.fire({
+							title: 'Error!',
+							text: 'Cédula o contraseña incorrectas',
+							icon: 'error',
+							confirmButtonText: 'Ok'
+						});
 					}
 				},
 				error: function (xhr, status, error) {
