@@ -1,14 +1,20 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 class Conexion {
     private $conexion;
 
     public function __construct() {
-        // Establecer la conexión
-        $this->conexion = new mysqli('localhost', 'root', '', 'vertetz_roomanagy');
-
-        // Verifica si la conexión fue exitosa
-        if ($this->conexion->connect_error) {
-            die("Conexión fallida: " . $this->conexion->connect_error);
+        try {
+            // Establecer la conexión
+            $this->conexion = new PDO('mysql:host=localhost;dbname=vertetz_roomanagy', 'root', '');
+            // Configurar PDO para manejar errores como excepciones
+            $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die("Conexión fallida: " . $e->getMessage());
         }
     }
 
@@ -17,9 +23,9 @@ class Conexion {
         return $this->conexion;
     }
 
-    // Método para cerrar la conexión
+    // Método para cerrar la conexión (en PDO, la conexión se cierra automáticamente al destruir el objeto)
     public function cerrarConexion() {
-        mysqli_close($this->conexion);
+        $this->conexion = null;
     }
 }
 ?>

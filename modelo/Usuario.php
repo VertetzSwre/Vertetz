@@ -15,6 +15,7 @@ class Usuario extends Conexion
 
     public function __construct()
     {
+        parent::__construct(); // Asegúrate de llamar al constructor de la clase base
     }
 
     // Getters
@@ -109,62 +110,47 @@ class Usuario extends Conexion
         $this->tipo_empleado = $tipo_empleado;
     }
 
+    // Métodos para control de datos del usuario con la BD
     public function ValidarLogin($ci, $pass)
     {
-        // Obtención de la conexión
         $conn = $this->getConexion();
-        if ($conn === null) {
-            return ['estado' => 'Error de conexión con la base de datos.'];
-        }
+        
+        try {
+            // Preparar y ejecutar la consulta SQL
+            $sql = "SELECT * FROM usuario WHERE ci = :ci";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':ci', $ci, PDO::PARAM_INT);
+            $stmt->execute();
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
+            if ($usuario) {
+                // Comparar la contraseña proporcionada con la almacenada
+                if ($pass == $usuario['contrasena']) {
+                    // Asignar valores a las propiedades de la clase    
+                    $this->ci = $usuario['ci'];
+                    $this->contrasena = $usuario['contrasena'];
+                    $this->nombre_completo = $usuario['nombre_completo'];
+                    $this->mail_personal = $usuario['mail_personal'];
+                    $this->telefono = $usuario['telefono'];
+                    $this->mail_corporativo = $usuario['mail_corporativo'];
+                    $this->foto_perfil = $usuario['foto_perfil'];
+                    //$this->tipo_empleado = $usuario['tipo_empleado'];
 
-
-        // Preparar y ejecutar la consulta SQL
-        $sql = "SELECT * FROM Usuario WHERE ci = ?";
-        $stmt = $conn->prepare($sql);
-
-        if ($stmt === false) {
-            return ['estado' => 'Error al preparar la consulta'];
-        }
-
-        $stmt->bind_param("i", $ci);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        // Verificar si se encontró un usuario con la cédula proporcionada
-        if ($result->num_rows == 1) {
-            $usuario = $result->fetch_assoc();
-
-            // Comparar la contraseña proporcionada con la almacenada
-            if ($pass == $usuario['contrasena']) {
-                // Asignar valores a las propiedades de la clase
-                $this->ci = $usuario['ci'];
-                $this->contrasena = $usuario['contrasena'];
-                $this->nombre_completo = $usuario['nombre_completo'];
-                $this->mail_personal = $usuario['mail_personal'];
-                $this->telefono = $usuario['telefono'];
-                $this->mail_corporativo = $usuario['mail_corporativo'];
-                $this->foto_perfil = $usuario['foto_perfil'];
-                $this->tipo_empleado = $usuario['tipo_empleado'];
-
-                // Cerrar la conexión y el statement
-                $stmt->close();
-                $conn->close();
-
-                return ['estado' => 'Login exitoso!'];
+                    return ['estado' => 'Login exitoso!'];
+                } else {
+                    return ['estado' => 'Contraseña incorrecta.'];
+                }
             } else {
-                // Cerrar la conexión y el statement
-                $stmt->close();
-                $conn->close();
-
-                return ['estado' => 'Contraseña incorrecta.'];
+                return ['estado' => 'Usuario incorrecto.'];
             }
-        } else {
-            // Cerrar la conexión y el statement
-            $stmt->close();
-            $conn->close();
-
-            return ['estado' => 'Usuario incorrecto.'];
+        } catch (PDOException $e) {
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            // Cerrar la conexión
+            $this->cerrarConexion();
         }
     }
 }
