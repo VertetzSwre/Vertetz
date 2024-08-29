@@ -15,10 +15,13 @@
 <body>
 
     <!--NAVBAR-->
-    
-    <script src="js/Navbar&Sidebar.js"></script>
+    <!--Se incluye jQuery para manejar la funcionaliadad del navbar y el sidebar-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../public/js/Navbar&Sidebar.js"></script>
     <script>
-        mostrarNavbar();
+        $(document).ready(function() {
+            mostrarNavbar();
+        });
     </script>
 
 <div class="mainContainer">

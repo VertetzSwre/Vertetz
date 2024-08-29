@@ -266,7 +266,7 @@ fieldset .appName {
 
 
 .sidebar {
-    width: 20rem; /* Ancho ajustado */
+    width: 25rem; /* Ancho ajustado */
     height: 100vh;
     background-color: #121212; /* Color de fondo del sidebar */
     position: fixed;
@@ -294,7 +294,7 @@ fieldset .appName {
 }
 
 body.sidebar-open {
-    margin-left: 20rem; /* Mueve el contenido del cuerpo cuando el sidebar está abierto */
+    margin-left: 25rem; /* Mueve el contenido del cuerpo cuando el sidebar está abierto */
 }
 
 .sidebar a {
@@ -305,9 +305,9 @@ body.sidebar-open {
     width: 100%;
     box-sizing: border-box; /* Asegura que el padding no haga que los elementos se salgan */
     font-size: 1.4rem;
-    font-weight: bold;
     text-align: left;
     transition: all 0.2s;
+    font-weight: normal;
 }
 
 .sidebar a:hover {
@@ -378,7 +378,6 @@ body.sidebar-open {
     width: 100%;
     box-sizing: border-box;
     font-size: 1.4rem;
-    font-weight: bold;
     border: none;
 }
 
@@ -477,8 +476,7 @@ body.sidebar-open {
     text-decoration: none;
     width: 100%;
     box-sizing: border-box;
-    font-size: 1.6rem;
-    font-weight: bold;
+    font-size: 1.4rem;
     border: none;
     content: none;
 }
@@ -760,7 +758,6 @@ body.sidebar-open {
 
 .sectionListadoReservas {
     width: 95%;
-    min-height: 100vh;
     margin: 0 auto;
 
     border-top: 1px solid #000;
@@ -790,6 +787,99 @@ body.sidebar-open {
     .sectionBuscarReservas fieldset {
         display: flex;
     }
+}
+
+/* --------------------------------------------- Todas las reservas --------------------------------------------- */
+
+.btnFiltrarPor {
+    font-size: 3rem; 
+    margin: 5rem 5rem 2rem 5rem; 
+    font-weight: 700;
+    border: none;
+    background-color: transparent;
+}
+
+.containerBtnDescargarListado {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
+
+.btnDescargarListado {
+    width: 20%;
+    height: 5.5rem;
+    margin: 2rem;
+    background-color: #000;
+    color: white;
+    font-size: 1.8rem;
+    border: none;
+    border-radius: 3rem;
+    cursor: pointer;
+}
+
+.dropdown-filtrar-por-container {
+    position: relative;
+}
+
+.dropdown-content-filtrar {
+    display: none;
+    position: absolute;
+    background-color: #9b9b9b;
+    color: black;
+    min-width: 16rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    font-size: 2rem;
+    border-radius: 1rem;
+}
+
+.dropdown-content-filtrar.show {
+    display: block;
+    margin: 0 5rem;
+}
+
+.dropdown-content-filtrar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.dropdown-content-filtrar li {
+    padding: 0.5rem 0;
+}
+
+.dropdown-content-filtrar li a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+.dropdown-content-filtrar li a:hover {
+    background-color: #ddd;
+}
+
+/*Dropdown del nodo <a> llamado "Mes especifico"*/
+
+.dropdown-mes-especifico {
+    position: relative;
+}
+
+.dropdown-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0 ; /* Asegura que el submenú esté alineado con el menú principal */
+    background-color: #9b9b9b;
+    min-width: 16rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 1rem;
+}
+
+.dropdown-mes-especifico.active .dropdown-submenu {
+    display: block;
 }
 
 /* --------------------------------------------- Crear nueva reserva --------------------------------------------- */
@@ -940,6 +1030,93 @@ textarea {
     .h1VistaPrevia {
         margin: 15rem 0 0 5rem ;
     }
+}
+
+
+
+/* --------------------------------------------- Calendario --------------------------------------------- */
+
+.calendar-container {
+    display: flex;
+    background-color: #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.calendar-header, .calendar-body, .reservation-details {
+    padding: 20px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eee;
+}
+
+.calendar-body {
+    background-color: #f0f0f0;
+    flex: 1;
+}
+
+.calendar-days, .calendar-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    text-align: center;
+}
+
+.calendar-days span {
+    font-weight: bold;
+}
+
+.calendar-dates div {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.calendar-dates .selected {
+    border: 2px solid #333;
+}
+
+.reservation-details {
+    background-color: #777;
+    color: #fff;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.reservation-item {
+    background-color: #aaa;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.details-button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+#add-reservation {
+    background-color: #fff;
+    color: #777;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.inactive-day {
+    color: #bbb;
 }
 
 

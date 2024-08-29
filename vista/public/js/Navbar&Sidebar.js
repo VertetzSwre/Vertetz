@@ -15,20 +15,17 @@ function mostrarNavbar() {
         </div>
       </div>
     </nav>
-
 <!--SIDEBAR-->
     <div class="sidebar">
       <hr>
         <a href="crearReserva.html">Nueva Reserva</a>
       <hr>
-
 <!--DROPDOWN 1-->
    <div class="dropdown">
   <button class="dropdown-toggle">
     <span class="dropdown-icon"><img src="img/anadir.png" style="width: 1.7rem; height: 1.7rem;"></span>
     <span class="dropdown-text">Gestionar Reservas</span>
   </button>
-
 <!--CONTENIDO DEL DROPDOWN 1-->
   <div class="dropdown-content">
     <ul>
@@ -40,61 +37,62 @@ function mostrarNavbar() {
   </div>
 </div>
 <hr>
-
 <!--DROPDOWN 2-->
 <div class="dropdown">
   <button class="dropdown-toggle2">
     <span class="dropdown-icon2"><img src="img/anadir.png" style="width: 1.7rem; height: 1.7rem;"></span>
-    <span class="dropdown-text">Grupos</span>
+    <span class="dropdown-text2">Gestionar Instituciones</span>
   </button>
-
-<!--CONTENIDO DEL DROPDOWN 1-->
+<!--CONTENIDO DEL DROPDOWN 2-->
   <div class="dropdown-content2">
     <ul>
-      <li><a href="pagina1.html">Primaria impulso</a></li>
-      <li><a href="pagina2.html">Secundaria impulso</a></li>
+      <li><a href="pagina1.html">Administrar mis instituciones</a></li>
+      <li><a href="pagina2.html">Crear institucion</a></li>
+      <li><a href="pagina2.html">Unirme a una institucion</a></li>
+      <li><a href="pagina2.html">Ayuda</a></li>
     </ul>
   </div>
 </div>
 <hr>
   </header>
 `
-  document.body.insertAdjacentHTML('afterbegin', navbarHTML);
-;
+  $('body').prepend(navbarHTML);
+} //Ciere de etiqueta de la funcion "mostrarNavbar()".
 
-//Funcion para abrir y cerrar el sidebar.
-const toggleBtn = document.querySelector('.toggle-btn');
-  const sidebar = document.querySelector('.sidebar');
-  toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-      document.body.classList.toggle('sidebar-open');
-      toggleBtn.textContent = sidebar.classList.contains('open') ? '✕' : '☰';
+
+$(document).ready(function() {
+  mostrarNavbar();
+
+  //Funcion para abrir y cerrar el sidebar.
+  $('.toggle-btn').on('click', function() {
+    $('.sidebar').toggleClass('open');
+    $('body').toggleClass('sidebar-open');
+    $(this).text($('.sidebar').hasClass('open') ? '✕' : '☰');
   });
 
-//Funcion para desplegar el primer dropdown (gestionar reservas) con el boton de mas.
-document.querySelector('.dropdown-icon').addEventListener('click', function(event) {
-  event.stopPropagation(); // Evita que el click se propague al botón
-  document.querySelector('.dropdown-content').classList.toggle('show');
-});
+  //Funcion para desplegar el primer dropdown (gestionar reservas) con el boton de mas.
+  $('.dropdown-icon').on('click', function(event) {
+    event.stopPropagation(); // Evita que el click se propague al botón
+    $('.dropdown-content').toggleClass('show');
+  });
 
-//Funcion que redirige al usuario a la pagina de gestion de reservas al hacer click en el texto del dropdown.
-document.querySelector('.dropdown-toggle').addEventListener('click', function(event) {
-  if (!event.target.classList.contains('dropdown-icon')) {
+  //Funcion que redirige al usuario a la pagina de gestion de reservas al hacer click en el texto del dropdown.
+  $('.dropdown-toggle').on('click', function(event) {
+    if (!$(event.target).hasClass('dropdown-icon')) {
       window.location.href = 'gestionReservas.html';
-  }
-});
+    }
+  });
 
-//Funcion para desplegar el segundo dropdown (grupos) con el boton de mas.
-document.querySelector('.dropdown-icon2').addEventListener('click', function(event) {
-  event.stopPropagation(); // Evita que el clic se propague al botón
-  document.querySelector('.dropdown-content2').classList.toggle('show');
-});
+  //Funcion para desplegar el segundo dropdown (gestionar instituciones) con el boton de mas.
+  $('.dropdown-icon2').on('click', function(event) {
+    event.stopPropagation(); // Evita que el click se propague al botón
+    $('.dropdown-content2').toggleClass('show');
+  });
 
- // Función para abrir y cerrar el dropdown de Grupos
- document.querySelector('.dropdown-toggle2').addEventListener('click', function(event) {
-  event.stopPropagation(); // Evita que el clic se propague al botón
-  document.querySelector('.dropdown-content2').classList.toggle('show');
+  //Funcion que redirige al usuario a la pagina de gestion de instituciones al hacer click en el texto del dropdown.
+  $('.dropdown-toggle2').on('click', function(event) {
+    if (!$(event.target).hasClass('dropdown-icon2')) {
+      window.location.href = 'gestionInstituciones.html';
+    }
+  });
 });
-}
-
-  
