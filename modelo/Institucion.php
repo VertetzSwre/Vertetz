@@ -1,6 +1,7 @@
 <?php
+require_once('Conexion.php');
 
-class Institucion
+class Institucion extends Conexion
 {
     private $nombre; // Primary Key
     private $calle; // Esto es del atributo compuesto "direccion"
@@ -9,14 +10,9 @@ class Institucion
     private $email; // Esto es del atributo multivaluado "datos_de_contacto"
     private $telefono; // Esto es del atributo multivaluado "datos_de_contacto"
 
-    public function __construct($nombre, $calle, $esquina, $puerta, $email, $telefono)
+    public function __construct()
     {
-        $this->nombre = $nombre;
-        $this->calle = $calle;
-        $this->esquina = $esquina;
-        $this->puerta = $puerta;
-        $this->email = $email;
-        $this->telefono = $telefono;
+        parent::__construct(); // Llamada al constructor de la clase base
     }
 
     // Getters
@@ -79,6 +75,31 @@ class Institucion
     public function setTelefono($telefono)
     {
         $this->telefono = $telefono;
+    }
+
+    public function getAllInstituciones()
+    {
+        $conn = $this->getConexion();
+        try {
+            // Preparar y ejecutar la consulta SQL para obtener todos los usuarios
+            $sql = "SELECT * FROM institucion";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            // Fetch all reserves as an associative array
+            $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $reservas; // Devolver el array de usuarios
+        } catch (PDOException $e) {
+            // Manejar posibles errores de la consulta
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            // Cerrar la conexión
+            $this->cerrarConexion();
+        }
     }
 }
 ?>

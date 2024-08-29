@@ -19,7 +19,6 @@
             // Crear el array con los datos del usuario utilizando los getters
             $usuarioArray = [
                 'ci' => $loginModel->getCi(),
-                'nombre_usuario' => $loginModel->getNombreUsuario(),
                 'contrasena' => $loginModel->getContrasena(),
                 'nombre_completo' => $loginModel->getNombreCompleto(),
                 'telefono' => $loginModel->getTelefono(),

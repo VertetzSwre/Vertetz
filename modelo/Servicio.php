@@ -1,18 +1,15 @@
 <?php
-
-class Servicio
+require_once('Conexion.php');
+class Servicio extends Conexion
 {
     private $id_servicio; //Primary Key
     private $nombre;
     private $tipo_servicio;
     private $descripcion;
 
-    public function __construct($id_servicio, $nombre, $tipo_servicio, $descripcion)
+    public function __construct()
     {
-        $this->id_servicio = $id_servicio;
-        $this->nombre = $nombre;
-        $this->tipo_servicio = $tipo_servicio;
-        $this->descripcion = $descripcion;
+        parent::__construct(); // Llamada al constructor de la clase base
     }
 
 
@@ -56,6 +53,31 @@ class Servicio
     public function setDescripcion($descripcion)
     {
         $this->descripcion = $descripcion;
+    }
+
+    public function getAllServicios()
+    {
+        $conn = $this->getConexion();
+        try {
+            // Preparar y ejecutar la consulta SQL para obtener todos los usuarios
+            $sql = "SELECT * FROM servicio";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            // Fetch all reserves as an associative array
+            $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $reservas; // Devolver el array de usuarios
+        } catch (PDOException $e) {
+            // Manejar posibles errores de la consulta
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            // Cerrar la conexión
+            $this->cerrarConexion();
+        }
     }
 }
 

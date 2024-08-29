@@ -1,6 +1,6 @@
 <?php
-
-class Reserva
+require_once('Conexion.php');
+class Reserva extends Conexion
 {
     private $id; //Primary Key
     private $estado;
@@ -10,14 +10,9 @@ class Reserva
     private $observaciones;
 
 
-    public function __construct($id, $estado, $fecha, $hora_inicio, $hora_fin, $observaciones)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->estado = $estado;
-        $this->fecha = $fecha;
-        $this->hora_inicio = $hora_inicio;
-        $this->hora_fin = $hora_fin;
-        $this->observaciones = $observaciones;
+        parent::__construct(); // Llamada al constructor de la clase base
     }
 
 
@@ -82,6 +77,31 @@ class Reserva
     {
         $this->observaciones = $observaciones;
     }
+    public function getAllReservas()
+    {
+        $conn = $this->getConexion();
+        try {
+            // Preparar y ejecutar la consulta SQL para obtener todos los usuarios
+            $sql = "SELECT * FROM reserva";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            // Fetch all reserves as an associative array
+            $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $reservas; // Devolver el array de usuarios
+        } catch (PDOException $e) {
+            // Manejar posibles errores de la consulta
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            // Cerrar la conexión
+            $this->cerrarConexion();
+        }
+    }
 }
+
 
 ?>

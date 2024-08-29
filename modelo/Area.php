@@ -1,6 +1,7 @@
 <?php
+require_once('Conexion.php');
 
-class Area
+class Area extends Conexion
 {
     private $codigo; //Primary Key
     private $institucion_perteneciente;
@@ -8,13 +9,9 @@ class Area
     private $tipo;
     private $estado;
 
-    public function __construct($codigo, $institucion_perteneciente, $nombre, $tipo, $estado)
+    public function __construct()
     {
-        $this->codigo = $codigo;
-        $this->institucion_perteneciente = $institucion_perteneciente;
-        $this->nombre = $nombre;
-        $this->tipo = $tipo;
-        $this->estado = $estado;
+        parent::__construct(); // Llamada al constructor de la clase base
     }
 
 
@@ -68,6 +65,30 @@ class Area
     public function setEstado($estado)
     {
         $this->estado = $estado;
+    }
+    public function getAllAreas()
+    {
+        $conn = $this->getConexion();
+        try {
+            // Preparar y ejecutar la consulta SQL para obtener todos los usuarios
+            $sql = "SELECT * FROM area";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            // Fetch all reserves as an associative array
+            $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $reservas; // Devolver el array de usuarios
+        } catch (PDOException $e) {
+            // Manejar posibles errores de la consulta
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            // Cerrar la conexión
+            $this->cerrarConexion();
+        }
     }
 }
 ?>
