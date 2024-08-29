@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse - Roomanagy</title>
+    <link rel="stylesheet" href="../public/css/normalize.css">
+    <link rel="stylesheet" href="../public/css/cssRegistro.css">
+    <link rel="preload" href="../public/css/cssRegistro.css" as="style">
+    <link rel="icon" href="../public/img/Imagotipo.png" type="image/x-icon">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container-logo"><img src="../public/img/Imagotipo.png"></div>
+        <div class="returnButton">
+            <img src="../public/img/backButton.png" onclick="location.href='index.html'" style="cursor: pointer;">
+        </div>
+        <div class="header-icon"></div>
+        <a href="#">Ingresa a...</a>
+        
+    </header>
+<div class="mainContainer">
+    <div class="container">
+        <div class="left-section">
+            <h1>Comienza aquí</h1>
+            <p>¡Regístrate para acceder a todas las opciones que brinda roomanagy y comenzar a organizar tus reservas de áreas institucionales!</p>
+            <p class="existing-account">¿Ya tienes una cuenta?</p>
+            <button class="btn-login">Inicia sesión</button>
+        </div>
+        <div class="right-section">
+            <form class="registration-form">
+                <div class="container" style="height: 15rem; display: flex; justify-content: center; align-items: center; background-color: transparent; box-shadow: none;">
+                    <div class="left-section" style="background-color: transparent; width: 30%; display: flex; justify-content: center; align-items: center;">
+                        <div class="icon-container">
+                            <img src="img/camera-icon.png" class="camera-icon">
+                        </div>
+                    </div>
+                <div class="right-section" style="background-color: transparent; display: flex; justify-content: center; align-items: center;"> 
+                    <div class="container-main-fields">
+                        <label>Nombre completo: *</label>
+                        <input type="text" required class="name-field">
+                        <label>CI: *</label>
+                        <input type="text"required class="ci-field">
+                    </div>
+                </div>
+
+                </div>
+                <label>Teléfono: *</label>
+                <input type="tel" required>
+                <label>Contraseña: *</label>
+                <input type="password" required>
+                <label>Email: *</label>
+                <input type="email" required>
+                <label>Email corporativo (opcional)</label>
+                <input type="email">
+                <button type="submit" class="btn-register">Registrarse</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+    
+</body>
+</html>
