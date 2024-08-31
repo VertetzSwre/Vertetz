@@ -60,37 +60,37 @@ function mostrarNavbar() {
 } //Ciere de etiqueta de la funcion "mostrarNavbar()".
 
 
-$(document).ready(function() {
+$(document).ready(function () {
   mostrarNavbar();
 
   //Funcion para abrir y cerrar el sidebar.
-  $('.toggle-btn').on('click', function() {
+  $('.toggle-btn').on('click', function () {
     $('.sidebar').toggleClass('open');
     $('body').toggleClass('sidebar-open');
     $(this).text($('.sidebar').hasClass('open') ? '✕' : '☰');
   });
 
   //Funcion para desplegar el primer dropdown (gestionar reservas) con el boton de mas.
-  $('.dropdown-icon').on('click', function(event) {
+  $('.dropdown-icon').on('click', function (event) {
     event.stopPropagation(); // Evita que el click se propague al botón
     $('.dropdown-content').toggleClass('show');
   });
 
   //Funcion que redirige al usuario a la pagina de gestion de reservas al hacer click en el texto del dropdown.
-  $('.dropdown-toggle').on('click', function(event) {
+  $('.dropdown-toggle').on('click', function (event) {
     if (!$(event.target).hasClass('dropdown-icon')) {
       window.location.href = 'gestionReservas.html';
     }
   });
 
   //Funcion para desplegar el segundo dropdown (gestionar instituciones) con el boton de mas.
-  $('.dropdown-icon2').on('click', function(event) {
+  $('.dropdown-icon2').on('click', function (event) {
     event.stopPropagation(); // Evita que el click se propague al botón
     $('.dropdown-content2').toggleClass('show');
   });
 
   //Funcion que redirige al usuario a la pagina de gestion de instituciones al hacer click en el texto del dropdown.
-  $('.dropdown-toggle2').on('click', function(event) {
+  $('.dropdown-toggle2').on('click', function (event) {
     if (!$(event.target).hasClass('dropdown-icon2')) {
       window.location.href = 'gestionInstituciones.html';
     }

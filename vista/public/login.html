@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../public/css/cssLogin.css">
     <link rel="preload" href="../public/css/cssLogin.css" as="style">
     <link rel="icon" href="../public/img/Imagotipo.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!--Esto es para que la barra lateral que desplaza no aparezca-->
 <style>
     body {
@@ -38,7 +39,7 @@
     <header class="header">
         <div class="container-logo"><img src="../public/img/Imagotipo.png"></div>
         <div class="returnButton">
-            <img src="../public/img/backButton.png" onclick="location.href='index.html'" style="cursor: pointer;">
+            <img src="../public/img/backButton.png" onclick="location.href='../../index.html'" style="cursor: pointer;">
         </div>
         <div class="header-icon"></div>
         <a href="#">Ingresa a...</a>
@@ -50,8 +51,8 @@
             <main style="margin: 0;">
                 <section style="margin: 0;">
                     <img src="img/Imagotipo.png" class="imgLogin">
-                    <h1 style="font-size: 4rem; font-family: 'Raleway', sans-serif; font-weight: 700; width: 70%; margin: 0; color: white;">Bienvenido a</h1>
-                    <h1 style="font-size: 5.6rem; font-family: 'Raleway', sans-serif; font-weight: 700; width: 70%; margin: 0; position: relative; left: 2rem; color: white;">Roomanagy</h1>
+                    <h1 style="font-size: 3.5rem; font-family: 'Raleway', sans-serif; font-weight: 700; width: 70%; margin: 0; color: white;">Bienvenido a</h1>
+                    <h1 style="font-size: 5rem; font-family: 'Raleway', sans-serif; font-weight: 700; width: 70%; margin: 0; position: relative; left: 2rem; color: white;">Roomanagy</h1>
                     <p>Bienvenido a nuestra aplicación de gestión de espacios y áreas comunes! 
                     Simplifica la reserva y administración de aulas, auditorios, laboratorios y más, 
                     optimizando el uso de recursos y facilitando la planificación en tu centro educativo.</p>
@@ -59,10 +60,10 @@
             </main>
         
             <section class="login-section">
-                <form class="formulario" action="../../controlador/ctrlUsuario.php" method="POST">
+                <form class="formulario" action="../../controlador/ctrlUsuario" method="POST">
                     <fieldset>
                        
-                        <h2 style="margin: 0 auto;">Inicia sesion</h2>
+                        <h2 style="margin: 0 auto;">Inicia sesión</h2>
         
                        <div class="container-input">
                             <div class="campo">

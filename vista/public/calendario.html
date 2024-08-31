@@ -22,52 +22,95 @@
             mostrarNavbar();
         });
     </script>
-    <script src="../public/js/Registro.js"></script>
 
 <div class="mainContainer">
     <h1 style="font-size: 7rem; margin: 1rem 2rem; font-weight: 700; display: inline-block;">Calendario</h1>
     <p style="font-size: 2rem; margin: 0 0 2rem 2rem; width: auto;">Aquí podrás ser capaz de ver el calendario de reservas general del instituto.</p>
     
     <div class="calendar-container">
-        <div class="calendar-header">
-            <button id="prev-month">&lt;</button>
-            <div>
-                <span id="month-name">Agosto</span> <span id="year">2024</span>
+        <div class="calendar-section">
+            <div class="calendar-header">
+                <button class="arrow">&lt;</button>
+                <h2>Agosto</h2>
+                <button class="arrow">&gt;</button>
+                <h2>2024</h2>
             </div>
-            <button id="next-month">&gt;</button>
+            <table class="calendar">
+                <thead>
+                    <tr>
+                        <th>Dom</th>
+                        <th>Lun</th>
+                        <th>Mar</th>
+                        <th>Mié</th>
+                        <th>Jue</th>
+                        <th>Vie</th>
+                        <th>Sáb</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="prev-month">28</td>
+                        <td class="prev-month">29</td>
+                        <td class="prev-month">30</td>
+                        <td class="prev-month">31</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <!-- Más filas aquí... -->
+                     <td>4</td>
+                     <td>5</td>
+                     <td>6</td>
+                     <td>7</td>
+                     <td>8</td>
+                     <td>9</td>
+                     <td>10</td>
+                     <tr>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                     </tr>
+                     <td>18</td>
+                     <td>19</td>
+                     <td>20</td>
+                     <td>21</td>
+                     <td>22</td>
+                     <td class="selected">23</td>
+                     <td>24</td>
+                    <tr>
+                        <td>25</td>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                        <td>30</td>
+                        <td>31</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="calendar-body">
-            <div class="calendar-days">
-                <span>Dom</span>
-                <span>Lun</span>
-                <span>Mar</span>
-                <span>Mié</span>
-                <span>Jue</span>
-                <span>Vie</span>
-                <span>Sáb</span>
-            </div>
-            <div id="calendar-dates" class="calendar-dates">
-                <div>28</div>
-                <div>29</div>
-                <div>30</div>
-                <div>31</div>
-                <!-- Los días se generarán dinámicamente -->
-            </div>
-        </div>
-        <div class="reservation-details">
-            <h2 id="selected-date">Viernes 23</h2>
+        <div class="info-section">
+            <h2>Viernes 23</h2>
             <p>Reservas programadas.</p>
-            <div class="reservation-item">
-                <p>Solicitante: "Nombre completo"</p>
-                <p>Área: comedor</p>
-                <p>Horario: 10:40am a 11:10am</p>
-                <button class="details-button">Más detalles</button>
+            <hr style="margin: 0; color: white;">
+            <div class="reservation-details">
+                <div class="row">
+                    <p>Solicitante: "Nombre completo"</p>
+                    <p>Área: comedor</p>
+                </div>
+
+                <div class="row">
+                    <div class="row"><button class="more-details">Más detalles</button></div>
+                    <div class="row"><p style="font-size: 1.2rem; color: #ccc; padding: 0; text-align: center;">Horario: 10:40am a 11:10</p></div>
+                </div>
             </div>
-            <button id="add-reservation">+ Añadir reserva</button>
+            <button class="add-reservation">+ Añadir reserva</button>
         </div>
     </div>
-
-    <script src="../public/js/si.js"></script>
 </div>
 <!-- Boostrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

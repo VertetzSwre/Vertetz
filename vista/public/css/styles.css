@@ -639,12 +639,26 @@ body.sidebar-open {
     border-bottom: 1px solid #000;
 }
 
-.itemReserva {
+#itemReserva {
     width: 100%;
     height: 10rem;
-    background-color: #d9d9d9;
+    display: flex;
+    align-items: center;
+    background-color: #99c6e8;
+    margin: 2rem 0;
+}
 
-    margin: 1.5rem 0;
+#itemReserva p {
+    font-size: 2rem;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    width: 80%;
+    margin: 1rem auto;
+}
+
+.sectionObtenerReserva {
+    border-top: 1px solid black;
 }
 
 /* --------------------------------------------- Gestion de Reservas --------------------------------------------- */
@@ -759,8 +773,6 @@ body.sidebar-open {
 .sectionListadoReservas {
     width: 95%;
     margin: 0 auto;
-
-    border-top: 1px solid #000;
     border-bottom: 1px solid #000;
 }
 
@@ -1032,91 +1044,135 @@ textarea {
     }
 }
 
+.btnAnadirOtro {
+    width: 20%;
+    height: 4rem;
+    margin: 0 2rem;
+    align-self: right;
+
+    background-color: #000;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: normal;
+    border: none;
+    border-radius: 2.5rem;
+}
+
 
 
 /* --------------------------------------------- Calendario --------------------------------------------- */
 
 .calendar-container {
     display: flex;
-    background-color: #ccc;
-    border-radius: 10px;
+    width: 90rem;
+    height: 50rem;
+    border-radius: 8px;
     overflow: hidden;
-    width: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     margin: 0 auto;
 }
 
-.calendar-header, .calendar-body, .reservation-details {
-    padding: 20px;
+.calendar-section {
+    width: 60%;
+    background-color: #e0e0e0;
+    padding: 2rem;
+    font-size: 1.8rem;
 }
 
 .calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #eee;
+    margin-bottom: 20px;
 }
 
-.calendar-body {
-    background-color: #f0f0f0;
-    flex: 1;
+.calendar-header h2 {
+    font-size: 3rem;
+    font-weight: normal;
 }
 
-.calendar-days, .calendar-dates {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+.arrow {
+    background: none;
+    border: none;
+    font-size: 20px;
+}
+
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar th, .calendar td {
     text-align: center;
-}
-
-.calendar-days span {
-    font-weight: bold;
-}
-
-.calendar-dates div {
-    padding: 10px;
-    background-color: #fff;
+    padding: 1rem 0;
     border-radius: 5px;
-    cursor: pointer;
 }
 
-.calendar-dates .selected {
+.calendar td {
+    color: #666;
+}
+
+.prev-month {
+    color: #ccc;
+}
+
+.selected {
     border: 2px solid #333;
 }
 
-.reservation-details {
-    background-color: #777;
-    color: #fff;
-    width: 40%;
+.info-section {
+    width: 50%;
+    background-color: #666;
+    color: white;
+    padding: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
-.reservation-item {
-    background-color: #aaa;
-    padding: 10px;
-    margin: 10px 0;
+.info-section h2, .info-section p {
+    margin: 0;
+}
+
+.info-section {
+    font-size: 3rem;
+}
+
+.info-section h2 {
+    font-size: 5rem;
+    font-weight: normal;
+}
+
+.reservation-details {
+    background-color: #888;
+    padding: 0.5rem;
     border-radius: 5px;
+    font-size: 1.2rem;
+    position: relative;
+    display: flex;
+    align-items: center ;
+    height: 15%;
 }
 
-.details-button {
+.more-details {
     background: none;
     border: none;
     color: #fff;
+    text-align: right;
     cursor: pointer;
 }
 
-#add-reservation {
-    background-color: #fff;
-    color: #777;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+.add-reservation {
+    width: 60%;
     align-self: flex-end;
-}
-
-.inactive-day {
-    color: #bbb;
+    background-color: transparent;
+    color: white;
+    font-weight: 800;
+    border: 0.5rem solid white;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 2rem;
 }
 
 
