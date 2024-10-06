@@ -1,0 +1,88 @@
+.index-header {
+    justify-content: space-around;
+
+    background-color: #8e8585;
+}
+
+section {
+    margin: 3rem auto;
+}
+
+.btn-login {
+    color: white;
+    padding: 0.5rem;
+    margin: 0 1rem;
+    text-decoration: none;
+}
+
+.btn-sign-up {
+    background-color: #000000;
+    color: white;
+    padding: 0.5rem;
+    margin: 0 1rem;
+    text-decoration: none;
+    border-radius: 0.5rem;
+}
+
+.index-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    margin: 8rem 0;
+}
+
+.index-main button {
+    width: 10rem;
+    height: 4rem;
+    text-align: center;
+
+    background-color: #000000;
+    color: white;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.index-main button a {
+    color: white;
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 1.4rem;
+    text-decoration: none;
+}
+
+.container {
+    margin: 20rem 0;
+}
+
+
+.container-img {
+    width: 75%;
+    height: 20rem;
+    margin: 0 auto;
+
+    background-color: #cecece;
+}
+
+.index-section h2 {
+    font-size: 2.5rem;
+}
+
+.index-section p {
+    font-size: 1.4rem;
+    font-weight: lighter;
+    margin: 2rem 0;
+}
+
+
+
+footer {
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+
+    background-color: #000000;
+}
