@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear una reserva - Roomanagy</title>
+    <link rel="stylesheet" href="../public/css/normalize.css">
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="preload" href="../public/css/styles.css" as="style">
+    <link rel="icon" href="../public/img/Imagotipo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Boostrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+    <!--NAVBAR-->
+    <!--Se incluye jQuery para manejar la funcionaliadad del navbar y el sidebar-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../public/js/Navbar&Sidebar.js"></script>
+    <script>
+        $(document).ready(function() {
+            showNavbar();
+        });
+    </script>
+
+<div class="all-container">
+    <h1 style="font-size: 7rem; margin: 2rem 0 0 4rem; font-weight: 700; display: inline-block;">Reservá tu espacio</h1>
+
+    <main>
+        <section class="section-create-reservation">
+            <form class="form-create-reservation">
+                <div class="form-group">
+                    <label for="instituto">Instituto:</label>
+                    <select name="instituto" id="instituto" required>
+                        <option>Seleccione instituto</option>
+                        <option>Instituto 1</option>
+                        <option>Instituto 2</option>
+                        <option>Instituto 3</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="area">Área:</label>
+                    <select name="area" id="area" required>
+                        <option>Seleccione Área</option>
+                        <option>Area 1</option>
+                        <option>Area 2</option>
+                        <option>Area 3</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fechaReserva">Fecha de la reserva:</label>
+                    <input type="date" name="fechaReserva" id="fechaReserva">
+                </div>
+
+                <div class="form-group">
+                    <label for="horaReservaDesde">Hora de la reserva:</label>
+                    <div class="time-group">
+                        <label for="horaReservaDesde">Desde las:</label>
+                        <input type="time" name="horaReservaDesde" id="horaReservaDesde">
+                        <label for="horaReservaHasta">Hasta las:</label>
+                        <input type="time" name="horaReservaHasta" id="horaReservaHasta">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="selectServicio">Servicio a añadir: (opcional)</label>
+                    <select name="selectServicio" id="selectServicio">
+                        <option>Seleccione un servicio</option>
+                        <option>Servicio 1</option>
+                        <option>Servicio 2</option>
+                        <option>Servicio 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtObservaciones">Observaciones: (opcional)</label>
+                    <textarea name="txtObservaciones" id="txtObservaciones" placeholder="Descripción, detalles, etc..."></textarea>
+                </div>
+
+            </form>
+        </section>
+    </main>
+    
+    <h1 class="h1-preview">Vista previa</h1>
+    <section class="section-preview">
+        <p>Fecha</p>
+        <p>Hora de inicio</p>
+        <p>Hora de fin</p>
+    </section>
+    <section class="section-preview-2"></section>
+
+    <section class="section-submit-btn">
+        <button style="width: 4rem; height: 4rem; background-color: white; border: none;"><img src="img/anadir2.png"></button>
+        <button class="btn-submit" type="submit">Enviar</button>
+    </section>
+</div>
+
+<!-- Boostrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
