@@ -21,6 +21,24 @@ SELECT *
 FROM Reserva
 ORDER BY fecha DESC, hora_inicio DESC;
 
+-- Mostrar reservas por una fecha específica: *
+SELECT * FROM Reserva WHERE fecha = '2024-09-21';
+
+-- Mostrar reservas hechas en un rango de fechas en específico: *
+SELECT * 
+FROM Reserva 
+WHERE fecha BETWEEN '2024-10-15' AND '2024-10-20'; -- Cambiar por el rango de fechas (inicio_rango AND fin_rango)
+
+-- Mostrar reservas hechas en un rango de horas en específico: *
+SELECT * 
+FROM Reserva 
+WHERE hora_inicio BETWEEN '08:00:00' AND '12:00:00' -- Cambiar el primer valor de hora_inicio por el inicio del rango.
+AND hora_fin BETWEEN '08:00:00' AND '12:00:00'; -- Cambiar el último valor de la hora_fin por el fin del rango
+
+-- Mostrar listado de reservas por estado: *
+SELECT * FROM Reserva WHERE estado = 'confirmada'; -- Cambiar por los posibles estados; sin confirmar, confirmar, rechazada
+
+
 -- Mostrar las reservas que hizo un usuario (incluye los servicios, si es que los tiene):
 SELECT r.*, s.tipo_servicio, s.descripcion
 FROM Reserva r
