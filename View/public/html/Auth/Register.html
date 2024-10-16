@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse - Roomanagy</title>
+    <link rel="stylesheet" href="../../../public/css/normalize.css">
+    <link rel="stylesheet" href="../../../public/css/Register.css">
+    <link rel="preload" href="../../../public/css/Register.css" as="style">
+    <link rel="icon" href="../../../public/img/Imagotipo.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container-logo"><img src="../../../public/img/Imagotipo-light.png"></div>
+        <div class="btn-return">
+            <img src="../../../public/img/backButton.png" onclick="location.href='../../../../index.html'" style="cursor: pointer;">
+        </div>
+        <div class="header-icon"></div>
+        <a href="#">Ingresa a...</a>
+        
+    </header>
+<div class="all-container">
+    <div class="container">
+        <div class="left-section">
+            <h1>Comienza aquí</h1>
+            <p>¡Regístrate para acceder a todas las opciones que brinda roomanagy y comenzar a organizar tus reservas de áreas institucionales!</p>
+            <p class="existing-account">¿Ya tienes una cuenta?</p>
+            <button class="btn-login" onclick="location.href='login.html'">Inicia sesión</button>
+        </div>
+        <div class="right-section">
+            <form class="registration-form" action="../../../../Controller/Auth/ControladorRegistro.php" method="POST">
+                <div class="container" style="height: 15rem; display: flex; justify-content: center; align-items: center; background-color: transparent; box-shadow: none;">
+                    <div style="background-color: transparent; width: 30%; display: flex; justify-content: center; align-items: center;">
+                        <div class="icon-container">
+                            <img src="../../img/camera-icon.png" class="camera-icon">
+                        </div>
+                    </div>
+                <div class="right-section" style="background-color: transparent; display: flex; justify-content: center; align-items: center;"> 
+                    <div class="container-main-fields">
+                        <label>Nombre completo: *</label>
+                        <input type="text" class="name-field" name="nombre_completo" id="nombre_completo" required>
+                        <label>CI: *</label>
+                        <input type="number" class="ci-field" name="ci" id="ci" required>
+                    </div>
+                </div>
+
+                </div>
+                <label>Teléfono: *</label>
+                <input type="tel" name="telefono" id="telefono" required>
+                <label>Contraseña: *</label>
+                <input type="password" name="contrasena" id="contrasena" required>
+                <label>Email: *</label>
+                <input type="email" name="mail_personal" id="mail_personal" required>
+                <label>Email corporativo (opcional)</label>
+                <input type="email" name="mail_corporativo" id="mail_corporativo">
+                <button type="submit" class="btn-register" id="enviar">Registrarse</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../js/General/jquery.min.js"></script>
+<script src="../../js/Auth/Register.js"></script>
+</body>
+</html>
