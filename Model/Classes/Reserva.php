@@ -133,6 +133,74 @@ class Reserva extends Connection
         }
     }
 
+    // Método para obtener todas las reservas por fecha
+    public function obtenerReservasPorFecha()
+    {
+        $conn = $this->getConnection();
+        try {
+            $sql = "SELECT *
+                    FROM Reserva
+                    ORDER BY fecha DESC, hora_inicio DESC";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $reservas;
+        } catch (PDOException $e) {
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            $this->closeConnection();
+        }
+    }
+
+    // Método para buscar reservas por valor
+    public function searchReserva($value)
+    {
+        $conn = $this->getConnection(); // Obtener la conexión
+        try {
+            // Consulta SQL con parámetros de búsqueda
+            $sql = "SELECT * 
+                FROM Reserva 
+                WHERE id LIKE :id 
+                OR ci_usuario LIKE :ci_usuario 
+                OR codigo_area LIKE :codigo_area 
+                OR fecha LIKE :fecha 
+                OR estado LIKE :estado";
+
+            $stmt = $conn->prepare($sql); // Preparar la consulta
+
+            // Añadir comodines al valor para usar con LIKE
+            $searchValue = '%' . $value . '%';
+
+            // Vincular los parámetros
+            $stmt->bindParam(':id', $searchValue, PDO::PARAM_STR);
+            $stmt->bindParam(':ci_usuario', $searchValue, PDO::PARAM_STR);
+            $stmt->bindParam(':codigo_area', $searchValue, PDO::PARAM_STR);
+            $stmt->bindParam(':fecha', $searchValue, PDO::PARAM_STR);
+            $stmt->bindParam(':estado', $searchValue, PDO::PARAM_STR);
+
+            $stmt->execute(); // Ejecutar la consulta
+
+            // Obtener los resultados
+            $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $reservas; // Devolver los resultados
+        } catch (PDOException $e) {
+            // Devolver un array de error si ocurre una excepción
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            $this->closeConnection(); // Cerrar la conexión siempre
+        }
+    }
+
+
     // Método para obtener una reserva por ID
     public function obtenerReservaPorId($id)
     {
@@ -212,4 +280,3 @@ class Reserva extends Connection
         }
     }
 }
-?>

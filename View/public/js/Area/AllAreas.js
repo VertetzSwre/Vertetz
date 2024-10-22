@@ -6,7 +6,8 @@ $(document).ready(function () {
             url: '../../../../Controller/Area/AreaController.php',
             type: 'POST',
             data: {
-                res: 1
+                action: 'read',
+                institucion: 'Antel'
             },
             dataType: 'json',
             success: function (response) {

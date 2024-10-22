@@ -96,18 +96,23 @@ class Area extends Connection
             $this->closeConnection();
         }
     }
-    public function obtenerAreas()
+    
+    public function obtenerAreas($institucion)
     {
         $conn = $this->getConnection();
         try {
-            // Preparar y ejecutar la consulta SQL para obtener todos los usuarios
-            $sql = "SELECT * FROM area";
+            // Preparar y ejecutar la consulta SQL para obtener todas las áreas
+            $sql = "SELECT a.nombre
+                    FROM Area a
+                    WHERE a.institucion_perteneciente = :institucion_perteneciente"; // Sin comillas simples alrededor del marcador
+    
             $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':institucion_perteneciente', $institucion, PDO::PARAM_STR);
             $stmt->execute();
-
+    
             $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            return $reservas; // Devolver el array de usuarios
+    
+            return $reservas; // Devolver el array de áreas
         } catch (PDOException $e) {
             // Manejar posibles errores de la consulta
             return [
@@ -117,6 +122,47 @@ class Area extends Connection
         } finally {
             // Cerrar la conexión
             $this->closeConnection();
+        }
+    }
+    
+
+    // Método para buscar Areas por valor especifico
+
+    public function searchArea($value)
+    {
+        $conn = $this->getConnection(); // Obtener la conexión
+        try {
+            // Consulta SQL con parámetros de búsqueda
+            $sql = "SELECT * 
+                FROM Area 
+                WHERE codigo LIKE :codigo
+                OR institucion_perteneciente LIKE :institucion_perteneciente 
+                OR nombre LIKE :nombre";
+
+            $stmt = $conn->prepare($sql); // Preparar la consulta
+
+            // Añadir comodines al valor para usar con LIKE
+            $searchValue = '%' . $value . '%';
+
+            // Vincular los parámetros
+            $stmt->bindParam(':codigo', $searchValue, PDO::PARAM_STR);
+            $stmt->bindParam(':institucion_perteneciente', $searchValue, PDO::PARAM_STR);
+            $stmt->bindParam(':nombre', $searchValue, PDO::PARAM_STR);
+
+            $stmt->execute(); // Ejecutar la consulta
+
+            // Obtener los resultados
+            $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $reservas; // Devolver los resultados
+        } catch (PDOException $e) {
+            // Devolver un array de error si ocurre una excepción
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            $this->closeConnection(); // Cerrar la conexión siempre
         }
     }
 
@@ -140,7 +186,6 @@ class Area extends Connection
             return [
                 'estado' => 'exito',
             ];
-
         } catch (PDOException $e) {
             // Manejar posibles errores de la consulta
             return [
@@ -165,7 +210,6 @@ class Area extends Connection
             return [
                 'estado' => 'exito',
             ];
-
         } catch (PDOException $e) {
             // Manejar posibles errores de la consulta
             return [
@@ -177,7 +221,4 @@ class Area extends Connection
             $this->closeConnection();
         }
     }
-
 }
-
-?>

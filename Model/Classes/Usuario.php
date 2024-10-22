@@ -155,6 +155,73 @@ class Usuario extends Connection
         }
     }
 
+    // Método para obtener reservas de un usuario por CI
+    public function getReservasByFecha($ci)
+    {
+        $conn = $this->getConnection();
+
+        try {
+            $sql = "SELECT *
+                    FROM reserva
+                    WHERE ci_usuario = :ci
+                    ORDER BY fecha DESC, hora_inicio DESC";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':ci', $ci, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return [
+                'estado' => 'Error al eliminar usuario.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            $this->closeConnection();
+        }
+    }
+
+    // Método para buscar Usuarios por coincidencias
+    public function searchUsuario($value)
+    {
+        $conn = $this->getConnection(); // Obtener la conexión
+        try {
+            // Consulta SQL con parámetros de búsqueda
+            $sql = "SELECT * 
+                    FROM usuario 
+                    WHERE ci LIKE :ci 
+                    OR nombre_completo LIKE :nombre_completo 
+                    OR mail_personal LIKE :mail_personal 
+                    OR mail_corporativo LIKE :mail_corporativo";
+
+            $stmt = $conn->prepare($sql); // Preparar la consulta
+
+            // Añadir comodines al valor para usar con LIKE
+            $searchValue = '%' . $value . '%';
+
+            // Vincular los parámetros
+            $stmt->bindParam(':ci', $searchValue, PDO::PARAM_STR);
+            $stmt->bindParam(':nombre_completo', $searchValue, PDO::PARAM_STR);
+            $stmt->bindParam(':mail_personal', $searchValue, PDO::PARAM_STR);
+            $stmt->bindParam(':mail_corporativo', $searchValue, PDO::PARAM_STR);
+
+            $stmt->execute(); // Ejecutar la consulta
+
+            // Obtener los resultados
+            $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $reservas; // Devolver los resultados
+        } catch (PDOException $e) {
+            // Devolver un array de error si ocurre una excepción
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            $this->closeConnection(); // Cerrar la conexión siempre
+        }
+    }
+
     // Método para actualizar un usuario
     public function actualizarUsuario($ci, $contrasena, $nombre_completo, $mail_personal, $telefono, $mail_corporativo)
     {
@@ -250,4 +317,3 @@ class Usuario extends Connection
         }
     }
 }
-?>

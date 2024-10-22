@@ -85,19 +85,26 @@ class Institucion extends Connection
         }
     }
 
-    public function obtenerInstituciones()
+    public function obtenerInstituciones($cedula)
     {
         $conn = $this->getConnection();
         try {
             // Preparar y ejecutar la consulta SQL para obtener todos los usuarios
-            $sql = "SELECT * FROM institucion";
+            $sql = "SELECT i.nombre
+                    FROM Institucion i
+                    JOIN Pertenece p ON i.nombre = p.nombre_institucion
+                    JOIN Usuario u ON p.ci_usuario = u.ci
+                    WHERE u.ci = :ci";  // Sin comillas en :ci
+    
             $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':ci', $cedula, PDO::PARAM_STR); // Asegurarse de que el tipo es correcto
+            
             $stmt->execute();
-
-            // Fetch all reserves as an associative array
-            $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            return $reservas; // Devolver el array de usuarios
+    
+            // Guarda los datos en un array asociativo
+            $instituciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            return $instituciones; // Devolver el array de instituciones
         } catch (PDOException $e) {
             // Manejar posibles errores de la consulta
             return [
@@ -107,6 +114,43 @@ class Institucion extends Connection
         } finally {
             // Cerrar la conexión
             $this->closeConnection();
+        }
+    }
+    
+
+    // Método para buscar institucion por coincidencias
+    public function searchInstitucion($value)
+    {
+        $conn = $this->getConnection(); // Obtener la conexión
+        try {
+            // Consulta SQL con parámetros de búsqueda
+            $sql = "SELECT * 
+                    FROM Institucion 
+                    WHERE nombre LIKE :nombre";
+
+            $stmt = $conn->prepare($sql); // Preparar la consulta
+
+            // Añadir comodines al valor para usar con LIKE
+            $searchValue = '%' . $value . '%';
+
+            // Vincular los parámetros
+            $stmt->bindParam(':nombre', $searchValue, PDO::PARAM_STR);
+
+
+            $stmt->execute(); // Ejecutar la consulta
+
+            // Obtener los resultados
+            $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $reservas; // Devolver los resultados
+        } catch (PDOException $e) {
+            // Devolver un array de error si ocurre una excepción
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            $this->closeConnection(); // Cerrar la conexión siempre
         }
     }
 

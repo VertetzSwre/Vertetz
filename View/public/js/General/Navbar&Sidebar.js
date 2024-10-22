@@ -11,7 +11,7 @@ function showNavbar() {
           <img src="../../img/Imagotipo-light.png" style="width: 4rem; height: 100%;">
         </a>
         <div class="d-flex align-items-center ms-auto">
-          <span class="navbar-text me-2" style="color: white; font-family: 'Raleway', sans-serif; font-size: 1.5rem; font-weight: 700;">Usuario</span>
+          <span id="NavBarUser" class="navbar-text me-2" style="color: white; font-family: 'Raleway', sans-serif; font-size: 1.5rem; font-weight: 700;">Usuario</span>
           <img src="../../img/usuario.png" style="width: 4rem; height: 4rem;">
         </div>
       </div>
@@ -61,17 +61,42 @@ function showNavbar() {
 }
 
 $(document).ready(function () {
+  // Primero genera la NavBar
   showNavbar();
 
-  // Función para abrir y cerrar el sidebar.
-  $('.toggle-btn').on('click', function () {
-    $('.sidebar').toggleClass('open closed'); //Funcion que cambia de clase de la sidebar
+  console.log($('#NavBarUser')); // Debería mostrar el elemento en la consola
 
-    $('body').toggleClass('sidebar-open');//Funcion que cambia de clase del body
+
+  // Realiza la llamada AJAX para obtener el nombre de usuario después de generar la NavBar
+  $.ajax({
+    url: '../../../../Controller/Auth/AuthController.php',
+    type: 'POST',
+    data: {
+      action: 'verificar_sesion'
+    },
+    dataType: 'json',
+    success: function(response) {
+      console.log(response);  
+      if (response.logueado) {
+        // Actualiza el span con el nombre del usuario
+        $('#NavBarUser').text(response.usuario);
+      } else {
+        window.location.href = 'login.html'; // Redirigir si no está logueado
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
+    }
+  });
+
+  // Función para abrir y cerrar el sidebar
+  $('.toggle-btn').on('click', function () {
+    $('.sidebar').toggleClass('open closed'); // Cambia de clase la sidebar
+    $('body').toggleClass('sidebar-open'); // Cambia de clase el body
     $(this).text($('.sidebar').hasClass('open') ? '✕' : '☰');
   });
 
-  // Función para desplegar el submenú.
+  // Función para desplegar el submenú
   $('.dropdown-btn').on('click', function () {
     $(this).next('.sub-menu').toggleClass('show');
     $(this).toggleClass('rotate'); // Añade la rotación a la flecha

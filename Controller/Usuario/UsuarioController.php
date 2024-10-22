@@ -1,4 +1,6 @@
 <?php
+session_start(); // Iniciar la sesión
+
 require_once '../../Model/Classes/Usuario.php';
 
 class UsuarioController
@@ -28,6 +30,22 @@ class UsuarioController
             $usuarioModel = new Usuario();
             $resultado = $usuarioModel->getAllUsuarios();
 
+            echo json_encode($resultado);
+        }
+    }
+
+    // Método para obtener todas las reservas por fecha 
+    public function ReadReservasByDate($cedula)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Crear una instancia de la clase Reserva
+            $usuarioModel = new Usuario();
+
+            // Obtener las reservas
+            $resultado = $usuarioModel->getReservasByFecha($cedula);
+
+            // Devolver los resultados como JSON
             echo json_encode($resultado);
         }
     }
@@ -81,12 +99,16 @@ class UsuarioController
 // Crear una instancia del controlador y procesar las solicitudes
 $controller = new UsuarioController();
 
-switch ($_GET['action']) {
+switch ($_POST['action']) {
     case 'create':
         $controller->createUsuario();
         break;
     case 'read':
         $controller->readUsuarios();
+        break;
+    case 'readByDate':
+        $ci = $_SESSION['ci'];
+        $controller->ReadReservasByDate($ci);
         break;
     case 'update':
         $controller->updateUsuario();
