@@ -1,0 +1,1587 @@
+/*Importe de fuentes Raleway y Urbanist*/
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --negro:#000;
+    --sidebar-color: #d4d4d4;
+    --primary-color: #9c2780;
+    --primary-color-light: #9b27b00d;
+    --toggle-color: #ddd;
+    --text-color: #707070;
+
+    -tran-03: all 0.2s ease;
+    -tran-04: all 0.3s ease;
+    -tran-05: all 0.4s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+    margin: 0;
+    overflow-x: hidden;
+    background-color: #F6EFFF;
+}
+
+body {
+    font-size: 16px; /* 1rem = 10px */
+    background-color: #F6EFFF !important;
+    
+    overflow-x: hidden;
+    transition: var(--tran-05);
+    transition: margin-left 0.3s ease; /* Transición para el margen del cuerpo */
+}
+
+.all-container {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que ocupe al menos el 100% del viewport */
+    padding-top: 7rem; /* Ajusta este valor según la altura de tu navbar */
+    background-color: #F6EFFF;
+    
+    margin: 0 0 0 10rem;
+}
+
+
+/* --------------------------------------------- SIDEBAR --------------------------------------------- */
+
+
+.sidebar {
+    width: 7rem; /* Ancho ajustado */
+    height: 100vh;
+    background-color: #6E55A1; /* Color de fondo del sidebar */
+    position: fixed;
+    left: 0; /* Mostrar el sidebar parcialmente */
+
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.sidebar * {
+    color: white;
+}
+
+.sidebar a {
+    display: block;
+    padding: 1rem 2.5rem;
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box; /* Asegura que el padding no haga que los elementos se salgan */
+    font-size: 1.4rem;
+    text-align: left;
+    transition: all 0.2s;
+    font-weight: normal;
+}
+
+.sidebar a:hover {
+    background-color: #8e76bc;; /* Fondo al pasar el ratón */
+    box-sizing: border-box;
+}
+
+.sidebar a:active {
+    transition: 0s;
+    background-color: #5c4586; /* Fondo al pulsar el ratón */
+}
+
+.sidebar ul {
+    list-style-type: none; /* Elimina los puntos de lista */
+    padding: 0; /* Elimina el padding por defecto */
+    margin: 0; /* Elimina el margin por defecto */
+    display: table-column;
+}
+
+.sidebar li {
+    margin: 1rem 0; /* Añade un margen vertical entre los elementos de la lista */
+}
+
+.sidebar.open {
+    width: 26rem; /* Ancho del sidebar cuando está abierto */
+}
+
+.sidebar .icon {
+    display: block;
+    margin: 0 auto;
+    width: 2rem;
+    height: 2rem;
+}
+
+.sidebar .text {
+    display: none;
+}
+
+.sidebar.open .text {
+    display: inline;
+    margin-left: 1rem;
+}
+
+body.sidebar-open {
+    margin-left: 18rem; /* Mueve el contenido del cuerpo cuando el sidebar está abierto */
+    background-color: #F6EFFF;
+}
+
+.all-container.sidebar.open {
+    margin-left: 26rem; /* Mueve el contenido del cuerpo cuando el sidebar está abierto */
+}
+
+.sub-menu {
+    display: none; /* Oculta el submenú por defecto */
+    list-style-type: none; /* Elimina los puntos de lista */
+    padding: 0; /* Elimina el padding por defecto */
+    margin: 0; /* Elimina el margin por defecto */
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.sub-menu li {
+    margin: 0.3rem 0; /* Añade un margen vertical entre los elementos de la lista */
+}
+
+.sub-menu.show {
+    display: block; /* Muestra el submenú cuando se activa */
+}
+
+.toggle-btn { /*Boton que cierra y abre el Sidebar*/
+    display: flex;
+    align-items: center; /* Alinea verticalmente el botón de menú hamburguesa */
+    justify-content: center; /* Alinea horizontalmente el botón de menú hamburguesa */
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+/* ------ Estilo Dropdowns ------ */
+
+.dropdown-btn { /*Boton de los dropdowns*/
+    display: block;
+    margin: 0.5rem 0;
+    padding: 1rem 2.5rem;
+    color: white;
+    text-decoration: none;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box; /* Asegura que el padding no haga que los elementos se salgan */
+    font-size: 1.4rem;
+    transition: all 0.2s;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.dropdown-btn:hover {
+    background-color: #8e76bc; /* Fondo al pasar el ratón */
+    box-sizing: border-box;
+}
+
+.dropdown-btn:active {
+    transition: 0s;
+    background-color: #5c4586; /* Fondo al pulsar el ratón */
+}
+
+
+/* Ocultar flechas cuando el sidebar está cerrado */
+.sidebar.closed .dropdown-btn svg:last-child {
+    display: none; /* Oculta la flecha */
+}
+
+/* Mostrar flechas cuando el sidebar está abierto */
+.sidebar.open .dropdown-btn svg:last-child {
+    display: inline; /* Muestra la flecha */
+}
+
+/* Rotar flechas cuando el dropdown está abierto */
+.dropdown-btn.rotate svg:last-child {
+    rotate: 180deg; /* Rotar la flecha 180 grados */
+}
+
+
+/* --------------------------------------------- SIDEBAR --------------------------------------------- */
+
+
+
+/* --------------------------------------------- Pestaña Principal (Despues del Login) --------------------------------------------- */
+
+.h1-buenos-dias {
+    font-family: Raleway, sans-serif; 
+    font-weight: 700; 
+    font-size: 4.5rem; 
+    margin: 1rem 3rem; 
+    display: inline-block;
+}
+
+.section-recent-accesses {
+    margin: 0 auto;
+    width: 85%;
+    height: 28rem;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    border-top: #000 solid 1px;
+    border-bottom: #000 solid 1px;
+}
+
+.slider {
+    width: 100%;
+    height: 100%;
+    padding: 2rem 0;
+    display: flex;
+    overflow-x: auto;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.slider-item {
+    position: relative;
+    margin: 0 2rem;
+    min-width: 35rem;
+    height: 100%;
+    text-align: center;
+    background-color: #E0CEFF;
+    border-radius: 2rem;
+}
+
+.slider-item p {
+    margin: 0 auto;
+    font-size: 2rem;
+    color: white;
+    position: relative;
+    top: 88%;
+    z-index: 1;
+    display: inline;
+}
+
+.slider-item::before,
+.slider-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    background-color: #7357B0;
+}
+
+.slider-item::before {
+    top: 0;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+
+.slider-item::after {
+    bottom: 0;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
+.next-reservations-txt {
+    font-family: Raleway, sans-serif; 
+    font-weight: 700; 
+    font-size: 3rem; 
+    margin: 10rem 0 0 15rem; 
+    display: inline-block;
+}
+.section-next-reservations {
+    width: 90%;
+    height: 50rem;
+    margin: 1rem auto;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+/* --------------------------------------------- Gestion de Reservas --------------------------------------------- */
+
+.reservation-options {/*Contenedor principal*/
+    width: 80%;
+    height: 65rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    grid-template-rows: repeat(2, 1fr); /* Dos filas */
+    gap: 0.1rem; /* Espacio entre los elementos */
+    place-items: center;
+
+}
+
+.h1-gestion-de-reservas {
+    font-size: 7rem; 
+    margin: 4rem 0 2rem 4rem; 
+    font-weight: 700; 
+    display: inline-block;
+}
+
+.reservas-sub-text {
+    font-size: 2rem; 
+    font-weight: 400; 
+    margin: 0 0 2rem 6rem; 
+    display: inline-block;
+}
+
+.reservation-item {/*Item contenedor del texto*/
+    width: 80%;
+    height: 90%;
+    margin: 1rem;
+    position: relative;
+    border-radius: 2rem;
+
+    background-color: #E0CEFF;
+}
+
+.reservation-txt { /*Texto que se muestra*/
+    width: auto;
+    margin: 0 auto;
+    display: inline-block;
+
+    font-size: 2rem; 
+    color: #ffffff; 
+    position: relative;
+     left: 50%; 
+     top: 95%; 
+     transform: translate(-50%, -50%);
+     z-index: 1;  
+}
+
+.reservation-item::before,
+.reservation-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3rem; /* Ajusta la altura según sea necesario */
+    background-color: #7357B0;
+}
+
+.reservation-item::before {
+    top: 0;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+
+.reservation-item::after {
+    bottom: 0;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
+
+/* --------------------------------------------- Mis reservas --------------------------------------------- */
+
+.search-reservations {
+    width: 100%;
+    height: 4.5rem;
+    margin: 0 auto;
+}
+
+.h1-mis-reservas {
+    font-size: 7rem; 
+    margin: 4rem 0 2rem 4rem; 
+    font-weight: 700; 
+    display: inline-block;
+}
+
+.fieldset-search {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-search {
+    width: 80%;
+    height: 4.5rem;
+    margin: 0 3rem 0 5rem;
+    padding: 0 1rem;
+    border: 0.4rem solid #74539C;
+    border-radius: 3rem;
+    outline: none;
+
+    font-size: 1.5rem;
+}
+
+.btn-lupa-search {
+    width: 3rem; 
+    height: 3rem; 
+    margin: 0 1rem;
+    background-color: transparent;
+    border: none;
+}
+
+.btn-add-2 {
+    width: 3rem; 
+    height: 3rem;
+    margin: 0 3rem;
+}
+
+.container-btn-load-all {
+   display: flex;
+   justify-content: center;
+    width: 100%;
+    background-color: #F6EFFF;
+}
+
+.btn-load-all {
+    width: 35%;
+    height: 4rem;
+    margin: 2rem auto;
+    background-color: #7453BB;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 2.5rem;
+    cursor: pointer;
+}
+
+/* ------ Estilo Filtros de Reservas ------ */
+
+.filter-section {
+    width: 100%;
+    margin: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.filter-icon {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 0.5rem;
+}
+
+.filter-arrow {
+    width: 2rem;
+    height: 1rem;
+    margin: 0 0.5rem;
+}
+
+.filter-section p {
+    margin: 0 0.5rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #281540;
+}
+
+
+
+/* --------------------------------------------- Todas las reservas --------------------------------------------- */
+.btn-filter {
+    width: 10rem;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem;
+    background-color: transparent;
+    border: none;
+    border-radius: 2.5rem;
+    cursor: pointer;
+}
+
+.filter-container {
+    width: 25%;
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 5rem;
+}
+
+.filter-container.show {
+    display: grid;
+    margin: 4rem;
+}
+
+.filter-item {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    width: auto;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.filter-item a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.8rem;
+}
+
+.filter-arrow {
+    transition: all 0.3s ease;
+}
+
+.filter-arrow.rotate {
+    rotate: 180deg;
+}
+
+.form-modal {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group-filter {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.form-group-filter label {
+    margin: 0.5rem 2rem;
+    font-size: 2rem;
+}
+
+.form-group-filter select {
+    height: 4rem;
+    border-top: 0.4rem solid #74539C;
+    border-bottom: 0.4rem solid #74539C;
+    border-left: 0.7rem solid #74539C;
+    border-right: 0.7rem solid #74539C;
+    border-radius: 2rem;
+}
+
+
+.container-download-list {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    background-color: #F6EFFF;
+}
+
+.btn-download-list {
+    width: 20%;
+    height: 5.5rem;
+    margin: 2rem;
+    background-color: #000;
+    color: white;
+    font-size: 1.8rem;
+    border: none;
+    border-radius: 3rem;
+    cursor: pointer;
+}
+
+.btn-apply-filter {
+    width: 35%;
+    height: 3.5rem;
+    border: none;
+    background-color: #7453BB;
+    color: white;
+    font-size: 2rem;
+    font-weight: 500;
+    border-radius: 2rem;
+    position: relative;
+    align-self: flex-end;
+}
+
+/* --------------------------------------------- Crear nueva reserva --------------------------------------------- */
+
+.h1-reserva-espacio {
+    font-size: 7rem; 
+    margin: 2rem 0 0 4rem; 
+    font-weight: 700; 
+    display: inline-block;
+}
+
+.h1-crear-institucion {
+    font-size: 10rem; 
+    margin: 2rem 0 0 4rem; 
+    font-weight: 700; 
+    display: inline-block;
+
+    font-size: 4rem;
+    margin: 2rem auto;
+}
+
+.section-create-reservation {
+    width: auto;
+    margin: 0 auto;
+}
+
+.form-create-reservation {
+    width: 100%;
+    height: 40rem;
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0 0 0 5rem;
+}
+
+.time-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-create-reservation input,
+.form-create-reservation select,
+.form-create-reservation textarea {
+    width: 80%;
+    height: 5rem;
+    padding: 1rem;
+    font-size: 1.8rem;
+    border-top: 0.4rem solid #74539C;
+    border-bottom: 0.4rem solid #74539C;
+    border-left: 0.7rem solid #74539C;
+    border-right: 0.7rem solid #74539C;
+    border-radius: 2rem;
+}
+
+.form-create-reservation label {
+    font-size: 1.6rem;
+}
+
+textarea {
+    resize: none;
+    height: 5rem;
+}
+
+.section-preview-data {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+.all-reservas-details {
+    width: 95%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+.all-reservas-details p {
+    margin: 1rem 4rem;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #74539C;
+}
+
+.section-preview-data p {
+    margin: 1rem 4rem;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #74539C;
+}
+
+.section-preview {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    border-bottom: 1px solid #000;
+}
+
+.section-submit-btn { /*Contenedor de los dos botones de abajo*/
+    width: 100%;
+    height: 5rem;
+    margin: 4rem auto;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.btn-submit { /*Boton Enviar*/
+    width: 10%;
+    height: 4rem;
+    margin: 0 2rem;
+
+    background-color: #7453BB;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 2.5rem;
+}
+
+.section-submit-btn button img{ /*Ajusta el tamaño de la imagen al 100% del boton*/
+    width: 100%;
+    height: 100%;
+}
+
+.h1-preview {
+    font-size: 4rem; 
+    margin: 2rem 10rem; 
+    font-weight: 500; 
+    display: inline-block;
+}
+
+
+.img-btn {
+    width: 20%;
+    height: 4rem;
+    margin: 0 2rem;
+    align-self: right;
+
+    background-color: #000;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: normal;
+    border: none;
+    border-radius: 2.5rem;
+}
+
+
+/* --------------------------------------------- Crear una nueva institucion --------------------------------------------- */
+
+
+.btn-add-other {
+    width: 15rem;
+    height: 3rem;
+    margin: 0 15rem;
+    background-color: #7453BB;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 2.5rem;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.form-group {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+/* --------------------------------------------- Calendario --------------------------------------------- */
+
+.calendar-container {
+    display: flex;
+    width: 100rem;
+    height: 60rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 2rem auto;
+}
+
+.h1-calendario {
+    font-size: 7rem; 
+    margin: 1rem 4rem; 
+    font-weight: 700; 
+    display: inline-block;
+}
+
+.calendar-section {
+    width: 60%;
+    background-color: #E0CEFF;
+    padding: 2rem;
+    font-size: 1.8rem;
+    text-align: right;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1rem 0 4rem 0;
+}
+
+.day-header {
+    text-align: center;
+    background-color: #6E55A1;
+    color: white;
+}
+
+.item-day {
+    text-align: center;
+    font-weight: 300;
+    padding: 1rem;
+    font-size: 2.5rem;
+    color: #281540;
+    font-family: 'Urbanist', sans-serif;
+}
+
+.container-days {
+    display: contents;
+}
+
+.arrow {
+    background: none;
+    border: none;
+    font-size: 20px;
+}
+
+.calendar-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-collapse: collapse;
+}
+
+.calendar th, .calendar td {
+    text-align: center;
+    padding: 1rem 0;
+    border-radius: 5px;
+}
+
+.calendar td {
+    color: #666;
+}
+
+.prev-month {
+    opacity: 0.5;
+}
+
+#text-year {
+    font-size: 4rem;
+    position: relative;
+    margin: 2rem;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 300;
+}
+
+#text-month {
+    font-size: 5rem;
+    font-weight: 300;
+    color: #281540;
+}
+
+.selected {
+    border: 2px solid #A57AFF;
+    border-radius: 0.5rem;
+}
+
+.info-section {
+    width: 50%;
+    background-color: #7357B0;
+    color: white;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    font-family: 'Urbanist', sans-serif;
+}
+
+.info-section h2 {
+    font-size: 5rem;
+    font-weight: 300;
+    font-family: 'Urbanist', sans-serif;
+    margin: 0;
+}
+
+.info-section p {
+    font-weight: 200;
+    font-family: 'Urbanist', sans-serif;
+    margin: 0;
+}
+
+.reservation-details {
+    background-color: #F2E7FF;
+    padding: 0.5rem;
+    margin: 2rem 0;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    position: relative;
+    display: flex;
+    align-items: center ;
+    height: 15%;
+}
+
+.reservation-details p {
+    color: black;
+}
+
+.more-details {
+    background: none;
+    border: none;
+    color: black;
+    text-align: right;
+    cursor: pointer;
+}
+
+.add-reservation {
+        width: 20rem;
+        align-self: flex-end;
+        bottom: 1rem;
+        background-color: transparent;
+        color: white;
+        font-weight: 800;
+        border: 0.5rem solid white;
+        padding: 0.5rem;
+        border-radius: 2rem;
+        cursor: pointer;
+        font-size: 2rem;
+
+    margin: 25rem 0 0 0;
+}
+
+
+
+/* --------------------------------------------- Utilidades --------------------------------------------- */
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+
+/*Estilos de las secciones para obtener todos las entidades de la BDD*/
+
+.section-reservation-list {
+    width: 95%;
+    margin: 5rem auto;
+    border-bottom: 1px solid #000;
+}
+
+#reservation-item{
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    background-color: #E0CEFF;
+    margin: 2rem 0;
+    border: 1px solid #462470;
+}
+
+#reservation-item p {
+    font-size: 2rem;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    width: 80%;
+    margin: 1rem auto;
+}
+
+.section-get-reservation {
+    border-top: 1px solid black;
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+
+.section-users-list {
+    width: 95%;
+    margin: 0 auto;
+    border-bottom: 1px solid #000;
+}
+
+.section-get-users {
+    border-top: 1px solid black;
+}
+
+#users-item {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    background-color: #99c6e8;
+    margin: 2rem 0;
+}
+
+#users-item p {
+    font-size: 2rem;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    width: 80%;
+    margin: 1rem auto;
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+
+.section-area-list {
+    width: 95%;
+    margin: 0 auto;
+    border-bottom: 1px solid #000;
+}
+
+.section-get-areas {
+    border-top: 1px solid black;
+}
+
+#area-item {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    background-color: #99c6e8;
+    margin: 2rem 0;
+}
+
+#area-item p {
+    font-size: 2rem;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    width: 80%;
+    margin: 1rem auto;
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+
+.section-institution-list {
+    width: 95%;
+    margin: 0 auto;
+    border-bottom: 1px solid #000;
+}
+
+.section-get-institutions {
+    border-top: 1px solid black;
+}
+
+#institutions-item {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    background-color: #99c6e8;
+    margin: 2rem 0;
+}
+
+#institutions-item p {
+    font-size: 2rem;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    width: 80%;
+    margin: 1rem auto;
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+
+.section-services-list {
+    width: 95%;
+    margin: 0 auto;
+    border-bottom: 1px solid #000;
+}
+
+.section-get-services {
+    border-top: 1px solid black;
+}
+
+#service-item {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    background-color: #99c6e8;
+    margin: 2rem 0;
+}
+
+#service-item p {
+    font-size: 2rem;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    width: 80%;
+    margin: 1rem auto;
+}
+
+
+
+/*Unirme a una institucion*/
+
+.h1-unirme-a-una-institucion {
+    font-size: 7rem; 
+    margin: 4rem 0 2rem 4rem; 
+    font-weight: 700; 
+    display: inline-block;
+}
+
+/*Gestionar instituciones*/
+
+.h1-gestionar-instituciones {
+    font-size: 7rem; 
+    margin: 4rem 0 2rem 4rem; 
+    font-weight: 700; 
+    display: inline-block;
+}
+
+.gestionar-instituciones-sub-txt {
+    font-size: 2rem; 
+    font-weight: 400; 
+    margin: 0 0 2rem 6rem; 
+    display: inline-block;
+}
+
+
+
+/* =================================================== Media Queries =================================================== */
+
+@media (max-width: 1200px) {
+    .all-container {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    /* ----------------- Media Queries para MainDashboard ----------------- */
+
+    .next-reservations-txt {
+        margin: 2rem auto;
+    }
+
+    /* ----------------- Media Queries para Sidebar ----------------- */
+
+    .sidebar {
+        left: -8rem;
+        z-index: 10;
+        overflow-x: scroll;
+        transition: all 0.5s ease; 
+    }
+
+    .sidebar.open {
+        width: 100%;
+        display: flex;
+        left: 0;
+    }
+
+    .sidebar ul {
+        width: 100%;
+    }
+
+    .sidebar a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem 2.5rem;
+        font-size: 1.8rem;
+    }
+
+    .dropdown-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem 2.5rem;
+        font-size: 1.8rem;
+    }
+
+    body.sidebar-open {
+        margin-left: 0; /* Mueve el contenido del cuerpo cuando el sidebar está abierto */
+        background-color: #F6EFFF;
+    }
+    
+    .all-container.sidebar.open {
+        margin-left: 0; /* Mueve el contenido del cuerpo cuando el sidebar está abierto */
+    }
+
+    /* ----------------- Media Queries para CreateReserva ----------------- */
+
+
+    .form-create-reservation {
+        height: auto;
+    }
+
+    .form-create-reservation input,
+    .form-create-reservation select,
+    .form-create-reservation textarea {
+        width: 100%;
+    }
+
+    #reservation-item p {
+        font-size: 2rem;
+    }
+
+    .section-preview {
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        border-bottom: 1px solid #000;
+    }
+
+    .section-preview-data {
+        width: 100%;
+    }
+
+    .section-preview-data p {
+        margin: 1rem auto;
+        font-size: 1.5rem;
+    }
+
+    .all-reservas-details {
+        width: 100%;
+    }
+
+    .all-reservas-details p {
+        margin: 0.5rem auto;
+        font-size: 1.5rem;
+    }
+
+    .filter-container.show {
+        width: 60%;
+    }
+
+    /* ----------------- Media Queries para Manage Reservas ----------------- */
+
+    .reservation-txt {
+        display: flow;
+    }
+
+}
+@media (max-width: 768px) {
+
+    .h1-buenos-dias {
+        font-size: 3.5rem;
+    }
+
+    h1, h2 {
+        font-size: 1.5rem;
+    }
+
+    /* ----------------- Media Queries para Calendar ----------------- */
+
+    .calendar-container {
+        width: 100%;
+        height: 105rem;
+        margin: 3rem 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .h1-calendario {
+        font-size: 4rem;
+        margin: 1rem auto;
+    }
+
+    .calendar-sub-txt {
+        font-size: 2rem; 
+        margin: 1rem 5rem;
+    }
+    
+    .calendar-section {
+        width: 100%;
+        background-color: #E0CEFF;
+        padding: 2rem;
+        font-size: 1.8rem;
+        text-align: right;
+    }
+
+    
+    .calendar-header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 1rem 0 4rem 0;
+    }
+    
+    .day-header {
+        text-align: center;
+        background-color: #6E55A1;
+        color: white;
+        font-size: 1.2rem;
+    }
+    
+    .item-day {
+        font-size: 1.8rem;
+    }
+    
+    .container-days {
+        display: contents;
+    }
+    
+    .arrow {
+        background: none;
+        border: none;
+        font-size: 20px;
+    }
+    
+    #text-year {
+        font-size: 3rem;
+        position: relative;
+        margin: 2rem;
+        font-family: 'Urbanist', sans-serif;
+        font-weight: 300;
+    }
+    
+    #text-month {
+        font-size: 4rem;
+        font-weight: 300;
+        color: #281540;
+    }
+    
+    .info-section {
+        width: 100%;
+        height: 90rem;
+    }
+    
+    .info-section h2 {
+        font-size: 4rem;
+    }
+
+    .reservation-details {
+        background-color: #F2E7FF;
+        padding: 0.5rem;
+        margin: 2rem 0;
+        border-radius: 5px;
+        font-size: 1.3rem;
+        position: relative;
+        display: flex;
+        align-items: center ;
+        height: 20%;
+    }
+    
+    .reservation-details p {
+        color: black;
+    }
+    
+    .more-details {
+        background: none;
+        border: none;
+        color: black;
+        text-align: right;
+        cursor: pointer;
+    }
+    
+    .add-reservation {
+        align-self: flex-end;
+        background-color: transparent;
+        color: white;
+        font-weight: 800;
+        border: 0.5rem solid white;
+        padding: 0.5rem;
+        border-radius: 2rem;
+        cursor: pointer;
+        font-size: 2rem;
+
+        margin: 25rem 0 5rem 0;
+    }
+
+    /* ----------------- Media Queries para Crear Nueva Reserva ----------------- */
+
+    .h1-reserva-espacio {
+        font-size: 4rem;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        flex: none;
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    .form-create-reservation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn-submit {
+        width: 40%;
+    }
+
+    #reservation-item p {
+        font-size: 1rem;
+    }
+
+    .section-preview-data p {
+        margin: 1rem auto;
+        font-size: 1rem;
+    }
+
+    .h1-preview {
+        width: 100%;
+        margin: 2rem auto;
+        font-size: 2.5rem;
+    }
+
+    .time-group {
+        flex-direction: inherit;
+    }
+
+    /* ----------------- Media Queries para Mis Reservas ----------------- */
+
+    .h1-mis-reservas {
+        font-size: 4rem; 
+        margin: 1rem auto; 
+        font-weight: 700; 
+        display: inline-block;
+    }
+
+    .btn-load-all {
+        width: 80%;
+    }
+
+    .btn-lupa-search, .btn-add-2 {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .input-search {
+        width: 100%;
+        margin: 1rem;
+    }
+
+    /* ----------------- Media Queries para All Reservas ----------------- */
+
+    .h1-todas-las-reservas {
+        font-size: 4rem; 
+        margin: 2rem auto; 
+    }
+
+    .btn-download-list {
+        width: 80%;
+        margin: 2rem auto;
+    }
+
+    .all-reservas-details {
+        width: 100%;
+    }
+
+    .all-reservas-details p {
+        margin: 1rem auto;
+        font-size: 1rem;
+    }
+
+    .filter-section p {
+        font-size: 1.8rem;
+    }
+
+    .filter-icon {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .section-reservation-list {
+        width: 100%;
+        margin: 1rem auto;
+    }
+
+    #reservation-item {
+        height: 6rem;
+        gap: 0rem;
+        justify-content: space-evenly;
+    }
+
+    #reservation-item p {
+        font-size: 1rem;
+        width: auto;
+        margin: 0.5rem;
+    }
+
+    /* ----------------- Media Queries para Manage Reservas ----------------- */
+
+    .reservation-options {
+        display: flex;
+        flex-direction: column;
+        height: 100rem;
+    }
+
+    .reservation-item {
+        height: 100rem;
+        margin: 0.2rem;
+    }
+
+    .h1-gestion-de-reservas {
+        font-size: 5rem;
+        margin: 2rem auto;
+    }
+
+    .reservas-sub-text {
+        font-size: 2rem;
+        margin: 1rem auto;
+    }
+
+    /* ----------------- Media Queries para Manage Instituciones ----------------- */
+
+    .h1-gestionar-instituciones {
+        font-size: 4rem; 
+        margin: 2rem auto; 
+    }
+    
+    .gestionar-instituciones-sub-txt {
+        font-size: 1.8rem;
+       margin: 2rem auto;
+    }
+
+    .reservation-txt {
+        font-size: 1.5rem;
+    }
+
+
+    /* ----------------- Media Queries para Crear Institucion ----------------- */
+
+    .h1-crear-institucion {
+        font-size: 3rem; 
+        margin: 2rem auto; 
+    }
+
+    .btn-add-other {
+        margin: 0;
+    }
+
+    .h1-unirme-a-una-institucion {
+        font-size: 5rem;
+        margin: 2rem auto;
+    }
+    
+   
+    
+}
+
+@media (max-width: 425px) {
+
+    .h1-gestion-de-reservas {
+        font-size: 3rem;
+    }
+
+    .reservas-sub-text {
+        font-size: 1.5rem;
+    }
+
+    .reservation-options {
+        width: 100%;
+    }
+
+    .next-reservations-txt {
+        font-size: 2.5rem;
+    }
+
+    .h1-unirme-a-una-institucion {
+        font-size: 3rem;
+        margin: 2rem auto;
+    }
+
+    .all-reservas-details p {
+        margin: 1rem auto;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 320px) {
+    #reservation-item {
+        justify-content: none;
+    }
+
+    #reservation-item p {
+        font-size: 0.8rem;
+    }
+}

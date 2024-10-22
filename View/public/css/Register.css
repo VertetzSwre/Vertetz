@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --negro:#000;
+    --sidebar-color: #d4d4d4;
+    --primary-color: #9c2780;
+    --primary-color-light: #9b27b00d;
+    --toggle-color: #ddd;
+    --text-color: #707070;
+
+    -tran-03: all 0.2s ease;
+    -tran-04: all 0.3s ease;
+    -tran-05: all 0.4s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+    width: 100vmax;
+    height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+body {
+    font-size: 16px; /* 1rem = 10px */
+    
+    margin: 0;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.header { /* Este mismo header que esta en el login, se usa para el register, ahorrando de hacer uno nuevo. */
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background-color: #8265C1;
+    box-shadow: 0 0.1rem 3rem rgba(0, 0, 0, 0.656);
+}
+
+main {
+    margin: 6rem 0;
+}
+
+.container-logo {
+    width: 3.5rem;
+    height: 70%;
+    border-radius: 100%;
+    margin: 0 1rem;
+}
+
+.container-logo img {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+
+header a {
+    margin: 0 5rem 0 auto;
+
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    color: white;
+}
+
+.btn-return {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 1rem;
+}
+
+.btn-return img {
+    width: 100%;
+    height: 100%;
+}
+
+section {
+    width: 100%;
+    margin: 0 0 0 8rem;
+    display: flex;
+    flex-direction: column; /* Alinea los elementos en columna */
+    align-items: center; /* Alinea los elementos horizontalmente al centro */
+    justify-content: center; /* Alinea los elementos verticalmente al centro */
+}
+
+
+
+
+.all-container {
+    width: 70%;
+    height: 80vh;
+    background-color: #E0CEFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem auto;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    flex-direction: column; /* Asegura que los elementos hijos se apilen verticalmente */
+}
+
+
+/* ---------------------------------------- DISENIO DE PAGINA --------------------------------------- */
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: #E0CEFF;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.left-section {
+    width: 50%;
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('../img/Register-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.left-section h1 {
+    font-size: 3rem;
+    color: #573089;
+    margin: 0 0 2rem 0;
+    align-self: center;
+}
+
+
+.left-section p {
+    width: 80%;
+    font-size: 2rem;
+    color: #573089;
+    margin: 1rem 0 4rem 0 ;
+}
+
+
+.existing-account {
+    font-size: 3rem !important;
+    font-weight: bold;
+    margin: 2rem !important;
+}
+
+.btn-login {
+    width: 50%;
+    height: 4.5rem;
+    background-color: #7453BB;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 2rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    align-self: center;
+}
+
+.btn-register {
+    background-color: #7453BB;
+    color: #fff;
+    border: none;
+    margin: 2rem 0;
+    padding: 10px;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+.right-section {
+    flex: 1;
+    background-color: #E0CEFF;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.icon-container {
+    width: 80%;
+    height: auto;
+    margin: 0;
+    border-radius: 50%;
+    background-color: #7453BB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center
+}
+
+
+.camera-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.registration-form {
+    display: flex;
+    width: 75%;
+    margin: 0 auto;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.registration-form label{
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #573089;
+    font-weight: 500;
+    font-family: 'Urbanist', sans-serif;
+}
+
+
+.registration-form input {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 3rem;
+    font-size: 1rem;
+    outline: none;
+}
+
+.ci-field {
+    width: 90%;
+    margin: 0 2rem;
+}
+
+.name-field {
+    width: 90%;
+    margin: 1rem 2rem;
+}
+
+.container-main-fields {
+    width: 100%;
+
+}
+
+/* Media Queries para pantallas más pequeñas */
+@media (max-width: 1200px) {
+    .all-container {
+        width: 90%;
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .left-section, .right-section {
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .left-section h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .left-section h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/*----------------- Clases customizadas de Sweetalert ---------------------*/
+
+.swal2-popup {
+    font-size: 1.6rem; /* Tamaño de fuente general del popup */
+}
+
+.swal2-title {
+    font-size: 2.4rem; /* Tamaño de fuente del título */
+}
+
+.swal2-content {
+    font-size: 1.8rem; /* Tamaño de fuente del contenido */
+}
+
+.swal2-confirm, .swal2-cancel {
+    font-size: 1.6rem; /* Tamaño de fuente de los botones */
+}
