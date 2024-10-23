@@ -10,19 +10,20 @@ $(document).ready(function () {
 				confirmButtonText: 'Entendido',
             });
 		} else {
-			let ci = $('#ci').val();  // Cambiado a 'ci' en lugar de 'cedula'
+			let ci = $('#ci').val();
 			let contrasena = $('#contrasena').val();
 	
 			$.ajax({
 				url: '../../../../Controller/Auth/AuthController.php',
 				type: 'POST',
 				data: {
-					ci: ci,  // Usar 'ci' en lugar de 'cedula'
+					ci: ci,
 					contrasena: contrasena,
 					action: 'login',
 				},
 				dataType: 'json',
 				success: function (response) {
+					console.log(response);
 					console.log(response);
 					if (response.estado === 'Login exitoso') {
 						Swal.fire({

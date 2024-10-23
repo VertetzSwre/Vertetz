@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de tus reservas - Roomanagy</title>
+    <title>Areas - Roomanagy</title>
     <link rel="stylesheet" href="../../../public/css/normalize.css">
     <link rel="stylesheet" href="../../../public/css/styles.css">
     <link rel="preload" href="../../../public/css/styles.css" as="style">
@@ -20,26 +20,41 @@
     <script src="../../../public/js/General/Navbar&Sidebar.js"></script>
     <script>
         $(document).ready(function() {
-          showNavbar();
+            showNavbar();
         });
     </script>
 
 <div class="all-container">
-  <h1 class="h1-gestionar-instituciones">Gestiona tus instituciones</h1>
-  <p class="gestionar-instituciones-sub-txt">Aquí podrás ser capaz de ver lo que sucede con tus instituciones.</p>
+    <h1 class="h1-areas-particulares">Areas de Liceo Impulso</h1>
 
-  <main>
-    <section class="reservation-options">
-      <div class="reservation-item" onclick="window.location.href='ManageParticularInstitucion.html'"><p class="reservation-txt">Administrar mis instituciones</p></div>
-      <div class="reservation-item" onclick="window.location.href='../Reservas/AllReservas.html'"><p class="reservation-txt">Lista de reservas</p></div>
-      <div class="reservation-item" onclick="window.location.href='../Reservas/Calendar.html'"><p class="reservation-txt">Calendario</p></div>
-      <div class="reservation-item" onclick="window.location.href='../General/Help.html'"><p class="reservation-txt">Ayuda</p></div>
+    <main>
+        <section class="search-reservations">
+            <form action="">
+                <fieldset>
+                    <input type="search" class="input-search" name="busqueda" placeholder="Busca área por nombre o id... ">
+                    <button type="submit" style="background-color: transparent; border: transparent;"><img src="../../img/anadir2.png" class="btn-add-2"></button>
+                </fieldset>
+            </form>
     </section>
-  </main>
-</div>
 
+    <h1 class="h1-areas">Areas:</h1>
+    <section class="section-area-data">
+        <p>Código</p>
+        <p>Institucion perteneciente</p>
+        <p>Nombre</p>
+        <p>Estado</p>
+    </section>
+
+
+        <section class="section-area-list">
+            <div id="area-item"></div>
+          </section>
+    </main>
+</div>
 
 <!-- Boostrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="../../js/General/jquery.min.js"></script>
+<script src="../../js/Area/AllAreas.js"></script>
 </body>
 </html>

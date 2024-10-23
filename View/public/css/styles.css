@@ -110,6 +110,10 @@ body {
     width: 26rem; /* Ancho del sidebar cuando está abierto */
 }
 
+.sidebar.closed {
+    width: 7rem;
+}
+
 .sidebar .icon {
     display: block;
     margin: 0 auto;
@@ -301,7 +305,7 @@ body.sidebar-open {
     border-bottom: 1px solid #000;
 }
 
-/* --------------------------------------------- Gestion de Reservas --------------------------------------------- */
+/* --------------------------------------------- Gestion de Reservas y Instituciones --------------------------------------------- */
 
 .reservation-options {/*Contenedor principal*/
     width: 80%;
@@ -330,13 +334,18 @@ body.sidebar-open {
 }
 
 .reservation-item {/*Item contenedor del texto*/
+    height: 80%;
     width: 80%;
-    height: 90%;
     margin: 1rem;
     position: relative;
-    border-radius: 2rem;
+    border-radius: 1rem;
 
     background-color: #E0CEFF;
+    transition: all 0.2s ease;
+}
+
+.reservation-item:hover {
+    box-shadow: 1px 1px 10px 10px #00000039;
 }
 
 .reservation-txt { /*Texto que se muestra*/
@@ -344,11 +353,12 @@ body.sidebar-open {
     margin: 0 auto;
     display: inline-block;
 
-    font-size: 2rem; 
+    font-size: 1.8rem; 
+    font-family: 'Urbanist', sans-serif;
     color: #ffffff; 
     position: relative;
      left: 50%; 
-     top: 95%; 
+     top: 92%; 
      transform: translate(-50%, -50%);
      z-index: 1;  
 }
@@ -365,14 +375,70 @@ body.sidebar-open {
 
 .reservation-item::before {
     top: 0;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
 }
 
 .reservation-item::after {
+    height: 4rem;
     bottom: 0;
-    border-bottom-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+/* --------------------------------------------- Gestion de Instituciones Particulares --------------------------------------------- */
+
+
+.reservation-particular-item {/*Item contenedor del texto*/
+    height: 80%;
+    width: 80%;
+    margin: 1rem;
+    position: relative;
+    border-radius: 1rem;
+
+    background-color: #c4c4c4;
+    transition: all 0.2s ease;
+}
+
+.reservation-particular-item:hover {
+    box-shadow: 1px 1px 10px 10px #00000039;
+}
+
+.reservation-particular-txt { /*Texto que se muestra*/
+    width: auto;
+    margin: 0 auto;
+    display: inline-block;
+
+    font-size: 1.8rem; 
+    font-family: 'Urbanist', sans-serif;
+    color: #ffffff; 
+    position: relative;
+     left: 50%; 
+     top: 92%; 
+     transform: translate(-50%, -50%);
+     z-index: 1;  
+}
+.reservation-particular-item::before,
+.reservation-particular-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3rem; /* Ajusta la altura según sea necesario */
+    background-color: #7357B0;
+}
+
+.reservation-particular-item::before {
+    top: 0;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.reservation-particular-item::after {
+    height: 4rem;
+    bottom: 0;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 
 
@@ -811,6 +877,10 @@ textarea {
     margin: 1rem 0 4rem 0;
 }
 
+.calendar-sub-txt {
+    font-size: 2.5rem;
+}
+
 .day-header {
     text-align: center;
     background-color: #6E55A1;
@@ -940,6 +1010,41 @@ textarea {
     margin: 25rem 0 0 0;
 }
 
+
+/* --------------------------------------------- Areas Particulares --------------------------------------------- */
+
+.h1-areas-particulares {
+    font-size: 3rem; 
+    margin: 4rem 0 2rem 4rem; 
+    font-weight: 700; 
+    display: inline-block;
+}
+
+.h1-areas {
+    font-size: 2.5rem; 
+    margin: 4rem 0 2rem 4rem; 
+    font-weight: 500; 
+    display: inline-block;
+}
+
+.section-area-data {
+    width: 95%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+.section-area-data p {
+    margin: 1rem 4rem;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #74539C;
+}
 
 
 /* --------------------------------------------- Utilidades --------------------------------------------- */
@@ -1118,8 +1223,8 @@ textarea {
 /*Gestionar instituciones*/
 
 .h1-gestionar-instituciones {
-    font-size: 7rem; 
-    margin: 4rem 0 2rem 4rem; 
+    font-size: 5rem; 
+    margin: 1rem; 
     font-weight: 700; 
     display: inline-block;
 }
@@ -1273,7 +1378,7 @@ textarea {
     }
 
     .calendar-sub-txt {
-        font-size: 2rem; 
+        font-size: 3rem; 
         margin: 1rem 5rem;
     }
     

@@ -8,11 +8,11 @@ $(document).ready(function() {
         success: function(response) {
             if (!response.logueado) {
                 // Si no está logueado, redirigir a la página de login
-                window.location.href = 'login.php';
+                window.location.href = '../../html/Auth/Login.html';
             } else {
                 console.log('Usuario logueado: ' + response.usuario);
                 $('#welcome').text('Buenos días, ' + response.usuario);
-                $('#NavBarUser').text(response.usuario); // Aquí se actualiza el span
+                $('#navbarUser').text(response.usuario); // Aquí se actualiza el span
             }
         },
         error: function(xhr, status, error) {

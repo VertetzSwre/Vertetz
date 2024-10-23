@@ -262,8 +262,6 @@ footer {
     font-size: 1.4rem;
 }
 
-
-
 /* Utilidades */
 
 .d-flex {
@@ -323,10 +321,18 @@ footer {
 
     .all-container {
         width: 100%;
-        height: 100vh;
+        height: auto;
         margin: 0;
         text-align: center;
         border-radius: 1px;
+    }
+
+    .all-container h1 {
+        width: 100%;
+    }
+
+    .roomanagy-txt {
+        width: 100%;
     }
    
 }
@@ -361,6 +367,20 @@ footer {
     }
 }
 
-@media (max-width: 320px) {
-    
+@media (max-width: 425px) {
+    .all-container h1 {
+        font-size: 3rem;
+    }
+
+    .roomanagy-txt {
+        font-size: 4rem;
+    }
+
+    .field {
+        width: 80%;
+    }
+
+    .btn-login {
+        width: 90%;
+    }
 }

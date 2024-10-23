@@ -36,6 +36,24 @@ const montName = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"
             }
         }
     }
+
+    //Funcion que al seleccionar un dia lo remarca
+    $(document).on('click', '.item-day', function() {
+        $('.item-day').removeClass('selected');
+        $(this).addClass('selected');
+
+        let selectedDay = $(this).text();
+        let selectedDayIndex = $(this).index() % 7; // Obtener el índice del día de la semana
+        $('#text-day').text(`${dayNames[selectedDayIndex]}, ${selectedDay}`);
+    
+    });
+
+    //Evento de clic a #text-day para cambiar el día y la fecha
+    $('#text-day').on('click', function() {
+        let selectedDay = $('.item-day.selected').text();
+        let selectedDayIndex = $('.item-day.selected').index() % 7; // Obtener el índice del día de la semana
+        $(this).text(`${dayNames[selectedDayIndex]}, ${selectedDay}`);
+    });
     
     // Función para cambiar al mes siguiente.
     function getNextMonth() {

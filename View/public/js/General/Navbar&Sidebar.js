@@ -11,7 +11,7 @@ function showNavbar() {
           <img src="../../img/Imagotipo-light.png" style="width: 4rem; height: 100%;">
         </a>
         <div class="d-flex align-items-center ms-auto">
-          <span id="NavBarUser" class="navbar-text me-2" style="color: white; font-family: 'Raleway', sans-serif; font-size: 1.5rem; font-weight: 700;">Usuario</span>
+          <span id="navbarUser" class="navbar-text me-2" style="color: white; font-family: 'Raleway', sans-serif; font-size: 1.5rem; font-weight: 700;"></span>
           <img src="../../img/usuario.png" style="width: 4rem; height: 4rem;">
         </div>
       </div>
@@ -39,13 +39,13 @@ function showNavbar() {
               <li><a href="../../html/General/Help.html">Ayuda</a></li>
             </ul>
           </li>
-           <button class="dropdown-btn" onclick=toggleSubMenu(this)>
+           <button class="dropdown-btn dropdown-btn-instituciones" onclick=toggleSubMenu(this)>
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M0-240v-63q0-43 44-70t116-27q13 0 25 .5t23 2.5q-14 21-21 44t-7 48v65H0Zm240 0v-65q0-32 17.5-58.5T307-410q32-20 76.5-30t96.5-10q53 0 97.5 10t76.5 30q32 20 49 46.5t17 58.5v65H240Zm540 0v-65q0-26-6.5-49T754-397q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780Zm-455-80h311q-10-20-55.5-35T480-370q-55 0-100.5 15T325-320ZM160-440q-33 0-56.5-23.5T80-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160-440Zm640 0q-33 0-56.5-23.5T720-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800-440Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-600q0 50-34.5 85T480-480Zm0-80q17 0 28.5-11.5T520-600q0-17-11.5-28.5T480-640q-17 0-28.5 11.5T440-600q0 17 11.5 28.5T480-560Zm1 240Zm-1-280Z"/></svg>
               <span class="text">Instituciones</span>
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-360 280-560h400L480-360Z"/></svg>
             </button>
             <ul class="sub-menu">
-             <li><a href="../../html/Institucion/ManageInstitucion.html">Administrar mis instituciones</a></li>
+             <li><a href="../../html/Institucion/ManageParticularInstitucion.html">Administrar mis instituciones</a></li>
               <li><a href="../../html/Institucion/CreateInstitucion.html">Crear institucion</a></li>
               <li><a href="../../html/Institucion/JoinInstitucion.html">Unirme a una institucion</a></li>
             </ul>
@@ -56,16 +56,38 @@ function showNavbar() {
       </div>
 <hr>
   </header>
-`
-  $('body').prepend(navbarHTML);
+`;
+$('body').prepend(navbarHTML);
+
+// Recuperar el estado del sidebar desde localStorage
+const sidebarState = localStorage.getItem('sidebarState');
+if (sidebarState === 'open') {
+  $('.sidebar').removeClass('closed').addClass('open');
+  $('body').addClass('sidebar-open');
+  $('.toggle-btn').text('✕');
+} else {
+  $('.sidebar').removeClass('open').addClass('closed');
+  $('body').removeClass('sidebar-open');
+  $('.toggle-btn').text('☰');
+}
+
+// Recuperar el estado de los dropdowns desde localStorage
+const dropdowns = ['dropdown-btn', 'dropdown-btn-instituciones'];
+dropdowns.forEach(id => {
+  const dropdownState = localStorage.getItem(`dropdownState-${id}`);
+  if (dropdownState === 'open') {
+    $(`#${id}`).next('.sub-menu').addClass('show');
+    $(`#${id}`).addClass('rotate');
+  } else {
+    $(`#${id}`).next('.sub-menu').removeClass('show');
+    $(`#${id}`).removeClass('rotate');
+  }
+});
+
 }
 
 $(document).ready(function () {
-  // Primero genera la NavBar
   showNavbar();
-
-  console.log($('#NavBarUser')); // Debería mostrar el elemento en la consola
-
 
   // Realiza la llamada AJAX para obtener el nombre de usuario después de generar la NavBar
   $.ajax({
@@ -89,16 +111,28 @@ $(document).ready(function () {
     }
   });
 
-  // Función para abrir y cerrar el sidebar
+  // Función para abrir y cerrar el sidebar.
   $('.toggle-btn').on('click', function () {
-    $('.sidebar').toggleClass('open closed'); // Cambia de clase la sidebar
-    $('body').toggleClass('sidebar-open'); // Cambia de clase el body
+    $('.sidebar').toggleClass('open closed'); // Cambia de clase al sidebar
+    console.log($('#NavBarUser')); // Debería mostrar el elemento en la consola
+    $('body').toggleClass('sidebar-open'); // Cambio de clase del body
     $(this).text($('.sidebar').hasClass('open') ? '✕' : '☰');
+
+    // Guardar el estado del sidebar en localStorage
+    const isOpen = $('.sidebar').hasClass('open');
+    localStorage.setItem('sidebarState', isOpen ? 'open' : 'closed');
+
   });
 
-  // Función para desplegar el submenú
+  // Función para desplegar el submenú.
   $('.dropdown-btn').on('click', function () {
-    $(this).next('.sub-menu').toggleClass('show');
-    $(this).toggleClass('rotate'); // Añade la rotación a la flecha
+      $(this).next('.sub-menu').toggleClass('show');
+      $(this).toggleClass('rotate'); // Añade la rotación a la flecha
+
+      // Guardar el estado del dropdown en localStorage
+      const dropdownId = $(this).attr('id');
+      const isOpen = $(this).next('.sub-menu').hasClass('show');
+      localStorage.setItem(`dropdownState-${dropdownId}`, isOpen ? 'open' : 'closed');
   });
+
 });
