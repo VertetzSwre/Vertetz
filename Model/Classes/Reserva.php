@@ -157,6 +157,34 @@ class Reserva extends Connection
         }
     }
 
+    // Método para obtener todas las reservas por fecha
+    public function obtenerReservasPorUsuario($usuario)
+    {
+        $conn = $this->getConnection();
+        try {
+            $sql = "SELECT r.*, s.tipo_servicio, s.descripcion
+                    FROM Reserva r
+                    LEFT JOIN Tiene t ON r.id = t.id_reserva
+                    LEFT JOIN Servicio s ON t.id_servicio = s.id_servicio
+                    WHERE r.ci_usuario = :ci_usuario";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':ci_usuario', $usuario, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $reservas;
+        } catch (PDOException $e) {
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            $this->closeConnection();
+        }
+    }
+
     // Método para buscar reservas por valor
     public function searchReserva($value)
     {

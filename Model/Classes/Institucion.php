@@ -116,6 +116,33 @@ class Institucion extends Connection
             $this->closeConnection();
         }
     }
+    public function getInstitucionByName($nombre)
+    {
+        $conn = $this->getConnection();
+        try {
+            // Preparar y ejecutar la consulta SQL para obtener todos los usuarios
+            $sql = "SELECT * FROM institucion WHERE nombre = :nombre";  // Sin comillas en :ci
+    
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR); // Asegurarse de que el tipo es correcto
+            
+            $stmt->execute();
+    
+            // Guarda los datos en un array asociativo
+            $instituciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            return $instituciones; // Devolver el array de instituciones
+        } catch (PDOException $e) {
+            // Manejar posibles errores de la consulta
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            // Cerrar la conexión
+            $this->closeConnection();
+        }
+    }
     
 
     // Método para buscar institucion por coincidencias

@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
+session_start();
 require_once '../../Model/Classes/Reserva.php';
 
 class ReservaController
@@ -64,6 +65,22 @@ class ReservaController
         }
     }
 
+    // Método para obtener todas las reservas por fecha 
+    public function ReadReservasByUsuario($usuario)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Crear una instancia de la clase Reserva
+            $reservaModel = new Reserva();
+
+            // Obtener las reservas
+            $resultado = $reservaModel->obtenerReservasPorUsuario ($usuario);
+
+            // Devolver los resultados como JSON
+            echo json_encode($resultado);
+        }
+    }
+
     // Método para actualizar una reserva
     public function UpdateReserva()
     {
@@ -118,7 +135,10 @@ if ($action === 'create') {
     $controller->ReadReservas();
 } elseif ($action === 'readByDate') {
     $controller->ReadReservasByDate();
-} elseif ($action === 'update') {
+}elseif ($action === 'readByUsuario') {
+    $argument = $_SESSION['ci'];
+    $controller->ReadReservasByUsuario($argument);
+}elseif ($action === 'update') {
     $controller->UpdateReserva();
 } elseif ($action === 'delete') {
     $controller->DeleteReserva();

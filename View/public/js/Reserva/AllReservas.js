@@ -1,49 +1,54 @@
 $(document).ready(function () {
-    let debounceTimer;
+  //ReservasByInstitucion();
+  ReservasByUsuario();
+});
 
-    // Al escribir en el campo de búsqueda
-    $('#search').on('input', function () {
-        let inputValue = $(this).val(); // Obtiene el valor de búsqueda
+function ReservasByInstitucion() {
+  let debounceTimer;
 
-        // Si ya hay un temporizador activo, lo reinicia
-        clearTimeout(debounceTimer);
+  // Al escribir en el campo de búsqueda
+  $("#search").on("input", function () {
+    let inputValue = $(this).val(); // Obtiene el valor de búsqueda
 
-        // Establece un nuevo temporizador de 300ms (puedes ajustar este valor)
-        debounceTimer = setTimeout(function () {
-            if (inputValue.length > 0) {
-                searchReservas(inputValue);  // Llama a la función para buscar
-                console.log('Input value: ', inputValue);
-            } else {
-                getAllReservas();  // Si no hay texto, muestra todas las reservas
-            }
-        }, 300); // Espera 300 milisegundos antes de hacer la búsqueda
-    });
+    // Si ya hay un temporizador activo, lo reinicia
+    clearTimeout(debounceTimer);
 
-    //Funcion para formatear la fecha
-    function formatDate(dateString) {
-        const [year, month, day] = dateString.split('-');
-        return `${day}/${month}/${year}`;
-    }
+    // Establece un nuevo temporizador de 300ms (puedes ajustar este valor)
+    debounceTimer = setTimeout(function () {
+      if (inputValue.length > 0) {
+        searchReservas(inputValue); // Llama a la función para buscar
+        console.log("Input value: ", inputValue);
+      } else {
+        getAllReservas(); // Si no hay texto, muestra todas las reservas
+      }
+    }, 300); // Espera 300 milisegundos antes de hacer la búsqueda
+  });
 
-    function searchReservas(inputValue) {
-        $.ajax({
-            url: '../../../../Controller/Reserva/SearchController.php', // Nuevo archivo PHP para búsqueda
-            type: 'GET',
-            data: {
-                search_query: inputValue // Pasa el valor de la búsqueda
-            },
-            dataType: 'json',
-            success: function (response) {
-                console.log(response); // Verifica la respuesta en la consola
-                let sectionReservationList = $('.section-reservation-list'); //Contenedor de la reserva
-                sectionReservationList.empty(); // Limpia el contenedor
+  //Funcion para formatear la fecha
+  function formatDate(dateString) {
+    const [year, month, day] = dateString.split("-");
+    return `${day}/${month}/${year}`;
+  }
 
-                if (response.length > 0) {
-                    let formattedDate = formatDate(res.fecha); //Variable que formatea la fecha
-                    // Mostrar solo las reservas que coincidan
-                    response.forEach(res => {
-                        let formattedDate = formatDate(res.fecha);
-                        let sectionGetReservation = $(`
+  function searchReservas(inputValue) {
+    $.ajax({
+      url: "../../../../Controller/Reserva/SearchController.php", // Nuevo archivo PHP para búsqueda
+      type: "GET",
+      data: {
+        search_query: inputValue, // Pasa el valor de la búsqueda
+      },
+      dataType: "json",
+      success: function (response) {
+        console.log(response); // Verifica la respuesta en la consola
+        let sectionReservationList = $(".section-reservation-list"); //Contenedor de la reserva
+        sectionReservationList.empty(); // Limpia el contenedor
+
+        if (response.length > 0) {
+          let formattedDate = formatDate(res.fecha); //Variable que formatea la fecha
+          // Mostrar solo las reservas que coincidan
+          response.forEach((res) => {
+            let formattedDate = formatDate(res.fecha);
+            let sectionGetReservation = $(`
                             <div class="section-get-reservation">
                                 <div id="reservation-item">
                                 <p>${res.id}</p>
@@ -58,37 +63,40 @@ $(document).ready(function () {
                             </div>
                         `);
 
-                        sectionReservationList.append(sectionGetReservation);
-                    });
-                } else { // Mostrar mensaje si no hay resultados
-                    sectionReservationList.append('<p style="font-size: 2.5rem;">No se encontraron coincidencias en la búsqueda.</p>');
-                }
-            },
-            error: function (xhr, status, error) {
-                console.error('Error en la solicitud AJAX:', status, error);
-                console.error('Respuesta del servidor:', xhr.responseText);
-            }
-        });
-    }
+            sectionReservationList.append(sectionGetReservation);
+          });
+        } else {
+          // Mostrar mensaje si no hay resultados
+          sectionReservationList.append(
+            '<p style="font-size: 2.5rem;">No se encontraron coincidencias en la búsqueda.</p>'
+          );
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error en la solicitud AJAX:", status, error);
+        console.error("Respuesta del servidor:", xhr.responseText);
+      },
+    });
+  }
 
-    // Funcion original que obtiene todas las reservas
-    function getAllReservas() {
-        $.ajax({
-            url: '../../../../Controller/Reserva/ReservaController.php',
-            type: 'POST',
-            data: {
-                action: 'read',
-            },
-            dataType: 'json',
-            success: function (response) {
-                /*Mostrar todas las reservas de la BDD en fila*/
-                let reservas = response;
-                let sectionReservationList = $('.section-reservation-list');
-                sectionReservationList.empty(); // Limpiar contenido previo.
+  // Funcion original que obtiene todas las reservas
+  function getAllReservas() {
+    $.ajax({
+      url: "../../../../Controller/Reserva/ReservaController.php",
+      type: "POST",
+      data: {
+        action: "read",
+      },
+      dataType: "json",
+      success: function (response) {
+        /*Mostrar todas las reservas de la BDD en fila*/
+        let reservas = response;
+        let sectionReservationList = $(".section-reservation-list");
+        sectionReservationList.empty(); // Limpiar contenido previo.
 
-                reservas.forEach(res => {
-                    let formattedDate = formatDate(res.fecha); //Variable que formatea la fecha
-                    let sectionGetReservation = $(`
+        reservas.forEach((res) => {
+          let formattedDate = formatDate(res.fecha); //Variable que formatea la fecha
+          let sectionGetReservation = $(`
                         <div class="section-get-reservation">
                             <div id="reservation-item">
                                 <p>${res.id}</p>
@@ -102,16 +110,67 @@ $(document).ready(function () {
                             </div>
                         </div>
                     `);
-                    sectionReservationList.append(sectionGetReservation);
-                });
-            },
-            error: function (xhr, status, error) {
-                console.error('Error en la solicitud AJAX:', status, error);
-                console.error('Respuesta del servidor:', xhr.responseText);
-            },
+          sectionReservationList.append(sectionGetReservation);
         });
+      },
+      error: function (xhr, status, error) {
+        console.error("Error en la solicitud AJAX:", status, error);
+        console.error("Respuesta del servidor:", xhr.responseText);
+      },
+    });
+  }
+
+  // Llamar a getAllReservas al cargar la página para mostrar todas las reservas inicialmente
+  getAllReservas();
+}
+
+function ReservasByUsuario() {
+    // Función para formatear la fecha
+    function formatDate(dateString) {
+        const [year, month, day] = dateString.split("-");
+        return `${day}/${month}/${year}`;
     }
 
-    // Llamar a getAllReservas al cargar la página para mostrar todas las reservas inicialmente
-    getAllReservas();
-});
+    // Realiza la solicitud AJAX para obtener las reservas del usuario
+    $.ajax({
+        url: "../../../../Controller/Reserva/ReservaController.php",
+        type: "POST",
+        data: {
+            action: "readByUsuario",
+        },
+        dataType: "json",
+        success: function(response) {
+            let sectionReservationList = $("#reservation-list");
+            sectionReservationList.empty(); // Limpiar contenido previo
+
+            if (!response || !Array.isArray(response) || response.length === 0) {
+                sectionReservationList.append("<p>No hay reservas disponibles.</p>");
+                return;
+            }
+
+            // Iterar sobre cada reserva y agregarla al DOM
+            response.forEach((res) => {
+                let formattedDate = formatDate(res.fecha); // Variable que formatea la fecha
+                let sectionGetReservation = $(`
+                    <div class="section-get-reservation">
+                        <div id="reservation-item">
+                            <p>ID: ${res.id}</p>
+                            <p>Estado: ${res.estado}</p>
+                            <p>Fecha: ${formattedDate}</p>
+                            <p>Hora Inicio: ${res.hora_inicio}</p>
+                            <p>Hora Fin: ${res.hora_fin}</p>
+                            <p>Observaciones: ${res.observaciones}</p>
+                            <p>Institución: ${res.nombre_institucion}</p>
+                            <p>Código Área: ${res.codigo_area}</p>
+                        </div>
+                    </div>
+                `);
+                sectionReservationList.append(sectionGetReservation);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("Error en la solicitud AJAX:", status, error);
+            console.error("Respuesta del servidor:", xhr.responseText);
+        }
+    });
+}
