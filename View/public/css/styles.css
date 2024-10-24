@@ -1046,6 +1046,130 @@ textarea {
     color: #74539C;
 }
 
+/* --------------------------------------------- Logout Design --------------------------------------------- */
+
+.logout-container {
+    width: 30rem;
+    height: 60vh;
+
+    background-color: #8265c1e7;
+    color: white;
+    position: fixed;
+    right: 2%;
+    top: 6.5rem;
+    z-index: 10;
+
+    display: none;
+    font-family: 'Urbanist', sans-serif;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    border-radius: 1rem;
+}
+
+.logout-container button {
+    width: 100%;
+    height: 4rem;
+
+    font-size: 1.6rem;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.logout-container.show {
+    display: flex;
+}
+
+.logout-section-1 {
+    width: 100%;
+    height: 33.3%;
+    font-size: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 0.5rem;
+}
+
+.username-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.logout-section-2 {
+    width: 100%;
+    height: 33.3%;
+
+    border-radius: 0.5rem;
+}
+
+.logout-section-3 {
+    width: 100%;
+    height: 33.3%;
+
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: end;
+}
+
+.logout-section-3 button {
+    margin: 2rem 0;
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+.logout-section-3 button:hover {
+    background-color: #c1aceec0;
+}
+
+
+.items-info-section {
+    width: 100%;
+    height: 33%;
+
+
+    padding-left: 3rem;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.items-info-section p {
+    font-size: 1.6rem;
+}
+
+.img-pencil-edit {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 1rem;
+}
+
+.img-user-info {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 1rem;
+}
+
+.logout-btn {
+    width: 4rem; 
+    height: 4rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    filter: drop-shadow(0 0 0.5rem rgb(0, 0, 0));
+}
+
+/*En size 768px que el width sea de 40%*/
+
 
 /* --------------------------------------------- Utilidades --------------------------------------------- */
 
@@ -1351,6 +1475,8 @@ textarea {
         display: flow;
     }
 
+    /* ----------------- Media Queries para Logout Design ----------------- */
+
 }
 @media (max-width: 768px) {
 
@@ -1647,8 +1773,6 @@ textarea {
         font-size: 5rem;
         margin: 2rem auto;
     }
-    
-   
     
 }
 
