@@ -32,12 +32,22 @@
             <form action="">
                 <fieldset>
                     <input type="search" class="input-search" name="busqueda" placeholder="Busca área por nombre o id... ">
-                    <button type="submit" style="background-color: transparent; border: transparent;"><img src="../../img/anadir2.png" class="btn-add-2"></button>
                 </fieldset>
             </form>
     </section>
 
-    <h1 class="h1-areas">Areas:</h1>
+    <div class="container-btn-areas-servicios">
+        <button class="btn-change-area btn-selected">Áreas</button>
+        <button class="btn-change-servicios">Servicios</button>
+
+        <div class="container-add-other">
+            <button class="add-other" id="add-servicio">Añadir otro</button>
+            <!-- <button class="add-other" id="add-area">Añadir otro</button> -->
+            <button type="submit" style="background-color: transparent; border: transparent;"><img src="../../img/anadir2.png" class="btn-add-2"></button>
+        </div>
+        
+    </div>
+
     <section class="section-area-data">
         <p>Código</p>
         <p>Institucion perteneciente</p>
@@ -45,10 +55,22 @@
         <p>Estado</p>
     </section>
 
+    <section class="section-usuario-data">
+        <p>ID</p>
+        <p>Servicio</p>
+        <p>Tipo Servicio</p>
+    </section>
+
+    
 
         <section class="section-area-list">
             <div id="area-item"></div>
+        </section>
+
+        <section class="section-services-list">
+            <div id="service-item"></div>
           </section>
+        </main>
     </main>
 </div>
 
@@ -56,5 +78,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="../../js/General/jquery.min.js"></script>
 <script src="../../js/Area/AllAreas.js"></script>
+<script src="../../js/Servicio/AllServicios.js"></script>
 </body>
 </html>

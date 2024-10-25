@@ -155,6 +155,34 @@ class Usuario extends Connection
         }
     }
 
+    // Método para obtener todos los usuarios de una institucion
+    public function getAllUsuariosByInstitucion($institucion)
+    {
+        $conn = $this->getConnection();
+
+        try {
+            $sql = "SELECT u.*
+            FROM Usuario u
+            JOIN Area a ON a.codigo = u.area_codigo
+            JOIN Institucion i ON i.nombre = a.institucion_perteneciente
+            WHERE i.codigo = :codigo_institucion";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':codigo_institucion', $institucion, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return [
+                'estado' => 'Error en la consulta.',
+                'error' => $e->getMessage()
+            ];
+        } finally {
+            $this->closeConnection();
+        }
+    }
+
     // Método para obtener reservas de un usuario por CI
     public function getReservasByFecha($ci)
     {

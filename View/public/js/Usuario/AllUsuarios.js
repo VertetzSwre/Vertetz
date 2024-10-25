@@ -1,12 +1,12 @@
 $(document).ready(function () {
 	getAllUsuarios();
-	
+
 	function getAllUsuarios() {
 		$.ajax({
 			url: '../../../../Controller/Usuario/UsuarioController.php',
 			type: 'POST',
 			data: {
-				res: 1
+				action: 'readByInstitucion',
 			},
 			dataType: 'json',
 			success: function (response) {
@@ -18,16 +18,15 @@ $(document).ready(function () {
 	
 				usuarios.forEach(res => {
 					let sectionGetUsers = $(`
-						<div class="section-get-users">
+						<div class="section-user-list">
 							<div id="users-item">
-								<p>CI: ${res.ci}</p>
-								<p>Contraseña: ${res.contrasena}</p>
-								<p>Nombre completo: ${res.nombre_completo}</p>
-								<p>Mail personal: ${res.mail_personal}</p>
-								<p>Telefono: ${res.telefono}</p>
-								<p>Mail corporativo: ${res.mail_corporativo}</p>
-								<p>Foto perfil: ${res.foto_perfil}</p>
-								<p>Tipo de empleado: ${res.tipo_Empleado}</p>
+								<p>${res.ci}</p>
+								<p>${res.contrasena}</p>
+								<p>${res.nombre_completo}</p>
+								<p>${res.mail_personal}</p>
+								<p>${res.telefono}</p>
+								<p>${res.mail_corporativo}</p>
+								<p>${res.tipo_Empleado}</p>
 							</div>
 						</div>
 					`);

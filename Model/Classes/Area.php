@@ -102,7 +102,7 @@ class Area extends Connection
         $conn = $this->getConnection();
         try {
             // Preparar y ejecutar la consulta SQL para obtener todas las áreas
-            $sql = "SELECT a.nombre
+            $sql = "SELECT *
                     FROM Area a
                     WHERE a.institucion_perteneciente = :institucion_perteneciente"; // Sin comillas simples alrededor del marcador
     

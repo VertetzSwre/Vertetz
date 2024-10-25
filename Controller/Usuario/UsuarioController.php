@@ -26,7 +26,7 @@ class UsuarioController
     // Método para obtener todos los usuarios
     public function readUsuarios()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usuarioModel = new Usuario();
             $resultado = $usuarioModel->getAllUsuarios();
 
@@ -34,8 +34,19 @@ class UsuarioController
         }
     }
 
+    // Método para obtener todos los usuarios de una institución
+    public function readUsuariosByInstitucion($institucion)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuarioModel = new Usuario();
+            $resultado = $usuarioModel->getAllUsuariosByInstitucion($institucion);
+
+            echo json_encode($resultado);
+        }
+    }
+
     // Método para obtener todas las reservas por fecha 
-    public function ReadReservasByDate($cedula)
+    public function readReservasByDate($cedula)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -107,6 +118,10 @@ switch ($_POST['action']) {
         $controller->readUsuarios();
         break;
     case 'readByDate':
+        $ci = $_SESSION['ci'];
+        $controller->ReadReservasByDate($ci);
+        break;
+    case 'readByInstitucion':
         $ci = $_SESSION['ci'];
         $controller->ReadReservasByDate($ci);
         break;

@@ -256,17 +256,6 @@ $(document).ready(function () {
     const isOpen = $('.sidebar').hasClass('open');
     localStorage.setItem('sidebarState', isOpen ? 'open' : 'closed');
 
-     // Deshabilitar transiciones temporalmente
-     $('.sidebar, .dropdown-btn, .sub-menu').css('transition', 'none');
-
-     // Forzar un reflujo para aplicar los cambios inmediatamente
-     $('.sidebar')[0].offsetHeight;
- 
-     // Rehabilitar transiciones después de un breve retraso
-     setTimeout(function() {
-       $('.sidebar, .dropdown-btn, .sub-menu').css('transition', '');
-     }, 10);
-
   });
 
   // Función para desplegar el submenú.

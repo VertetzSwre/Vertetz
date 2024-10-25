@@ -29,7 +29,7 @@ class ServicioController
     // Método para obtener todos los servicios
     public function ReadServicios()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Crear una instancia de la clase Servicio
             $servicioModel = new Servicio();

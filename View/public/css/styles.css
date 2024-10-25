@@ -485,7 +485,6 @@ body.sidebar-open {
 .btn-add-2 {
     width: 3rem; 
     height: 3rem;
-    margin: 0 3rem;
 }
 
 .container-btn-load-all {
@@ -1014,7 +1013,7 @@ textarea {
 /* --------------------------------------------- Areas Particulares --------------------------------------------- */
 
 .h1-areas-particulares {
-    font-size: 3rem; 
+    font-size: 5rem; 
     margin: 4rem 0 2rem 4rem; 
     font-weight: 700; 
     display: inline-block;
@@ -1030,7 +1029,7 @@ textarea {
 .section-area-data {
     width: 95%;
     height: auto;
-    margin: 0 auto;
+    margin: 4rem auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -1039,11 +1038,78 @@ textarea {
     border-bottom: 1px solid #000;
 }
 
+.area-data-hidden {
+    display: none;
+}
+
 .section-area-data p {
     margin: 1rem 4rem;
     font-weight: bold;
     font-size: 1.8rem;
     color: #74539C;
+}
+
+.container-btn-areas-servicios {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    margin: 2rem 4rem;
+
+}
+
+.btn-change-area {
+    width: 10rem;
+    height: 4rem;
+    border: none;
+    margin: 0 0.5rem;
+
+    font-size: 1.8rem;
+    font-weight: 700;
+    border-radius: 1rem;
+    transition: all 0.15s ease ;
+}
+
+.btn-change-servicios {
+    width: 10rem;
+    height: 4rem;
+    background-color: transparent;
+    border: none;
+    margin: 0 0.5rem;
+
+    font-size: 1.8rem;
+    font-weight: 700;
+    border-radius: 1rem;
+    transition: all 0.15s ease ;
+}
+
+.btn-change-servicios:hover {
+    background-color: #d1c5ec;
+}
+
+.btn-change-area:hover {
+    background-color: #d1c5ec;
+}
+
+.btn-selected {
+    background-color: #B59BED;
+}
+
+
+.container-add-other {
+    width: auto;
+    height: auto;
+
+    float: right;
+    margin: 0 5rem 0 0;
+}
+
+.add-other {
+    width: auto;
+    height: auto;
+
+    border: none;
+    background-color: transparent;
+    font-size: 1.6rem;
 }
 
 /* --------------------------------------------- Logout Design --------------------------------------------- */
@@ -1165,7 +1231,7 @@ textarea {
 }
 
 .logout-btn:hover {
-    filter: drop-shadow(0 0 0.5rem rgb(0, 0, 0));
+    filter: drop-shadow(0 0 0.5rem rgb(255, 255, 255));
 }
 
 /*En size 768px que el width sea de 40%*/
@@ -1217,8 +1283,28 @@ textarea {
 
 .section-users-list {
     width: 95%;
-    margin: 0 auto;
+    margin: 1rem auto;
     border-bottom: 1px solid #000;
+}
+
+.section-usuario-data {
+    width: 95%;
+    height: auto;
+    margin: 4rem auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+.section-usuario-data p {
+    margin: 1rem 4rem;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #74539C;
 }
 
 .section-get-users {
@@ -1230,8 +1316,11 @@ textarea {
     height: auto;
     display: flex;
     align-items: center;
-    background-color: #99c6e8;
+    background-color: #E0CEFF;
     margin: 2rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 #users-item p {
@@ -1251,6 +1340,10 @@ textarea {
     border-bottom: 1px solid #000;
 }
 
+.section-area-list.hidden {
+    display: none;
+}
+
 .section-get-areas {
     border-top: 1px solid black;
 }
@@ -1260,7 +1353,8 @@ textarea {
     height: auto;
     display: flex;
     align-items: center;
-    background-color: #99c6e8;
+    justify-content: space-around;
+    background-color: #E0CEFF;
     margin: 2rem 0;
 }
 
@@ -1290,7 +1384,7 @@ textarea {
     height: auto;
     display: flex;
     align-items: center;
-    background-color: #99c6e8;
+    background-color: #E0CEFF;
     margin: 2rem 0;
 }
 
@@ -1320,7 +1414,7 @@ textarea {
     height: auto;
     display: flex;
     align-items: center;
-    background-color: #99c6e8;
+    background-color: #E0CEFF;
     margin: 2rem 0;
 }
 
