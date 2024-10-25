@@ -96,7 +96,7 @@ function showNavbar() {
                 </svg>
             </button>
             <ul class="sub-menu">
-                <li><a href="../../html/Institucion/SelectInstitucion.html">Administrar mis instituciones</a></li>
+                <li><a href="../../html/Institucion/ManageParticularInstitucion.html">Administrar mis instituciones</a></li>
                 <li><a href="../../html/Institucion/CreateInstitucion.html">Crear institucion</a></li>
                 <li><a href="../../html/Institucion/JoinInstitucion.html">Unirme a una institucion</a></li>
             </ul>

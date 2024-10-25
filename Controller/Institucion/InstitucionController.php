@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: application/json; charset=utf-8');
+session_start();
 require_once '../../Model/Classes/Institucion.php';
 
 class InstitucionController
@@ -9,57 +11,145 @@ class InstitucionController
     public function CreateInstitucion()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             // Obtener los datos del formulario
             $nombre = $_POST['nombre'];
             $calle = $_POST['calle'];
             $esquina = $_POST['esquina'];
             $puerta = $_POST['puerta'];
-            
+
             // Crear una instancia de la clase Institucion
             $institucionModel = new Institucion();
-            
+
             // Intentar registrar la institución
             $resultado = $institucionModel->registrarInstitucion($nombre, $calle, $esquina, $puerta);
-            
+
             // Devolver el resultado como JSON
             echo json_encode($resultado);
         }
     }
 
     // Método para obtener todas las instituciones
+    public function LoadInstituciones()
+    {
+        $resultado = $_SESSION['instituciones'];
+        echo json_encode($resultado);
+    }
+
+    // Metodo para obtener las instituciones de la session
     public function ReadInstituciones()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
             // Crear una instancia de la clase Institucion
             $institucionModel = new Institucion();
-            
+
             // Obtener las instituciones
-            $resultado = $institucionModel->obtenerInstituciones();
-            
+            // $resultado = $institucionModel->obtenerInstituciones();
+
+            // Devolver los resultados como JSON
+            // echo json_encode($resultado);
+        }
+    }
+    // Metodo para obtener una institucion por nombre
+    public function ReadInstitucionByName($institucion)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Crear una instancia de la clase Institucion
+            $institucionModel = new Institucion();
+
+            // Obtener las instituciones
+            $resultado = $institucionModel->getInstitucionByName($institucion);
+
             // Devolver los resultados como JSON
             echo json_encode($resultado);
         }
     }
 
+        // Metodo para obtener usuarios de una institucion
+        public function ReadUsuariosByInstitucion($nombre)
+        {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+                // Crear una instancia de la clase Institucion
+                $institucionModel = new Institucion();
+    
+                // Obtener las instituciones
+                $resultado = $institucionModel->getUsuariosByInstitucion($nombre);
+    
+                // Devolver los resultados como JSON
+                echo json_encode($resultado);
+            }
+        }
+
+        // Metodo para obtener areas de una institucion
+        public function ReadAreasByInstitucion($nombre)
+        {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+                // Crear una instancia de la clase Institucion
+                $institucionModel = new Institucion();
+    
+                // Obtener las instituciones
+                $resultado = $institucionModel->getAreasByInstitucion($nombre);
+    
+                // Devolver los resultados como JSON
+                echo json_encode($resultado);
+            }
+        }
+
+        // Metodo para obtener servicios de una institucion
+        public function ReadServiciosByInstitucion($nombre)
+        {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+                // Crear una instancia de la clase Institucion
+                $institucionModel = new Institucion();
+    
+                // Obtener las instituciones
+                $resultado = $institucionModel->getServiciosByInstitucion($nombre);
+    
+                // Devolver los resultados como JSON
+                echo json_encode($resultado);
+            }
+        }
+
+        // Metodo para obtener las reservas de una institucion
+        public function ReadReservasByInstitucion($nombre)
+        {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+                // Crear una instancia de la clase Institucion
+                $institucionModel = new Institucion();
+    
+                // Obtener las instituciones
+                $resultado = $institucionModel->getReservasByInstitucion($nombre);
+    
+                // Devolver los resultados como JSON
+                echo json_encode($resultado);
+            }
+        }
+
+
+
     // Método para actualizar una institución
     public function UpdateInstitucion()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             // Obtener los datos del formulario
             $nombre = $_POST['nombre'];
             $calle = $_POST['calle'];
             $esquina = $_POST['esquina'];
             $puerta = $_POST['puerta'];
-            
+
             // Crear una instancia de la clase Institucion
             $institucionModel = new Institucion();
-            
+
             // Intentar actualizar la institución
             $resultado = $institucionModel->actualizarInstitucion($nombre, $calle, $esquina, $puerta);
-            
+
             // Devolver el resultado como JSON
             echo json_encode($resultado);
         }
@@ -69,16 +159,16 @@ class InstitucionController
     public function DeleteInstitucion()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             // Obtener el nombre de la institución del formulario
             $nombre = $_POST['nombre'];
-            
+
             // Crear una instancia de la clase Institucion
             $institucionModel = new Institucion();
-            
+
             // Intentar eliminar la institución
             $resultado = $institucionModel->eliminarInstitucion($nombre);
-            
+
             // Devolver el resultado como JSON
             echo json_encode($resultado);
         }
@@ -97,5 +187,22 @@ if ($action === 'create') {
     $controller->UpdateInstitucion();
 } elseif ($action === 'delete') {
     $controller->DeleteInstitucion();
+} elseif ($action === 'instituciones') {
+    $controller->LoadInstituciones();
+} elseif ($action === 'institucionByName') {
+    $argument = $_POST['nombre'] ?? '';
+    $controller->ReadInstitucionByName($argument);
+}elseif ($action === 'UsuariosByInstitucion') {
+    $argument = $_POST['nombre'] ?? '';
+    $controller->ReadUsuariosByInstitucion($argument);
+}elseif ($action === 'AreasByInstitucion') {
+    $argument = $_POST['nombre'] ?? '';
+    $controller->ReadAreasByInstitucion($argument);
+}elseif ($action === 'ServiciosByInstitucion') {
+    $argument = $_POST['nombre'] ?? '';
+    $controller->ReadServiciosByInstitucion($argument);
+}elseif ($action === 'ReservasByInstitucion') {
+    $argument = $_POST['nombre'] ?? '';
+    $controller->ReadReservasByInstitucion($argument);
 }
-?>
+

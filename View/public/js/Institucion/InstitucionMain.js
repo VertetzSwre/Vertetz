@@ -19,7 +19,7 @@ $(document).ready(function () {
         url: "../../../../Controller/Institucion/InstitucionController.php",
         type: "POST",
         data: {
-          action: "instituciones",  // Asegúrate de que este action devuelva todas las instituciones
+          action: "instituciones",
         },
         dataType: "json",
         success: function (response) {

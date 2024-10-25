@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear una institucion - Roomanagy</title>
+    <title>Areas - Roomanagy</title>
     <link rel="stylesheet" href="../../../public/css/normalize.css">
     <link rel="stylesheet" href="../../../public/css/styles.css">
     <link rel="preload" href="../../../public/css/styles.css" as="style">
@@ -24,47 +24,42 @@
         });
     </script>
 
-<div class="all-container">
-    <h1 style="font-size: 7rem; margin: 2rem 0 0 4rem; font-weight: 700; display: inline-block;">Añadir servicio</h1>
+<div class="all-container" id="container-usuarios" >
+    <!-- <h1 class="h1-usuarios-institucion">Todos los usuarios</h1> -->
 
     <main>
-        <section class="section-create-reserva">
-            <form class="form-create-reservation">
-                <div class="form-group">
-                    <label>Id del servicio:</label>
-                    <input type="text" name="id_servicio" id="id_servicio" placeholder="Escriba un nombre...">
-                </div>
-                
-                <div class="form-group">
-                    <label>Tipo de servicio:</label>
-                    <select name="tipo_servicio" id="tipo_servicio">
-                        <option value="Limpiza">Limpieza</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Descripcion de servicio:</label>
-                    <input type="text" name="descripcion_servicio" id="descripcion_servicio" placeholder="Agregue una descripcion del servicio">
-                </div>
-
-                <div class="form-group">
-                    <!--Vacio para dejar espacio iguales-->
-                </div>
-
+        <section class="search-reservations">
+            <form action="">
+                <fieldset>
+                    <input type="search" class="input-search" name="busqueda" placeholder="Busca usuario... ">
+                    <button type="submit" style="background-color: transparent; border: transparent;"><img src="../../img/anadir2.png" class="btn-add-2"></button>
+                </fieldset>
             </form>
-        </section>
+    </section>
+
+    <section class="section-usuario-data">
+        <p>CI</p>
+        <p>Contraseña</p>
+        <p>Nombre completo</p>
+        <p>Mail personal</p>
+        <p>Telefono</p>
+        <p>Mail corporativo</p>
+        <p>Tipo de empleado</p>
+    </section>
+
+    <!--Obtener todos los usuarios-->
+    <section class="section-users-list">
+        <div id="users-item"></div>
+      </section>
+
     </main>
-    
-
-<section class="section-submit-btn">
-    <button class="btn-submit" type="submit">Añadir</button>
-</section>
 </div>
-
-
-
 
 <!-- Boostrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="../../js/General/jquery.min.js"></script>
+<script src="../../js/Institucion/InstitucionDataLoader.js"></script>
+<!-- <script src="../../js/Institucion/InstitucionDataLoaderB.js"></script> -->
+<!--  -->
 </body>
 </html>

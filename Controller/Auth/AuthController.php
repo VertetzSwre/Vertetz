@@ -27,7 +27,7 @@ class AuthController
             $_SESSION['logueado'] = true;
 
             // Obtener las instituciones del usuario
-            $instituciones = $this->institucionModel->obtenerInstituciones($this->usuarioModel->getCi());
+            $instituciones = $this->institucionModel->getInstituciones($this->usuarioModel->getCi());
             $_SESSION['instituciones'] =  $instituciones;
 
             // Retornar respuesta de éxito con instituciones
