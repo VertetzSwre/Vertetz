@@ -3,7 +3,6 @@ $(document).ready(function () {
     //Oculta la lista de todos los servicios, asi como su informacion
     $('.section-services-list').css('display', 'none');
     $('.section-usuario-data').css('display', 'none');
-
     getAllAreas();
 
     function getAllAreas() {
@@ -50,6 +49,8 @@ $(document).ready(function () {
                         //Cambiar la data de la info
                         $('.section-usuario-data').css('display', 'flex');
                         $('.section-area-data').css('display', 'none');
+
+                        $('#add-other').attr('data-bs-target', '#modalAddService'); // Cambia el target del modal
                     });
                 }
 
@@ -63,6 +64,8 @@ $(document).ready(function () {
                         //Cambiar la data de la info
                         $('.section-usuario-data').css('display', 'none');
                         $('.section-area-data').css('display', 'flex');
+
+                        $('#add-other').attr('data-bs-target', '#modalAddArea'); // Cambia el target del modal
                     });
                 }
 
