@@ -1,7 +1,7 @@
-Modelo: El modelo contiene toda la lógica y la interacción con la BDD. Se realizan además todas
+Model: El modelo contiene toda la lógica y la interacción con la BDD. Se realizan además todas
 las consultas SQL y se manejan los datos. En esta capa se colocan los constructores, así como las clases de cada entidad.
 
-Controlador: El controlador procesa las entradas del usuario, interactúa con el modelo y selecciona las
+Controller: El controlador procesa las entradas del usuario, interactúa con el modelo y selecciona las
 vistas para mostrar.
 
 View: Esta carpeta, contiene la carpeta Public.
