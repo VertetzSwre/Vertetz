@@ -113,4 +113,25 @@ const montName = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"
     // Cuando el documento está cargado, se ejecutan todas las funciones.
     $(document).ready(function() {
         initCalendar();
+        obtenerReservasPorFecha();
+
+
+        function obtenerReservasPorFecha() {
+            $.ajax({
+                url: '../../../../Controller/Reserva/ReservaController', // Nuevo archivo PHP para búsqueda
+                type: 'POST',
+                data: {
+                    action: 'readByUsuario',
+                },
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response); // Verifica la respuesta en la consola
+
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error en la solicitud AJAX:', status, error);
+                    console.error('Respuesta del servidor:', xhr.responseText);
+                }
+            });
+        }
     });

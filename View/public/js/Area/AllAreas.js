@@ -3,6 +3,7 @@ $(document).ready(function () {
     //Oculta la lista de todos los servicios, asi como su informacion
     $('.section-services-list').css('display', 'none');
     $('.section-usuario-data').css('display', 'none');
+    $('#add-servicio').css('display', 'none');
 
     getAllAreas();
 
@@ -16,7 +17,7 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (response) {
-                console.log(response);
+                
 
                 let areas = response;
                 let sectionAreaList = $('.section-area-list');
@@ -50,6 +51,10 @@ $(document).ready(function () {
                         //Cambiar la data de la info
                         $('.section-usuario-data').css('display', 'flex');
                         $('.section-area-data').css('display', 'none');
+
+                        //Cambiar el modal dependiendo si es area o reserva
+                        $('#add-area').css('display', 'none');
+                        $('#add-servicio').css('display', 'inherit');
                     });
                 }
 
@@ -63,6 +68,10 @@ $(document).ready(function () {
                         //Cambiar la data de la info
                         $('.section-usuario-data').css('display', 'none');
                         $('.section-area-data').css('display', 'flex');
+
+                        //Cambiar el modal dependiendo si es area o reserva
+                        $('#add-area').css('display', 'inherit');
+                        $('#add-servicio').css('display', 'none');
                     });
                 }
 

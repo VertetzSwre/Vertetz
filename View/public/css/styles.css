@@ -60,12 +60,13 @@ body {
     position: fixed;
     left: 0; /* Mostrar el sidebar parcialmente */
 
-    transition: 0.3s ease;
+    transition: 0.2s ease; /* Transición suave para el ancho */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Centrar verticalmente */
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .sidebar * {
@@ -77,7 +78,7 @@ body {
     padding: 1rem 2.5rem;
     color: white;
     text-decoration: none;
-    width: 100%;
+    width: 30rem;
     box-sizing: border-box; /* Asegura que el padding no haga que los elementos se salgan */
     font-size: 1.4rem;
     text-align: left;
@@ -108,10 +109,12 @@ body {
 
 .sidebar.open {
     width: 26rem; /* Ancho del sidebar cuando está abierto */
+    transition: 0.2s ease;
 }
 
 .sidebar.closed {
     width: 7rem;
+    transition: all 0.2s ease;
 }
 
 .sidebar .icon {
@@ -122,12 +125,14 @@ body {
 }
 
 .sidebar .text {
-    display: none;
+    opacity: 0; /* Oculta el texto por defecto */
+    transition: all 0.2s ease;
 }
 
 .sidebar.open .text {
-    display: inline;
+    opacity: 100%;
     margin-left: 1rem;
+    transition: all 0.2s ease;
 }
 
 body.sidebar-open {
@@ -137,6 +142,15 @@ body.sidebar-open {
 
 .all-container.sidebar.open {
     margin-left: 26rem; /* Mueve el contenido del cuerpo cuando el sidebar está abierto */
+}
+
+/* Transiciones para los elementos internos cuando el sidebar está abierto */
+.sidebar.open a,
+.sidebar.open .icon,
+.sidebar.open .text {
+    opacity: 1; /* Mostrar elementos */
+    transform: translateX(0); /* Restablecer desplazamiento */
+    transition: 0;
 }
 
 .sub-menu {
@@ -153,6 +167,7 @@ body.sidebar-open {
 
 .sub-menu.show {
     display: block; /* Muestra el submenú cuando se activa */
+    transition: 0;
 }
 
 .toggle-btn { /*Boton que cierra y abre el Sidebar*/
@@ -177,10 +192,10 @@ body.sidebar-open {
     color: white;
     text-decoration: none;
     text-align: left;
-    width: 100%;
+    width: 30rem;
     box-sizing: border-box; /* Asegura que el padding no haga que los elementos se salgan */
     font-size: 1.4rem;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -299,7 +314,7 @@ body.sidebar-open {
 }
 .section-next-reservations {
     width: 90%;
-    height: 50rem;
+    height: auto;
     margin: 1rem auto;
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
@@ -482,9 +497,19 @@ body.sidebar-open {
     border: none;
 }
 
-.btn-add-2 {
+.btn-add-area {
     width: 3rem; 
     height: 3rem;
+}
+
+.btn-add-servicio {
+    width: 3rem; 
+    height: 3rem;
+    display: none;
+}
+
+#add-servicio {
+    display: none;
 }
 
 .container-btn-load-all {
@@ -614,6 +639,10 @@ body.sidebar-open {
     border-left: 0.7rem solid #74539C;
     border-right: 0.7rem solid #74539C;
     border-radius: 2rem;
+}
+
+.custom-width {
+    max-width: 80% !important;
 }
 
 
@@ -777,7 +806,7 @@ textarea {
 }
 
 .btn-submit { /*Boton Enviar*/
-    width: 10%;
+    width: 25%;
     height: 4rem;
     margin: 0 2rem;
 
@@ -1258,7 +1287,7 @@ textarea {
 
 #reservation-item{
     width: 100%;
-    height: 10rem;
+    height: auto;
     display: flex;
     align-items: center;
     background-color: #E0CEFF;
@@ -1496,6 +1525,7 @@ textarea {
         justify-content: center;
         padding: 1.5rem 2.5rem;
         font-size: 1.8rem;
+        width: 100%;
     }
 
     .dropdown-btn {
@@ -1504,6 +1534,7 @@ textarea {
         align-items: center;
         padding: 1.5rem 2.5rem;
         font-size: 1.8rem;
+        width: 100%;
     }
 
     body.sidebar-open {
@@ -1907,4 +1938,22 @@ textarea {
     #reservation-item p {
         font-size: 0.8rem;
     }
+}
+
+/*-----------------Clases customizadas de Sweetalert ---------------------*/
+
+.swal2-popup {
+    font-size: 1.6rem; /* Tamaño de fuente general del popup */
+}
+
+.swal2-title {
+    font-size: 2.4rem; /* Tamaño de fuente del título */
+}
+
+.swal2-content {
+    font-size: 1.8rem; /* Tamaño de fuente del contenido */
+}
+
+.swal2-confirm, .swal2-cancel {
+    font-size: 1.6rem; /* Tamaño de fuente de los botones */
 }

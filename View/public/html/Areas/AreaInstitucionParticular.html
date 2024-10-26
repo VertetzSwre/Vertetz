@@ -41,9 +41,12 @@
         <button class="btn-change-servicios">Servicios</button>
 
         <div class="container-add-other">
-            <button class="add-other" id="add-servicio"  data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir otro</button>
-            <!-- <button class="add-other" id="add-area">Añadir otro</button> -->
-            <button type="submit" style="background-color: transparent; border: transparent;"  data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="../../img/anadir2.png" class="btn-add-2"></button>
+            <button class="add-other" id="add-area"  data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir otro</button>
+            <button type="submit" style="background-color: transparent; border: transparent;"  data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="../../img/anadir2.png" class="btn-add-area"></button>
+
+            <!-- Botones de modal de crear servicio-->
+            <button class="add-other" id="add-servicio"  data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Añadir otro</button>
+            <button type="submit" style="background-color: transparent; border: transparent;"  data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><img src="../../img/anadir2.png" class="btn-add-servicio"></button>
         </div>
         
     </div>
@@ -62,7 +65,6 @@
     </section>
 
     
-
         <section class="section-area-list">
             <div id="area-item"></div>
         </section>
@@ -97,8 +99,7 @@
                 
                 <div class="form-group">
                     <label>Institución perteneciente:</label>
-                    <input type="text" name="institucion_area" id="institucion_perteneciente" placeholder="Agregue una descripcion del servicio">
-                </div>
+                 </div>
 
                 <div class="form-group">
                     <!--Vacio para dejar espacio iguales-->
@@ -116,7 +117,7 @@
 
 
   <!-- Modal de crear servicio-->
-  <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal" id="exampleModalToggle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog custom-width">
       <div class="modal-content" style="background-color: #F6EFFF; padding: 3rem; border-radius: 2rem;">
        

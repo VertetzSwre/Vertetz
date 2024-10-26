@@ -1,4 +1,10 @@
 $(document).ready(function () {
+
+  //Oculta la lista de todos los servicios, asi como su informacion
+  $('.section-services-list').css('display', 'none');
+  $('.section-usuario-data').css('display', 'none');
+  $('#add-servicio').css('display', 'none');
+
   // Obtener el id del div almacenado en LocalStorage
   const selectedDivId = localStorage.getItem("selectedDivId");
 
@@ -14,9 +20,8 @@ $(document).ready(function () {
   $("#finalizarAccion").on("click", function () {
     localStorage.removeItem("selectedDivId");
   });
-});
 
-// Función genérica para realizar solicitudes AJAX
+  // Función genérica para realizar solicitudes AJAX
 function ajaxRequest(action, data, callback) {
   $.ajax({
     url: "../../../../Controller/Institucion/InstitucionController.php",
@@ -60,11 +65,18 @@ function getAreas(nombre) {
             <p>${res.nombre}</p>
             <p>${res.estado}</p>
             <img src="../../img/icon-lapiz.png" style="width: 3rem; height: 100%; margin: 0 0.5rem;">
-            <img src="../../img/icon-papelera.png" style="width: 3rem; height: 100%; margin: 0 0.5rem;">
+            <button class="btn-delete-area" data-codigo="${res.codigo}" style="width: auto; height: auto; background-color: transparent; border: none;"><img src="../../img/icon-papelera.png" style="width: 3rem; height: 100%;"></button>
           </div>
         </div>`);
       sectionAreaList.append(sectionGetAreas);
     });
+
+    // Asociar el evento click a los botones de eliminación
+    $('.btn-delete-area').on('click', function () {
+      const codigo = $(this).data('codigo');
+      deleteArea(codigo);
+    });
+
   });
 }
 
@@ -101,10 +113,16 @@ function getServicios(nombre) {
             <p>${res.tipo_servicio}</p>
             <p>${res.descripcion}</p>
             <img src="../../img/icon-lapiz.png" style="width: 3rem; height: 100%; margin: 0 0.5rem;">
-            <img src="../../img/icon-papelera.png" style="width: 3rem; height: 100%; margin: 0 0.5rem;">
+            <button class="btn-delete-servicio" data-id_servicio="${res.id_servicio}" style="width: auto; height: auto; background-color: transparent; border: none;"><img src="../../img/icon-papelera.png" style="width: 3rem; height: 100%;"></button>
           </div>
         </div>`);
       sectionServicesList.append(sectionGetServices);
+    });
+
+    // Asociar el evento click a los botones de eliminación
+    $('.btn-delete-servicio').on('click', function () {
+      const id_servicio = $(this).data('id_servicio');
+      deleteServicio(id_servicio);
     });
   });
 }
@@ -124,6 +142,8 @@ function getReservas(nombre) {
             <p>${res.hora_fin}</p>
             <p>${res.observaciones}</p>
             <p>${res.codigo_area}</p>
+            <img src="../../img/icon-lapiz.png" style="width: 3rem; height: 100%; margin: 0 0.5rem;">
+            <img src="../../img/icon-papelera.png" style="width: 3rem; height: 100%; margin: 0 0.5rem;">
           </div>
         </div>`);
       sectionReservationList.append(sectionGetReservation);
@@ -144,8 +164,13 @@ function toggleSection() {
     $(".btn-change-area").removeClass("btn-selected");
     $(".btn-change-servicios").addClass("btn-selected");
 
-    $(".section-usuario-data").show();
-    $(".section-area-data").hide();
+    //Cambiar la data de la info
+    $('.section-usuario-data').css('display', 'flex');
+    $('.section-area-data').css('display', 'none');
+
+    //Cambiar el modal dependiendo si es area o reserva
+    $('#add-area').css('display', 'none');
+    $('#add-servicio').css('display', 'inline');
   });
 
   $(".btn-change-area").on("click", function () {
@@ -154,7 +179,91 @@ function toggleSection() {
     $(".btn-change-area").addClass("btn-selected");
     $(".btn-change-servicios").removeClass("btn-selected");
 
-    $(".section-usuario-data").hide();
-    $(".section-area-data").show();
+    //Cambiar la data de la info
+    $('.section-usuario-data').css('display', 'none');
+    $('.section-area-data').css('display', 'flex');
+
+    //Cambiar el modal dependiendo si es area o reserva
+    $('#add-area').css('display', 'inline');
+    $('#add-servicio').css('display', 'none');
   });
 }
+
+//Funcion que elimina un area en base a su codigo
+function deleteArea(codigo) {
+    $.ajax({
+      url: '../../../../Controller/Area/AreaController.php',
+      type: 'POST',
+      data: {
+          action: 'delete',
+          codigo: codigo,
+      },
+      dataType: 'json',
+      success: function (response) {
+          if (response.estado === 'exito') {
+            Swal.fire({
+              icon: 'success',
+              title: '¡Éxito!',
+              text: 'Has eliminado el servicio correctamente.',
+              showConfirmButton: false,
+              timer: 2000,
+            }).then(() => {
+              window.location.reload();
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'No se pudo eliminar el área. Por favor, inténtalo nuevamente.',
+            });
+          }
+      },
+      error: function (xhr, status, error) {
+          console.error('Error en la solicitud AJAX:', status, error);
+          console.error('Respuesta del servidor:', xhr.responseText);
+      }
+    });
+}
+
+function deleteServicio(id_servicio) {
+  $.ajax({
+    url: '../../../../Controller/Servicio/ServicioController.php',
+    type: 'POST',
+    data: {
+      action: 'delete',
+      id_servicio: id_servicio,
+    },
+    dataType: 'json',
+    success: function (response) {
+      if (response.estado === 'Eliminación exitosa!') {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Éxito!',
+          text: 'Has eliminado el servicio correctamente.',
+          showConfirmButton: false,
+          timer: 2000,
+        }).then(() => {
+          window.location.reload();
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo eliminar el servicio. Por favor, inténtalo nuevamente.',
+        });
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error('Error en la solicitud AJAX:', status, error);
+      console.error('Respuesta del servidor:', xhr.responseText);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Ocurrió un error en la solicitud. Por favor, inténtalo nuevamente.',
+      });
+    }
+  });
+}
+
+});//Cierre de la funcion ready
+

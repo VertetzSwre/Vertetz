@@ -161,7 +161,7 @@ function updateDropdownBehavior() {
   } else {
     $('.dropdown-btn-instituciones').off('click').on('click', function () {
       const url = $(this).data('url');
-      window.location.href = '../../html/Institucion/SelectInstitucion.html';
+      window.location.href = '../../html/Institucion/ManageParticularInstitucion.html';
     });
   }
 }
@@ -178,6 +178,12 @@ $('.toggle-btn').on('click', function () {
   // Guardar el estado del sidebar en localStorage
   const isOpen = $('.sidebar').hasClass('open');
   localStorage.setItem('sidebarState', isOpen ? 'open' : 'closed');
+
+  // Verificar el tamaño de la pantalla antes de guardar en localStorage
+  if (window.innerWidth > 1200) {
+    const isOpen = $('.sidebar').hasClass('open');
+    localStorage.setItem('sidebarState', isOpen ? 'open' : 'closed');
+  }
 
   // Actualizar el comportamiento de los dropdowns
   updateDropdownBehavior();

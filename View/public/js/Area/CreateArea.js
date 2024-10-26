@@ -1,5 +1,6 @@
 $(document).ready(function () {
     verifySessionAndLoadUser();
+    CreateArea();
 
     // Cargar instituciones al inicio después de verificar sesión
     function verifySessionAndLoadUser() {
@@ -34,7 +35,7 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function(response) {
-                let institutoSelect = $('#instituto');
+                let institutoSelect = $('#institucion');
                 institutoSelect.empty().append('<option value="" disabled selected hidden>Seleccione instituto</option>');
 
                 response.forEach(institucion => {
@@ -65,7 +66,7 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function(response) {
-                let areaSelect = $('#area');
+                let areaSelect = $('#nombre');
                 areaSelect.empty().append('<option value="" disabled selected hidden>Seleccione área</option>');
 
                 response.forEach(area => {
@@ -79,6 +80,51 @@ $(document).ready(function () {
                 } catch (e) {
                     console.error('La respuesta no es un JSON válido:', jqXHR.responseText);
                 }            
+            }
+        });
+    }
+
+    function CreateArea() {
+        $('#create-area-form').submit(function(e) {
+            e.preventDefault();
+
+            let codigo = $('#codigo_area').val();
+            let nombre = $('#nombre').val();
+            let institucion = $('#institucion_perteneciente').val();
+    
+            if (codigo == "" || nombre == "" || institucion == "") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '¡Atención!',
+                    text: 'Por favor, completa todos los campos requeridos para agregar un área.',
+                    confirmButtonText: 'Entendido',
+                });
+            } else {
+                $.ajax({
+                    url: '../../../../Controller/Area/AreaController.php',
+                    type: 'POST',
+                    data: {
+                        action: 'create',
+                        codigo: codigo,
+                        nombre: nombre,
+                        institucion: institucion,
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.estado === 'Registro exitoso!') {
+                                location.reload();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error en la solicitud AJAX:', status, error);
+                        console.error('Respuesta del servidor:', xhr.responseText);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Ocurrió un error en la solicitud. Por favor, inténtalo nuevamente.',
+                        });
+                    }
+                });
             }
         });
     }
