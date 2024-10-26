@@ -4,10 +4,9 @@ las consultas SQL y se manejan los datos. En esta capa se colocan los constructo
 Controlador: El controlador procesa las entradas del usuario, interactúa con el modelo y selecciona las
 vistas para mostrar.
 
-Vista: Son los archivos que contienen el HTML y se encargan de mostrar la información al usuario. Pueden incluir código PHP para insertar datos dinámicamente.
+View: Esta carpeta, contiene la carpeta Public.
 
-Public: Esta carpeta contiene archivos CSS y JS que se utilizan para dar el estilo y funcionalidad a las vistas (hojas de estilo y scripts).
+Public: Esta carpeta contiene archivos CSS, HTML y JS que se utilizan para dar el estilo y funcionalidad a las vistas (hojas de estilo y scripts). Basicamente, se muestra toda la información al usuario.
 
-Archivo "index.php": Este es un sistema de enrutamiento básico, que muestra algo determinado en base a la solicitud del usuario.
-A su vez, se comunicará con el modelo para obtener y modificar datos, y finalmente, seleccionaría y mostraría las
-vistas adecuadas para el usuario.
+Archivo "index.html": Este archivo, es la página principal de nuestro proyecto. En el, tendrás las opciones de saber cómo funciona nuestro software, así como
+de registrarte y loguearte al mismo.
