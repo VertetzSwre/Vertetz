@@ -46,7 +46,6 @@ $(document).ready(function () {
                 institutoSelect.on('change', function() {
                     let institucionName = $(this).val();
                     loadAreas(institucionName);
-                    loadServicios(institucionName);
                 });
             },
             error: function(xhr, status, error) {

@@ -25,6 +25,7 @@
     </script>
 
 <div class="all-container" id="container-areas-servicios">
+    <button class="back-button-pages" id="back-page-button"><img src="../../img/back-button-pages.png"></button> 
     <!-- <h1 class="h1-areas-particulares">Areas de Liceo Impulso</h1> -->
 
     <main>
@@ -45,8 +46,8 @@
             <button type="submit" style="background-color: transparent; border: transparent;"  data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="../../img/anadir2.png" class="btn-add-area"></button>
 
             <!-- Botones de modal de crear servicio-->
-            <button type="submit" style="background-color: transparent; border: transparent;"  data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><img src="../../img/anadir2.png" class="btn-add-servicio"></button>
             <button class="add-other" id="add-servicio"  data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Añadir otro</button>
+            <button type="submit" style="background-color: transparent; border: transparent;"  data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><img src="../../img/anadir2.png" class="btn-add-servicio"></button>
         </div>
         
     </div>
@@ -72,24 +73,24 @@
         <div class="modal-body">
             <h1 style="font-size: 6rem; margin: 2rem 0 0 4rem; font-weight: 700; display: inline-block;">Crear área</h1>
             <form class="form-create-reservation" method="POST" id="create-area-form">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>Código del área (único por institución):</label>
                     <input type="number" name="codigo" id="codigo" placeholder="Escriba un codigo...">
-                </div>
+                </div> -->
                 
                 <div class="form-group">
                     <label>Seleccione area:</label>
-                    <select name="nombre" id="nombre" placeholder="Seleccione un area"></select>
+                    <input type="text" name="nombre" id="nombre" placeholder="Seleccione un area"></input>
                 </div>
                 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>Institución perteneciente:</label>
                     <select name="institucion" id="institucion" placeholder="Agregue una descripcion del servicio"></select> 
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <label>Seleccione estado:</label>
-                    <select name="estado" id="estado" placeholder="Seleccione un estado"></select>
+                    <input type="text"  name="estado" id="estado" placeholder="Seleccione un estado"></input>
                 </div>
 
 
@@ -148,7 +149,7 @@
 
   <!-- Modal para editar un area -->
   <div class="modal" id="exampleModalToggle2" tabindex="-1" aria-labelledby="exampleModalToggleLabel2" aria-hidden="true">
-    <div class="modal-dialog custom-width">
+    <div class="modal-dialog custom-width modal-dialog-scrollable">
       <div class="modal-content" style="background-color: #F6EFFF; padding: 3rem; border-radius: 2rem;">
        
         <div class="modal-body">
@@ -156,27 +157,27 @@
             <form class="form-create-reservation" method="POST" id="edit-area-form">
                 <div class="form-group">
                     <label>Código del área (único por institución):</label>
-                    <input type="number" name="codigo" id="edit-codigo" placeholder="Escriba un codigo...">
+                    <input type="number" name="codigo" id="edit-codigo" placeholder="Edite su codigo...">
                 </div>
                 
                 <div class="form-group">
                     <label>Seleccione area:</label>
-                    <select name="nombre" id="edit-nombre" placeholder="Seleccione un area"></select>
+                    <input type="text" name="nombre" id="edit-nombre" placeholder="Edite un area">
                 </div>
                 
                 <div class="form-group">
                     <label>Institución perteneciente:</label>
-                    <select name="institucion" id="edit-institucion" placeholder="Agregue una descripcion del servicio"></select> 
+                    <select name="institucion" id="institucion" placeholder="Seleccione una institucion"></select> 
                 </div>
 
                 <div class="form-group">
                     <label>Seleccione estado:</label>
-                    <select name="estado" id="edit-estado" placeholder="Seleccione un estado"></select>
+                    <input type="text" name="estado" id="edit-estado" placeholder="Edite el estado">
                 </div>
 
 
                 <section class="section-submit-btn">
-                    <button class="btn-submit" type="submit" data-bs-dismiss="modal" id="edit-area">Actualizar</button>
+                    <button class="btn-submit" type="submit" id="save-area-changes">Actualizar</button>
                 </section>
             </form>
         </div>
@@ -205,6 +206,7 @@
 <script src="../../js/Servicio/AllServicios.js"></script> -->
 <script src="../../js/Institucion/InstitucionDataLoader.js"></script>
 <script src="../../js/Institucion/CreateArea.js"></script>
+<script src="../../js/General/BackPages.js"></script>
 
 </body>
 </html>
