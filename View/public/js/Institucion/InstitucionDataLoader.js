@@ -64,8 +64,8 @@ function getAreas(nombre) {
             <p>${res.codigo}</p>
             <p>${res.nombre}</p>
             <p>${res.estado}</p>
-            <img src="../../img/icon-lapiz.png" style="width: 3rem; height: 100%; margin: 0 0.5rem;">
-            <button class="btn-delete-area" data-codigo="${res.codigo}" style="width: auto; height: auto; background-color: transparent; border: none;"><img src="../../img/icon-papelera.png" style="width: 3rem; height: 100%;"></button>
+            <button class="btn-edit-area" data-codigo="${res.codigo}" style="width: auto; height: auto; background-color: transparent; border: none;" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" ><img src="../../img/icon-lapiz.png" style="width: 3rem; height: 100%; margin: 0 1rem;"></button>
+            <button class="btn-delete-area" data-codigo="${res.codigo}" style="width: auto; height: auto; background-color: transparent; border: none;"><img src="../../img/icon-papelera.png" style="width: 3rem; height: 100%; margin: 0 2rem 0 1rem;"></button>
           </div>
         </div>`);
       sectionAreaList.append(sectionGetAreas);
@@ -112,8 +112,8 @@ function getServicios(nombre) {
             <p>${res.id_servicio}</p>
             <p>${res.tipo_servicio}</p>
             <p>${res.descripcion}</p>
-            <img src="../../img/icon-lapiz.png" style="width: 3rem; height: 100%; margin: 0 0.5rem;">
-            <button class="btn-delete-servicio" data-id_servicio="${res.id_servicio}" style="width: auto; height: auto; background-color: transparent; border: none;"><img src="../../img/icon-papelera.png" style="width: 3rem; height: 100%;"></button>
+            <img src="../../img/icon-lapiz.png" style="width: 3rem; height: 100%; margin: 0 1rem;">
+            <button class="btn-delete-servicio" data-id_servicio="${res.id_servicio}" style="width: auto; height: auto; background-color: transparent; border: none;"><img src="../../img/icon-papelera.png" style="width: 3rem; height: 100%; margin: 0 2rem 0 1rem;"></button>
           </div>
         </div>`);
       sectionServicesList.append(sectionGetServices);
@@ -142,8 +142,8 @@ function getReservas(nombre) {
             <p>${res.hora_fin}</p>
             <p>${res.observaciones}</p>
             <p>${res.codigo_area}</p>
-            <img src="../../img/icon-lapiz.png" style="width: 3rem; height: 100%; margin: 0 0.5rem;">
-            <img src="../../img/icon-papelera.png" style="width: 3rem; height: 100%; margin: 0 0.5rem;">
+            <img src="../../img/icon-lapiz.png" style="width: 3rem; height: 100%; margin: 0 1rem;">
+            <img src="../../img/icon-papelera.png" style="width: 3rem; height: 100%; margin: 0 2rem 0 1rem;">
           </div>
         </div>`);
       sectionReservationList.append(sectionGetReservation);
@@ -204,7 +204,7 @@ function deleteArea(codigo) {
             Swal.fire({
               icon: 'success',
               title: '¡Éxito!',
-              text: 'Has eliminado el servicio correctamente.',
+              text: 'Has eliminado el área correctamente.',
               showConfirmButton: false,
               timer: 2000,
             }).then(() => {
@@ -264,6 +264,71 @@ function deleteServicio(id_servicio) {
     }
   });
 }
+
+// Función para editar un área
+function editArea() {
+  $('#edit-area-form').submit(function (e) {
+      e.preventDefault();
+
+      let codigo = $('#edit-codigo').val();
+      let nombre = $('#edit-nombre').val();
+      let institucion = $('#edit-institucion').val();
+      let estado = $('#edit-estado').val();
+
+      if (codigo == "" || nombre == "" || institucion == "" || estado == "") {
+          Swal.fire({
+              icon: 'warning',
+              title: '¡Atención!',
+              text: 'Por favor, completa todos los campos requeridos para editar el área.',
+              confirmButtonText: 'Entendido',
+          });
+      } else {
+          $.ajax({
+              url: '../../../../Controller/Area/AreaController.php',
+              type: 'POST',
+              data: {
+                  action: 'update',
+                  codigo: codigo,
+                  nombre: nombre,
+                  institucion: institucion,
+                  estado: estado,
+              },
+              dataType: 'json',
+              success: function (response) {
+                  if (response.estado === 'exito') {
+                      Swal.fire({
+                          icon: 'success',
+                          title: '¡Éxito!',
+                          text: 'Has actualizado el área correctamente.',
+                          showConfirmButton: false,
+                          timer: 2000,
+                      }).then(() => {
+                          location.reload();
+                      });
+                  } else {
+                      Swal.fire({
+                          icon: 'error',
+                          title: 'Error',
+                          text: 'No se pudo actualizar el área. Por favor, inténtalo nuevamente.',
+                      });
+                  }
+              },
+              error: function (xhr, status, error) {
+                  console.error('Error en la solicitud AJAX:', status, error);
+                  console.error('Respuesta del servidor:', xhr.responseText);
+                  Swal.fire({
+                      icon: 'error',
+                      title: 'Error',
+                      text: 'Ocurrió un error en la solicitud. Por favor, inténtalo nuevamente.',
+                  });
+              }
+          });
+      }
+  });
+}
+
+// Llamar a la función para manejar la edición del área
+editArea();
 
 });//Cierre de la funcion ready
 

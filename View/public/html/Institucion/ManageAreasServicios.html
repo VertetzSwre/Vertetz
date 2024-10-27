@@ -74,21 +74,22 @@
             <form class="form-create-reservation" method="POST" id="create-area-form">
                 <div class="form-group">
                     <label>Código del área (único por institución):</label>
-                    <input type="number" name="codigo_area" id="codigo" placeholder="Escriba un codigo...">
+                    <input type="number" name="codigo" id="codigo" placeholder="Escriba un codigo...">
                 </div>
                 
                 <div class="form-group">
                     <label>Seleccione area:</label>
-                    <select name="nombre_area" id="nombre" placeholder="Seleccione un area"></select>
+                    <select name="nombre" id="nombre" placeholder="Seleccione un area"></select>
                 </div>
                 
                 <div class="form-group">
                     <label>Institución perteneciente:</label>
-                    <select name="institucion_area" id="institucion" placeholder="Agregue una descripcion del servicio"></select> 
+                    <select name="institucion" id="institucion" placeholder="Agregue una descripcion del servicio"></select> 
                 </div>
 
                 <div class="form-group">
-                    <!--Vacio para dejar espacio iguales-->
+                    <label>Seleccione estado:</label>
+                    <select name="estado" id="estado" placeholder="Seleccione un estado"></select>
                 </div>
 
 
@@ -111,7 +112,7 @@
             <h1 style="font-size: 6rem; margin: 2rem 0 0 4rem; font-weight: 700; display: inline-block;">Crear servicio</h1>
             
             <section class="section-create-reserva">
-                <form class="form-create-reservation">
+                <form class="form-create-reservation" method="POST" id="create-servicio-form">
                     <div class="form-group">
                         <label>Id del servicio:</label>
                         <input type="text" name="id_servicio" id="id_servicio" placeholder="Escriba un nombre...">
@@ -144,6 +145,45 @@
     </div>
   </div>
 
+
+  <!-- Modal para editar un area -->
+  <div class="modal" id="exampleModalToggle2" tabindex="-1" aria-labelledby="exampleModalToggleLabel2" aria-hidden="true">
+    <div class="modal-dialog custom-width">
+      <div class="modal-content" style="background-color: #F6EFFF; padding: 3rem; border-radius: 2rem;">
+       
+        <div class="modal-body">
+            <h1 style="font-size: 6rem; margin: 2rem 0 0 4rem; font-weight: 700; display: inline-block;">Editar área</h1>
+            <form class="form-create-reservation" method="POST" id="edit-area-form">
+                <div class="form-group">
+                    <label>Código del área (único por institución):</label>
+                    <input type="number" name="codigo" id="edit-codigo" placeholder="Escriba un codigo...">
+                </div>
+                
+                <div class="form-group">
+                    <label>Seleccione area:</label>
+                    <select name="nombre" id="edit-nombre" placeholder="Seleccione un area"></select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Institución perteneciente:</label>
+                    <select name="institucion" id="edit-institucion" placeholder="Agregue una descripcion del servicio"></select> 
+                </div>
+
+                <div class="form-group">
+                    <label>Seleccione estado:</label>
+                    <select name="estado" id="edit-estado" placeholder="Seleccione un estado"></select>
+                </div>
+
+
+                <section class="section-submit-btn">
+                    <button class="btn-submit" type="submit" data-bs-dismiss="modal" id="edit-area">Actualizar</button>
+                </section>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
     
 
         <section class="section-area-list">
@@ -164,7 +204,7 @@
 <!-- <script src="../../js/Area/AllAreas.js"></script>
 <script src="../../js/Servicio/AllServicios.js"></script> -->
 <script src="../../js/Institucion/InstitucionDataLoader.js"></script>
-<script src="../../js/Area/CreateArea.js"></script>
+<script src="../../js/Institucion/CreateArea.js"></script>
 
 </body>
 </html>
