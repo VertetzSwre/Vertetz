@@ -43,14 +43,13 @@ class AreaController
             $codigo_area = $_POST['codigo'];
             $institucion = $_POST['institucion'];
             $nombre_area = $_POST['nombre'];
-            $tipo = $_POST['tipo'];
             $estado = $_POST['estado'];
 
             // Crear una instancia de la clase Area
             $areaModel = new Area();
 
             // Intentar actualizar el área
-            $resultado = $areaModel->updateArea($codigo_area, $institucion, $nombre_area, $tipo, $estado);
+            $resultado = $areaModel->updateArea($codigo_area, $institucion, $nombre_area, $estado);
 
             // Devolver el resultado como JSON
             echo json_encode($resultado);
