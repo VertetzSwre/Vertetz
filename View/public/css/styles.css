@@ -73,6 +73,41 @@ body {
     color: white;
 }
 
+.a-padding {
+    padding: 1rem 2.5rem !important;
+}
+
+.text-reservas {
+    opacity: 0; /* Oculta el texto por defecto */
+    transition: all 0.2s ease;
+    padding: 1rem 0.5rem !important;
+}
+
+.text-instituciones {
+    padding: 1rem 0.5rem !important;
+    opacity: 0; /* Oculta el texto por defecto */
+    transition: all 0.2s ease;
+}
+
+.text-nueva-reserva {
+    padding: 1rem 0.5rem !important;
+    opacity: 0; /* Oculta el texto por defecto */
+    transition: all 0.2s ease;
+}
+
+.sidebar .dropdown-btn a {
+    display: block;
+    padding: 1rem 8.5rem !important;
+    color: white;
+    text-decoration: circle;
+    width: 30rem;
+    box-sizing: border-box; /* Asegura que el padding no haga que los elementos se salgan */
+    font-size: 1.4rem;
+    text-align: left;
+    transition: all 0.2s;
+    font-weight: normal;
+}
+
 .sidebar a {
     display: block;
     padding: 1rem 2.5rem;
@@ -85,6 +120,7 @@ body {
     transition: all 0.2s;
     font-weight: normal;
 }
+
 
 .sidebar a:hover {
     background-color: #8e76bc;; /* Fondo al pasar el ratón */
@@ -101,6 +137,10 @@ body {
     padding: 0; /* Elimina el padding por defecto */
     margin: 0; /* Elimina el margin por defecto */
     display: table-column;
+}
+
+.sidebar ul a {
+    padding: 1rem 4.5rem;
 }
 
 .sidebar li {
@@ -124,12 +164,25 @@ body {
     height: 2rem;
 }
 
-.sidebar .text {
-    opacity: 0; /* Oculta el texto por defecto */
+.sidebar.open .text {
+    opacity: 100%;
+    margin-left: 1rem;
     transition: all 0.2s ease;
 }
 
-.sidebar.open .text {
+.sidebar.open .text-reservas {
+    opacity: 100%;
+    margin-left: 1rem;
+    transition: all 0.2s ease;
+}
+
+.sidebar.open .text-instituciones {
+    opacity: 100%;
+    margin-left: 1rem;
+    transition: all 0.2s ease;
+}
+
+.sidebar.open .text-nueva-reserva {
     opacity: 100%;
     margin-left: 1rem;
     transition: all 0.2s ease;
@@ -162,7 +215,7 @@ body.sidebar-open {
 }
 
 .sub-menu li {
-    margin: 0.3rem 0; /* Añade un margen vertical entre los elementos de la lista */
+    margin: 0.1rem 0; /* Añade un margen vertical entre los elementos de la lista */
 }
 
 .sub-menu.show {
@@ -227,14 +280,143 @@ body.sidebar-open {
     rotate: 180deg; /* Rotar la flecha 180 grados */
 }
 
+/* --------------------------------------------- Logout Design --------------------------------------------- */
 
-/* --------------------------------------------- SIDEBAR --------------------------------------------- */
+.logout-container {
+    width: 30rem;
+    height: 60vh;
+
+    background-color: #8265c1e7;
+    color: white;
+    position: fixed;
+    right: 2%;
+    top: 6.5rem;
+    z-index: 10;
+
+    display: none;
+    font-family: 'Urbanist', sans-serif;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    border-radius: 1rem;
+}
 
 
+.logout-container.show {
+    display: flex;
+}
 
-/* --------------------------------------------- Pestaña Principal (Despues del Login) --------------------------------------------- */
+.logout-section-1 {
+    width: 100%;
+    height: 33.3%;
+    font-size: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-.h1-buenos-dias {
+    border-radius: 0.5rem;
+}
+
+.username-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.logout-section-2 {
+    width: 100%;
+    height: 33.3%;
+
+    border-radius: 0.5rem;
+}
+
+.logout-section-3 {
+    width: 100%;
+    height: 33.3%;
+
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: end;
+}
+
+.logout-section-3 button {
+    width: 100%;
+    height: 4rem;
+    border: none;
+    background-color: transparent;
+    color: white;
+    margin-bottom: 2rem;
+
+    font-size: 1.6rem;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.logout-section-3 button:hover {
+    background-color: #c1aceec0;
+}
+
+
+.items-info-section {
+    width: 100%;
+    height: 33%;
+
+
+    padding-left: 3rem;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.items-info-section p {
+    font-size: 1.6rem;
+}
+
+.img-pencil-edit {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 1rem;
+}
+
+.img-user-info {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 1rem;
+}
+
+.logout-btn {
+    width: 4rem; 
+    height: 4rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    filter: drop-shadow(0 0 0.5rem rgb(255, 255, 255));
+}
+
+.btn-edit-user {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 0.5rem;
+    background-color: transparent;
+    border: none;
+}
+
+.btn-edit-user img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* -------------------- Modal Edit User Design --------------------*/
+
+.h1-edit-perfil { /*Texto de Editar Usuario*/
     font-family: Raleway, sans-serif; 
     font-weight: 700; 
     font-size: 4.5rem; 
@@ -242,7 +424,121 @@ body.sidebar-open {
     display: inline-block;
 }
 
-.section-recent-accesses {
+.line-edit-user {
+    width: 100%;
+    height: 0.3rem;
+
+    background-color: #9570C3;
+}
+
+.section-edit-user { /*Seccion de editar usuario*/
+    width: auto;
+    margin: 0 auto;
+}
+
+.form-edit-user { /*Formulario de editar usuario*/
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.form-group {
+    flex: 1 1 45%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-edit-user input {
+    width: 80%;
+    height: 5rem;
+    padding: 1rem;
+    font-size: 1.8rem;
+    border-top: 0.4rem solid #74539C;
+    border-bottom: 0.4rem solid #74539C;
+    border-left: 0.7rem solid #74539C;
+    border-right: 0.7rem solid #74539C;
+    border-radius: 2rem;
+}
+
+.form-edit-user label {
+    font-size: 1.6rem;
+}
+
+.custom-width-edit-user {
+    max-width: 60% !important;
+}
+
+.btn-save-edit-user {
+    width: 20%;
+    height: 4rem;
+    margin: 0 2rem;
+
+    background-color: #7453BB;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 500;
+    font-family: 'Urbanist', sans-serif;
+    border: none;
+    border-radius: 0.6rem;
+}
+
+.img-edit-user {
+    width: 12rem;
+    height: 12rem;
+}
+
+.row-edit-user {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+#btn-select-img-user {
+    background-color: transparent;
+    border: none;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    color: #9570C3;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+}
+
+.txt-file-upload {
+    color: #000;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: 1.6rem;
+}
+
+
+/*En size 768px que el width sea de 40%*/
+
+
+/* --------------------------------------------- MainDashboard --------------------------------------------- */
+
+.h1-buenos-dias { /*Texto de buenos dias*/
+    font-family: Raleway, sans-serif; 
+    font-weight: 700; 
+    font-size: 4.5rem; 
+    margin: 1rem 3rem; 
+    display: inline-block;
+}
+
+.section-recent-accesses { /*Seccion de accesos recientes*/
     margin: 0 auto;
     width: 85%;
     height: 28rem;
@@ -263,7 +559,7 @@ body.sidebar-open {
     flex-wrap: nowrap;
 }
 
-.slider-item {
+.slider-item { /*Items del slider*/
     position: relative;
     margin: 0 2rem;
     min-width: 35rem;
@@ -305,14 +601,14 @@ body.sidebar-open {
     border-bottom-right-radius: 2rem;
 }
 
-.next-reservations-txt {
+.next-reservations-txt { /*Texto de tus proximas reservas*/
     font-family: Raleway, sans-serif; 
     font-weight: 700; 
     font-size: 3rem; 
     margin: 10rem 0 0 15rem; 
     display: inline-block;
 }
-.section-next-reservations {
+.section-next-reservations { /*Seccion de tus proximas reservas*/
     width: 90%;
     height: auto;
     margin: 1rem auto;
@@ -320,7 +616,20 @@ body.sidebar-open {
     border-bottom: 1px solid #000;
 }
 
-/* --------------------------------------------- Gestion de Reservas y Instituciones --------------------------------------------- */
+.btn-load-all { /*Boton para ir a todas las reservas*/
+    width: 35%;
+    height: 4rem;
+    margin: 2rem auto;
+    background-color: #7453BB;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 2.5rem;
+    cursor: pointer;
+}
+
+/* ----------------------------------- Seleccionar Instituciones (SelectInstitucion.html) ----------------------------------- */
 
 .reservation-options {/*Contenedor principal*/
     width: 80%;
@@ -334,19 +643,66 @@ body.sidebar-open {
 
 }
 
-.h1-gestion-de-reservas {
+/* .h1-gestion-de-reservas {
     font-size: 7rem; 
     margin: 4rem 0 2rem 4rem; 
     font-weight: 700; 
     display: inline-block;
+} */
+
+.reservation-particular-item {/*Item contenedor del texto*/
+    height: 80%;
+    width: 80%;
+    margin: 1rem;
+    position: relative;
+    border-radius: 1rem;
+
+    background-color: #c4c4c4;
+    transition: all 0.2s ease;
 }
 
-.reservas-sub-text {
-    font-size: 2rem; 
-    font-weight: 400; 
-    margin: 0 0 2rem 6rem; 
-    display: inline-block;
+.reservation-particular-item:hover {
+    box-shadow: 1px 1px 10px 10px #00000039;
 }
+
+.reservation-particular-txt { /*Texto que se muestra*/
+    width: auto;
+    margin: 0 auto;
+    display: inline-block;
+
+    font-size: 1.8rem; 
+    font-family: 'Urbanist', sans-serif;
+    color: #ffffff; 
+    position: relative;
+     left: 50%; 
+     top: 92%; 
+     transform: translate(-50%, -50%);
+     z-index: 1;  
+}
+.reservation-particular-item::before,
+.reservation-particular-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3rem; /* Ajusta la altura según sea necesario */
+    background-color: #7357B0;
+}
+
+.reservation-particular-item::before {
+    top: 0;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.reservation-particular-item::after {
+    height: 4rem;
+    bottom: 0;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+/* --------------------------------------------- Gestion de Institucion seleccionada (ManageInstitucion.html) --------------------------------------------- */
 
 .reservation-item {/*Item contenedor del texto*/
     height: 80%;
@@ -401,76 +757,22 @@ body.sidebar-open {
     border-bottom-right-radius: 1rem;
 }
 
-/* --------------------------------------------- Gestion de Instituciones Particulares --------------------------------------------- */
-
-
-.reservation-particular-item {/*Item contenedor del texto*/
-    height: 80%;
-    width: 80%;
-    margin: 1rem;
-    position: relative;
-    border-radius: 1rem;
-
-    background-color: #c4c4c4;
-    transition: all 0.2s ease;
-}
-
-.reservation-particular-item:hover {
-    box-shadow: 1px 1px 10px 10px #00000039;
-}
-
-.reservation-particular-txt { /*Texto que se muestra*/
-    width: auto;
-    margin: 0 auto;
-    display: inline-block;
-
-    font-size: 1.8rem; 
-    font-family: 'Urbanist', sans-serif;
-    color: #ffffff; 
-    position: relative;
-     left: 50%; 
-     top: 92%; 
-     transform: translate(-50%, -50%);
-     z-index: 1;  
-}
-.reservation-particular-item::before,
-.reservation-particular-item::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 3rem; /* Ajusta la altura según sea necesario */
-    background-color: #7357B0;
-}
-
-.reservation-particular-item::before {
-    top: 0;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-}
-
-.reservation-particular-item::after {
-    height: 4rem;
-    bottom: 0;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-}
-
-
-/* --------------------------------------------- Mis reservas --------------------------------------------- */
-
-.search-reservations {
-    width: 100%;
-    height: 4.5rem;
-    margin: 0 auto;
-}
-
-.h1-mis-reservas {
-    font-size: 7rem; 
-    margin: 4rem 0 2rem 4rem; 
+.h1-gestionar-instituciones {
+    font-size: 5rem; 
+    margin: 1rem; 
     font-weight: 700; 
     display: inline-block;
 }
+
+.gestionar-instituciones-sub-txt {
+    font-size: 2rem; 
+    font-weight: 400; 
+    margin: 0 0 2rem 6rem; 
+    display: inline-block;
+}
+
+
+/* --------------------------------------------- Todas las reservas (ManageReservas.html) --------------------------------------------- */
 
 .fieldset-search {
     display: flex;
@@ -519,19 +821,6 @@ body.sidebar-open {
     background-color: #F6EFFF;
 }
 
-.btn-load-all {
-    width: 35%;
-    height: 4rem;
-    margin: 2rem auto;
-    background-color: #7453BB;
-    color: white;
-    font-size: 1.8rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 2.5rem;
-    cursor: pointer;
-}
-
 /* ------ Estilo Filtros de Reservas ------ */
 
 .filter-section {
@@ -560,9 +849,6 @@ body.sidebar-open {
     color: #281540;
 }
 
-
-
-/* --------------------------------------------- Todas las reservas --------------------------------------------- */
 .btn-filter {
     width: 10rem;
     height: auto;
@@ -678,23 +964,13 @@ body.sidebar-open {
     align-self: flex-end;
 }
 
-/* --------------------------------------------- Crear nueva reserva --------------------------------------------- */
+/* --------------------------------------------- Crear nueva reserva (CreateReserva.html) --------------------------------------------- */
 
 .h1-reserva-espacio {
     font-size: 7rem; 
     margin: 2rem 0 0 4rem; 
     font-weight: 700; 
     display: inline-block;
-}
-
-.h1-crear-institucion {
-    font-size: 10rem; 
-    margin: 2rem 0 0 4rem; 
-    font-weight: 700; 
-    display: inline-block;
-
-    font-size: 4rem;
-    margin: 2rem auto;
 }
 
 .section-create-reservation {
@@ -710,13 +986,6 @@ body.sidebar-open {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin: 0 0 0 5rem;
 }
 
 .time-group {
@@ -761,28 +1030,26 @@ textarea {
 }
 
 .all-reservas-details {
-    width: 95%;
+    width: 90%;
     height: auto;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
-
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
 }
 
 .all-reservas-details p {
     margin: 1rem 4rem;
     font-weight: bold;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #74539C;
 }
 
 .section-preview-data p {
     margin: 1rem 4rem;
     font-weight: bold;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #74539C;
 }
 
@@ -794,28 +1061,6 @@ textarea {
     align-items: center;
 
     border-bottom: 1px solid #000;
-}
-
-.section-submit-btn { /*Contenedor de los dos botones de abajo*/
-    width: 100%;
-    height: 5rem;
-    margin: 4rem auto;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-}
-
-.btn-submit { /*Boton Enviar*/
-    width: 25%;
-    height: 4rem;
-    margin: 0 2rem;
-
-    background-color: #7453BB;
-    color: white;
-    font-size: 1.8rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 2.5rem;
 }
 
 .section-submit-btn button img{ /*Ajusta el tamaño de la imagen al 100% del boton*/
@@ -846,7 +1091,7 @@ textarea {
 }
 
 
-/* --------------------------------------------- Crear una nueva institucion --------------------------------------------- */
+/* --------------------------------------------- Crear una nueva institucion (CreateInstitucion.html) --------------------------------------------- */
 
 
 .btn-add-other {
@@ -863,6 +1108,16 @@ textarea {
     cursor: pointer;
 }
 
+.h1-crear-institucion {
+    font-size: 10rem; 
+    margin: 2rem 0 0 4rem; 
+    font-weight: 700; 
+    display: inline-block;
+
+    font-size: 4rem;
+    margin: 2rem auto;
+}
+
 .form-group {
     flex: 1 1 45%;
     display: flex;
@@ -871,7 +1126,7 @@ textarea {
 }
 
 
-/* --------------------------------------------- Calendario --------------------------------------------- */
+/* --------------------------------------------- Calendario (Calendar.html) --------------------------------------------- */
 
 .calendar-container {
     display: flex;
@@ -881,6 +1136,10 @@ textarea {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     margin: 2rem auto;
+}
+
+.has-reserva {
+    background-color: #ffcccb; /* Cambia este color al que prefieras */
 }
 
 .h1-calendario {
@@ -972,6 +1231,7 @@ textarea {
 .selected {
     border: 2px solid #A57AFF;
     border-radius: 0.5rem;
+    transition: all 0.2s ease;
 }
 
 .info-section {
@@ -1039,7 +1299,7 @@ textarea {
 }
 
 
-/* --------------------------------------------- Areas Particulares --------------------------------------------- */
+/* -------------------------------------- Areas Particulares (ManageAreasServicios.html) -------------------------------------- */
 
 .h1-areas-particulares {
     font-size: 5rem; 
@@ -1056,15 +1316,13 @@ textarea {
 }
 
 .section-area-data {
-    width: 95%;
+    width: 90%;
     height: auto;
-    margin: 4rem auto;
+    margin: 1rem auto;
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
-
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
 }
 
 .area-data-hidden {
@@ -1074,7 +1332,7 @@ textarea {
 .section-area-data p {
     margin: 1rem 4rem;
     font-weight: bold;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     color: #74539C;
 }
 
@@ -1141,129 +1399,14 @@ textarea {
     font-size: 1.6rem;
 }
 
-/* --------------------------------------------- Logout Design --------------------------------------------- */
+/* --------------------------------------------- Unirme a una institucion (JoinInstitucion.html) --------------------------------------------- */
 
-.logout-container {
-    width: 30rem;
-    height: 60vh;
-
-    background-color: #8265c1e7;
-    color: white;
-    position: fixed;
-    right: 2%;
-    top: 6.5rem;
-    z-index: 10;
-
-    display: none;
-    font-family: 'Urbanist', sans-serif;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-
-    border-radius: 1rem;
+.h1-unirme-a-una-institucion {
+    font-size: 7rem; 
+    margin: 4rem 0 2rem 4rem; 
+    font-weight: 700; 
+    display: inline-block;
 }
-
-.logout-container button {
-    width: 100%;
-    height: 4rem;
-
-    font-size: 1.6rem;
-    text-align: center;
-    transition: all 0.2s ease;
-}
-
-.logout-container.show {
-    display: flex;
-}
-
-.logout-section-1 {
-    width: 100%;
-    height: 33.3%;
-    font-size: 1.6rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 0.5rem;
-}
-
-.username-container {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.logout-section-2 {
-    width: 100%;
-    height: 33.3%;
-
-    border-radius: 0.5rem;
-}
-
-.logout-section-3 {
-    width: 100%;
-    height: 33.3%;
-
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: end;
-}
-
-.logout-section-3 button {
-    margin: 2rem 0;
-    background-color: transparent;
-    border: none;
-    color: white;
-}
-
-.logout-section-3 button:hover {
-    background-color: #c1aceec0;
-}
-
-
-.items-info-section {
-    width: 100%;
-    height: 33%;
-
-
-    padding-left: 3rem;
-
-    display: flex;
-    justify-content: left;
-    align-items: center;
-}
-
-.items-info-section p {
-    font-size: 1.6rem;
-}
-
-.img-pencil-edit {
-    width: 3rem;
-    height: 3rem;
-    margin: 0 1rem;
-}
-
-.img-user-info {
-    width: 3rem;
-    height: 3rem;
-    margin: 0 1rem;
-}
-
-.logout-btn {
-    width: 4rem; 
-    height: 4rem;
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
-
-.logout-btn:hover {
-    filter: drop-shadow(0 0 0.5rem rgb(255, 255, 255));
-}
-
-/*En size 768px que el width sea de 40%*/
 
 
 /* --------------------------------------------- Utilidades --------------------------------------------- */
@@ -1272,16 +1415,67 @@ textarea {
     display: flex;
 }
 
+.d-flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
 .justify-content-center {
     justify-content: center;
 }
 
+.align-items-left {
+    align-items: left;
+}
 
-/*Estilos de las secciones para obtener todos las entidades de la BDD*/
+.search-reservations { /*Seccion que se utiliza para mostrar los resultados de la búsqueda de todas las entidades
+                         traidas desde la BDD*/
+    width: 100%;
+    height: 4.5rem;
+    margin: 3rem auto;
+}
+
+.section-submit-btn { /*Contenedor de botones para crear dicha reserva, area, servicio o institucion*/
+    width: 100%;
+    height: 5rem;
+    margin: 4rem auto;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+    .btn-submit { /*Diseño de boton para reultilizar cuando se quiere crear una reserva, un area, etc.*/
+    width: 25%;
+    height: 4rem;
+    margin: 0 2rem;
+
+    background-color: #7453BB;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 2.5rem;
+}
+
+.back-button-pages { /*Boton empleado para volver a la pagina anterior de manera dinamica*/
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.back-button-pages img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* --------------- Estilos de las secciones para obtener las reservas --------------- */
 
 .section-reservation-list {
-    width: 95%;
-    margin: 5rem auto;
+    width: 90%;
+    margin: 1rem auto;
     border-bottom: 1px solid #000;
 }
 
@@ -1291,12 +1485,11 @@ textarea {
     display: flex;
     align-items: center;
     background-color: #E0CEFF;
-    margin: 2rem 0;
-    border: 1px solid #462470;
+    margin: 0.8rem 0;
 }
 
 #reservation-item p {
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-family: 'Urbanist', sans-serif;
     font-weight: 500;
     text-align: center;
@@ -1308,25 +1501,29 @@ textarea {
     border-top: 1px solid black;
 }
 
-/*------------------------------------------------------------------------------------------------------------*/
+/* --------------- Estilos de las secciones para obtener los usuarios --------------- */
 
 .section-users-list {
-    width: 95%;
+    width: 90%;
     margin: 1rem auto;
-    border-bottom: 1px solid #000;
+    border-top: 1px solid #a0a0a0;
+}
+
+.section-user-list {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #a0a0a0;
 }
 
 .section-usuario-data {
-    width: 95%;
+    width: 90%;
     height: auto;
-    margin: 4rem auto;
+    margin: 1rem auto;
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
     text-align: center;
-
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
 }
 
 .section-usuario-data p {
@@ -1344,16 +1541,15 @@ textarea {
     width: 100%;
     height: auto;
     display: flex;
+    flex-direction: row;
     align-items: center;
     background-color: #E0CEFF;
-    margin: 2rem 0;
-    padding: 2rem 0;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    margin: 0.8rem 0;
+    padding: 1rem 0;
 }
 
 #users-item p {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-family: 'Urbanist', sans-serif;
     font-weight: 500;
     text-align: center;
@@ -1361,10 +1557,10 @@ textarea {
     margin: 1rem auto;
 }
 
-/*------------------------------------------------------------------------------------------------------------*/
+/* --------------- Estilos de las secciones para obtener las areas --------------- */
 
 .section-area-list {
-    width: 95%;
+    width: 90%;
     margin: 0 auto;
     border-bottom: 1px solid #000;
 }
@@ -1384,11 +1580,11 @@ textarea {
     align-items: center;
     justify-content: space-around;
     background-color: #E0CEFF;
-    margin: 2rem 0;
+    margin: 0.8rem 0;
 }
 
 #area-item p {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-family: 'Urbanist', sans-serif;
     font-weight: 500;
     text-align: center;
@@ -1396,7 +1592,7 @@ textarea {
     margin: 1rem auto;
 }
 
-/*------------------------------------------------------------------------------------------------------------*/
+/* --------------- Estilos de las secciones para obtener las instituciones --------------- */
 
 .section-institution-list {
     width: 95%;
@@ -1426,10 +1622,10 @@ textarea {
     margin: 1rem auto;
 }
 
-/*------------------------------------------------------------------------------------------------------------*/
+/* --------------- Estilos de las secciones para obtener los servicios --------------- */
 
 .section-services-list {
-    width: 95%;
+    width: 90%;
     margin: 0 auto;
     border-bottom: 1px solid #000;
 }
@@ -1444,45 +1640,17 @@ textarea {
     display: flex;
     align-items: center;
     background-color: #E0CEFF;
-    margin: 2rem 0;
+    margin: 1rem 0;
 }
 
 #service-item p {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-family: 'Urbanist', sans-serif;
     font-weight: 500;
     text-align: center;
     width: 80%;
     margin: 1rem auto;
 }
-
-
-
-/*Unirme a una institucion*/
-
-.h1-unirme-a-una-institucion {
-    font-size: 7rem; 
-    margin: 4rem 0 2rem 4rem; 
-    font-weight: 700; 
-    display: inline-block;
-}
-
-/*Gestionar instituciones*/
-
-.h1-gestionar-instituciones {
-    font-size: 5rem; 
-    margin: 1rem; 
-    font-weight: 700; 
-    display: inline-block;
-}
-
-.gestionar-instituciones-sub-txt {
-    font-size: 2rem; 
-    font-weight: 400; 
-    margin: 0 0 2rem 6rem; 
-    display: inline-block;
-}
-
 
 
 /* =================================================== Media Queries =================================================== */
@@ -1582,7 +1750,15 @@ textarea {
     }
 
     .all-reservas-details {
-        width: 100%;
+        width: 90%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border-top: 1px solid #000; */
+    /* border-bottom: 1px solid #000;
     }
 
     .all-reservas-details p {
@@ -1655,6 +1831,7 @@ textarea {
         color: white;
         font-size: 1.2rem;
     }
+    
     
     .item-day {
         font-size: 1.8rem;
@@ -1800,7 +1977,7 @@ textarea {
 
     .h1-todas-las-reservas {
         font-size: 4rem; 
-        margin: 2rem auto; 
+        margin: 0 0 1rem 0;
     }
 
     .btn-download-list {
@@ -1827,14 +2004,18 @@ textarea {
     }
 
     .section-reservation-list {
-        width: 100%;
+        width: 90%;
         margin: 1rem auto;
     }
 
     #reservation-item {
-        height: 6rem;
-        gap: 0rem;
-        justify-content: space-evenly;
+        width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #E0CEFF;
+    margin: 0.8rem 0;
     }
 
     #reservation-item p {
@@ -1898,6 +2079,12 @@ textarea {
         font-size: 5rem;
         margin: 2rem auto;
     }
+
+    /*Media Queries para Edit User Logout*/
+
+    .custom-width-edit-user {
+        max-width: 95% !important;
+    }
     
 }
 
@@ -1940,7 +2127,7 @@ textarea {
     }
 }
 
-/*-----------------Clases customizadas de Sweetalert ---------------------*/
+/*----------------- Clases customizadas de Sweetalert ---------------------*/
 
 .swal2-popup {
     font-size: 1.6rem; /* Tamaño de fuente general del popup */
@@ -1956,4 +2143,5 @@ textarea {
 
 .swal2-confirm, .swal2-cancel {
     font-size: 1.6rem; /* Tamaño de fuente de los botones */
+}
 }

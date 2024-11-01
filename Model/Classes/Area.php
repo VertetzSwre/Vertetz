@@ -166,12 +166,12 @@ class Area extends Connection
         }
     }
 
-    public function updateArea($codigo, $instituto, $nombre, $tipo, $estado)
+    public function updateArea($codigo, $instituto, $nombre, $estado)
     {
         $conn = $this->getConnection();
         try {
             $sql = "UPDATE area 
-                    SET codigo=:codigo, institucion_perteneciente=:instituto, nombre=:nombre, tipo=:tipo, estado=:estado 
+                    SET codigo=:codigo, institucion_perteneciente=:instituto, nombre=:nombre, estado=:estado 
                     WHERE codigo=:codigo";
 
             $stmt = $conn->prepare($sql);
